@@ -1,29 +1,32 @@
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ['./src/routes/**/*.{svelte,js,ts}'],
+    content: ['./src/**/*.{svelte,js,ts}'],
     theme: {
         extend: {},
     },
-    plugins: [require('daisyui')],
+    plugins: [
+        require('daisyui')
+    ],
     daisyui: {
         themes: [
             {
                 cuchos: {
-                    "primary": "#F5793B", //Same as figma (orange)
-                    'primary-content': '#FFFFFF',
+                    "primary": "#F5793B",
+                    'primary-content': '#FDFFFC',
                     "secondary": "#eaa1df",
                     "secondary-content": "#131515",
                     "accent": "#3B60E4",
-                    "neutral": "#131515", //Same as figma (black)
+                    "accent-content": "#FDFFFC",
+                    "neutral": "#131515",
                     "base-100": "#FDFFFC",
                     "info": "#3E92CC",
                     "info-content": "#3E92CC",
-                    "success": "#60D394", //Same as figma (green)
+                    "success": "#60D394",
                     "success-content": "#FDFFFC",
-                    "warning": "#F9DC5C", //Same as figma (yellow)
+                    "warning": "#F9DC5C",
                     "warning-content": "#FDFFFC",
-                    "error": "#F03A47", //Same as figma (red)
+                    "error": "#F03A47",
                     "error-content": "#FDFFFC",
 
                     "bg-primary": "#FDFFFC",
