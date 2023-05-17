@@ -29,7 +29,6 @@ module.exports = {
                     "error": "#F03A47",
                     "error-content": "#FDFFFC",
 
-                    "bg-primary": "#FDFFFC",
                     "bg-color": "#FDFFFC",
                     "border-grey": "#E4E4E4",
                     "border-orange": "#FFD0B9",
