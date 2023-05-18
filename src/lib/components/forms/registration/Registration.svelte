@@ -37,32 +37,31 @@
               <span class="label-text">Contraseña</span>
             </label>
             <input type="text" id="password" placeholder="contraseña" class="input input-bordered border-[#F5793B] w-full max-w-xs" />
-          
-          </div>
-          <div class="form-control col-span-4 max-w-xs m-2">
-            <label class="label" for="passwordR">
-              <span class="label-text">Repetir contraseña</span>
-            </label>
-            <input type="text" id="passwordR" placeholder="contraseña" class="input input-bordered border-[#F5793B] w-full max-w-xs" />
+            
+            </div>
+            <div class="form-control col-span-4 max-w-xs m-2">
+                <label class="label" for="passwordR">
+                <span class="label-text">Repetir contraseña</span>
+                </label>
+                <input type="text" id="passwordR" placeholder="contraseña" class="input input-bordered border-[#F5793B] w-full max-w-xs" />
+            
+            </div>
+            <div class="form-control col-span-4 max-w-xs m-2">
+                <label class="label" for="phone">
+                <span class="label-text">Celular</span>
+                <span class="label-text-alt">(Recomendado)</span>
+                </label>
+                <input type="text" id="phone" placeholder="09*******" class="input input-bordered border-[#F5793B] w-full max-w-xs" />
+            </div>
+            
+            <div class="py-8">
+                <p>Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br>Cucho´s Market y aceptando sus <a class="link link-hover text-[#F5793B]" href="./">politicas de privacidad</a> y <a class="link link-hover text-[#F5793B]" href="./">términos de uso</a></p>
+            </div>
+            
+            <button class="btn btn-secondary bg-[#F5793B] px-16 m-2">Crear cuenta</button>
+        </div>
+    </div>
         
-          </div>
-          <div class="form-control col-span-4 max-w-xs m-2">
-            <label class="label" for="phone">
-              <span class="label-text">Celular</span>
-              <span class="label-text-alt">(Recomendado)</span>
-            </label>
-            <input type="text" id="phone" placeholder="09*******" class="input input-bordered border-[#F5793B] w-full max-w-xs" />
-          </div>
-        </div>
-  
-        <div class="py-8">
-          <p>Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br>Cucho´s Market y aceptando sus <a class="link link-hover text-[#F5793B]" href="./">politicas de privacidad</a> y <a class="link link-hover text-[#F5793B]" href="./">términos de uso</a></p>
-        </div>
-  
-  
-        <button class="btn btn-secondary bg-[#F5793B] px-16 m-2">Crear cuenta</button>
-      </div>
-  
     </div>
     <div class="object-contain sm:object-cover md:object-fill lg:object-none xl:object-scale-down w-1/2 pt-16">
       <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c3VwZXJtZXJjYWRvfGVufDB8fDB8fHww&w=1000&q=80" alt="super">
