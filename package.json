@@ -30,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"chart.js": "^4.3.0",
+		"dotenv": "^16.0.3",
 		"swiper": "^9.3.1"
 	}
 }
