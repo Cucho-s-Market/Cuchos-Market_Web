@@ -3,7 +3,8 @@
 module.exports = {
     content: ['./src/**/*.{svelte,js,ts}'],
     theme: {
-        extend: {},
+        extend: {
+        },
     },
     plugins: [
         require('daisyui')
@@ -33,6 +34,9 @@ module.exports = {
                     "border-grey": "#E4E4E4",
                     "border-orange": "#FFD0B9",
                     "border-orange-focus": "#F5793B",
+
+                    //INDIVIDUAL COLORS
+                    "light-grey": "#F8F8F8"
                 },
             },
         ],

@@ -10,3 +10,4 @@
 <div>
     <CatalogoHeader/>
 </div>
+<slot />
