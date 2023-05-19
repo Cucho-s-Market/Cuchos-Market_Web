@@ -4,6 +4,9 @@ module.exports = {
     content: ['./src/**/*.{svelte,js,ts}'],
     theme: {
         extend: {
+            fontFamily: {
+                'poppins': ['Poppins'],
+            }
         },
     },
     plugins: [
