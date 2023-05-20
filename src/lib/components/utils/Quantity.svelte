@@ -24,14 +24,11 @@
   }
 
   const addToCart = () => {
-    console.log(value);
-    if(value < 0 || String(value) === '') {
+
+    if(String(value) === '') {
       value = 1;
     }
 
-    if(value >= 100) {
-      value = 100;
-    }
     alert(value);
     showQty = false;
   }
@@ -41,18 +38,22 @@
     let numbers = new RegExp('^[0-9]+$');
     let valueStrArray = [...valueStr];
 
-    if(valueStr.length === 1 && isNaN(value)) {
+    if(valueStr.length > 0 && isNaN(value)) {
+
       value = 1;
       valueStr = String(value);
       valueStrArray = [...valueStr];
-    }
 
-
-    if(valueStr !== '' && !valueStr.match(numbers)) {
+    } else if(valueStr.length > 0 && !valueStr.match(numbers)) {
 
       valueStrArray = valueStrArray.filter(elem => elem.match(numbers));
       valueStr = valueStrArray.join('');
       value = parseInt(valueStr);
+
+    } else if(value > 100) {
+
+      value = 100;
+
     }
   };
 
