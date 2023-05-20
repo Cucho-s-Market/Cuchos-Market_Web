@@ -24,13 +24,37 @@
   }
 
   const addToCart = () => {
-    if(value < 0) {
+    console.log(value);
+    if(value < 0 || String(value) === '') {
       value = 1;
     }
 
+    if(value >= 100) {
+      value = 100;
+    }
     alert(value);
     showQty = false;
   }
+
+  $: {
+    let valueStr = String(value);
+    let numbers = new RegExp('^[0-9]+$');
+    let valueStrArray = [...valueStr];
+
+    if(valueStr.length === 1 && isNaN(value)) {
+      value = 1;
+      valueStr = String(value);
+      valueStrArray = [...valueStr];
+    }
+
+
+    if(valueStr !== '' && !valueStr.match(numbers)) {
+
+      valueStrArray = valueStrArray.filter(elem => elem.match(numbers));
+      valueStr = valueStrArray.join('');
+      value = parseInt(valueStr);
+    }
+  };
 
 </script>
 
@@ -40,6 +64,6 @@
 
 <div class="flex flex-row justify-between w-full">
 		<Button type="btn-primary rounded-none rounded-l w-[25%] active:transform-none" svg="minus" click={()=> {modifyQty('minus')}}/>
-		<input type="number" class="input input-bordered text-center rounded-none w-[50%]"  bind:value="{value}"/>
+		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none w-[50%]"  bind:value="{value}"/>
 		<Button type="btn-primary rounded-none rounded-r w-[25%] active:transform-none" svg="plus" click={() => {modifyQty('plus')}}/>
 </div>
