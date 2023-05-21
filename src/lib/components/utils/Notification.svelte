@@ -11,12 +11,7 @@
 
     onMount(() => {
 		// @ts-ignore
-		self.animate([{transform: "translateX(100px)"}, {transform: "translateX(0px)"}], {duration: 100});
-	});
-
-    onDestroy(() => {
-		// @ts-ignore
-		self.animate([{opacity: "1"}, {opacity: "0"}], {duration: 100});
+		self.animate([{opacity: "0"}, {opacity: "1"}], {duration: 200});
 	});
 
 </script>
