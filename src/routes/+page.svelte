@@ -1,5 +1,5 @@
 <script>
-    import CartHeader from "$lib/components/cart/CartHeader.svelte";
+    import CartFooter from "$lib/components/cart/CartFooter.svelte";
 </script>
 
-<CartHeader/>
+<CartFooter/>
