@@ -7,9 +7,10 @@ module.exports = {
             "br-grey": "#E4E4E4",
             "br-orange": "#FFD0B9",
             "br-orange-focus": "#F5793B",
-           
+            "bg-product-list": "#FCFCFC",
             "normal-grey": "#8E8E8E",
             "light-grey": "#F8F8F8",
+            "sku-grey" : "#746F72",
             "dark-green": "#388E3C"
         },
         extend: {
