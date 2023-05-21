@@ -1,12 +1,29 @@
 <script>
+    import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
+	import { onDestroy } from "svelte";
+
+    // @ts-ignore
+    let self = null;
+
     export let text = "text";
     export let type = "alert-info";
     export let props = "";
 
+    onMount(() => {
+		// @ts-ignore
+		self.animate([{transform: "translateX(100px)"}, {transform: "translateX(0px)"}], {duration: 100});
+	});
+
+    onDestroy(() => {
+		// @ts-ignore
+		self.animate([{opacity: "1"}, {opacity: "0"}], {duration: 100});
+	});
+
 </script>
 
-<div class="alert {type} w-fit justify-center shadow-lg {props}">
-    <div>
+<div bind:this={self} class="alert {type} w-fit justify-center shadow-lg {props}">
+    <div>   
         
         {#if type === "alert-info"}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>

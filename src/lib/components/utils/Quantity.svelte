@@ -1,13 +1,10 @@
 <script>
 	import Button from "./Button.svelte";
+	import { notify } from "./Notifications.svelte";
 
   export let showQty = true;
 
   let value = 1;
-
-  let showPlus = false;
-  let showMinus = false;
-
 
   //events
   const modifyQty = (btn) => {
@@ -29,7 +26,9 @@
       value = 1;
     }
 
-    alert(value);
+    // @ts-ignore
+    notify({type: "alert-success", text: "Se ha agregado un articulo al carrito."});
+
     showQty = false;
   }
 
