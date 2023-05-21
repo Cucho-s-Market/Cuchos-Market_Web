@@ -7,6 +7,7 @@
   let value = 1;
 
   //events
+  // @ts-ignore
   const modifyQty = (btn) => {
     switch (btn) {
       case 'plus':
