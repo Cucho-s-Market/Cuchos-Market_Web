@@ -6,6 +6,7 @@
     export const notify = ({text, type, props}) => {
 
         const notification = new Notification({
+            // @ts-ignore
             target: document.querySelector('#notifications'), 
             props: {text: text, type: type, props: props}
         });
