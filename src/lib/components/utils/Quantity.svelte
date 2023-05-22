@@ -27,9 +27,12 @@
       value = 1;
     }
 
-    // @ts-ignore
-    notify({type: "alert-success", text: "Se ha agregado un articulo al carrito."});
+    let strHa = value === 1 ? "ha" : "han";
+    let strArticulo = value === 1 ? "articulo" : "articulos";
+    let strCantidad = value === 1 ? "un" : String(value);
 
+    // @ts-ignore
+    notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
     showQty = false;
   }
 
