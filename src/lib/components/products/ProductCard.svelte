@@ -5,10 +5,10 @@
     let showQty = false;
 
     export let data = {
-        name: "Papel Higiénico ELITE Hoja Simple 12 Unidades x 30m",
-        purchasePrice: 2000,
-        listPrice: 1500,
-        discount: 20,
+        name: "",
+        purchasePrice: 0,
+        price: 0,
+        discount: 0,
         iso: "UYU",
         image: "https://dummyimage.com/200/000/fff"
     };
@@ -20,14 +20,16 @@
 
 </script>
 
-<div class="card w-[250px] round-[10px] p-5 border border-br-grey bg-base-100 font-poppins">
-    <img class="round-[5px] pb-5" src="{data.image}" alt="{data.name}" />
+<div class="card w-[220px] round-[10px] p-3 mb-2 border border-br-grey bg-base-100 font-poppins">
+    <div class="flex w-[190px] mb-5 h-[190px]">
+        <img class="rounded-[5px] object-cover" src="{data.image}" alt="{data.name}" />
+    </div>
     <div class="card-body p-0 gap-5 justify-center">
-        <h2 class="flex justify-center font-medium text-sm text-center">{data.name}</h2>
+        <h3 class="flex justify-center font-medium text-sm text-center h-[2em]">{data.name}</h3>
         <div class="flex flex-col justify-center">
             <div class="flex flex-col text-center">
-                <p class="font-regular text-xs text-normal-grey font-medium line-through flex-grow-0">{data.iso} {data.purchasePrice}</p>
-                <p class="font-regular text-lg font-medium flex-grow-0">{data.iso} {data.listPrice}</p>
+                <p class="font-regular text-xs text-normal-grey font-medium line-through flex-grow-0">{data.iso} {data.price}</p>
+                <p class="font-regular text-lg font-medium flex-grow-0">{data.iso} {data.price}</p>
             </div>
 
             {#if data.discount > 0}
