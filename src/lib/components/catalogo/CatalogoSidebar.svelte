@@ -12,7 +12,7 @@
       <span>{categoria.nombre}</span>
     </li>
     {#each categoria.subcategorias as subc}
-    <li><button class="btn btn-ghost">{subc}</button></li>
+    <li><a class="" href="./">{subc}</a></li>
     {/each}
   {/each}
 </ul>
