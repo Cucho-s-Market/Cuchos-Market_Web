@@ -40,7 +40,7 @@
         </div>
         <div class="card-actions justify-center">
             {#if showQty}
-                <Quantity bind:showQty={showQty}/>
+                <Quantity bind:showQty={showQty} card={true}/>
             {:else}
                 <Button text="Agregar al carrito" type="btn-primary btn-block" click={() => {showQuantity()}}/>
             {/if}

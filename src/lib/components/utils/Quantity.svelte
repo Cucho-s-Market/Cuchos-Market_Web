@@ -3,6 +3,8 @@
 	import { notify } from "./Notifications.svelte";
 
   export let showQty = true;
+  export let card = false;
+  export let props = "";
 
   let value = 1;
 
@@ -62,12 +64,13 @@
 
 </script>
 
+{#if card}
+  <Button type="btn-error  btn-sm absolute left-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-x" click={() => {showQty = false}}/>
+  <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-plus" click={()=> {addToCart()}}/>
+{/if}
 
-<Button type="btn-error  btn-sm absolute left-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-x" click={() => {showQty = false}}/>
-<Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-plus" click={()=> {addToCart()}}/>
-
-<div class="flex flex-row justify-between w-full">
-		<Button type="btn-primary rounded-none rounded-l w-[25%] active:transform-none" svg="minus" click={()=> {modifyQty('minus')}}/>
+<div class="flex flex-row justify-between w-full {props}">
+		<Button type="btn-primary rounded-none rounded-l w-[25%] active:transform-none" svg={{name: 'minus'}} click={()=> {modifyQty('minus')}}/>
 		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none w-[50%]"  bind:value="{value}"/>
-		<Button type="btn-primary rounded-none rounded-r w-[25%] active:transform-none" svg="plus" click={() => {modifyQty('plus')}}/>
+		<Button type="btn-primary rounded-none rounded-r w-[25%] active:transform-none" svg={{name: 'plus'}} click={() => {modifyQty('plus')}}/>
 </div>
