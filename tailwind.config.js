@@ -41,6 +41,8 @@ module.exports = {
                     "warning-content": "#FDFFFC",
                     "error": "#F03A47",
                     "error-content": "#FDFFFC",
+                    "neutral-category": "#746F72",
+                    "grey": "#D9D9D9",
                 },
             },
         ],

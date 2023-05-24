@@ -4,6 +4,4 @@
 
 </script>
 
-
-<a href="./registrarse">Registration</a>
 <slot />
