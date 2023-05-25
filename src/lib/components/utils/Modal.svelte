@@ -24,7 +24,6 @@
 
 			<!-- MAIN CONTENT -->
             <div class="w-full p-10">
-                
             </div>
 		</label>
 	</label>
