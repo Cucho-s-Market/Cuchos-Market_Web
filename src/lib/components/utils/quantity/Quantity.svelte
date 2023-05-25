@@ -1,28 +1,17 @@
 <script>
-	import Button from "./Button.svelte";
-	import { notify } from "./Notifications.svelte";
+	import Button from "../Button.svelte";
+	import { notify } from "../Notifications.svelte";
+	import QuantityButton from "./QuantityButton.svelte";
 
   export let showQty = true;
   export let card = false;
-  export let props = "";
+  export let containerProps = "";
+  export let btnProps = "";
+  export let inputProps = "";
 
   let value = 1;
 
   //events
-  // @ts-ignore
-  const modifyQty = (btn) => {
-    switch (btn) {
-      case 'plus':
-          value++;
-        break;
-      case 'minus':
-      if(value > 1) {
-          value--;
-        }
-        break;
-    }
-  }
-
   const addToCart = () => {
 
     if(String(value) === '') {
@@ -69,8 +58,8 @@
   <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-plus" click={()=> {addToCart()}}/>
 {/if}
 
-<div class="flex flex-row justify-between {props}">
-		<Button type="btn-primary rounded-none rounded-l w-[25%] active:transform-none" svg={{name: 'minus'}} click={()=> {modifyQty('minus')}}/>
-		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none w-[50%]"  bind:value="{value}"/>
-		<Button type="btn-primary rounded-none rounded-r w-[25%] active:transform-none" svg={{name: 'plus'}} click={() => {modifyQty('plus')}}/>
+<div class="flex flex-row justify-between {containerProps}">
+    <QuantityButton type='minus' bind:value bind:btnProps/>
+		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}"  bind:value="{value}"/>
+		<QuantityButton type='plus' bind:value bind:btnProps/>
 </div>
