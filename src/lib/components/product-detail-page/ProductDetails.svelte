@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="flex justify-between max-w-[400px]">
-			<Quantity containerProps="w-[45%]" btnProps={"h-[100%]"} inputProps={"h-[100%]"}/>
+			<Quantity containerProps="w-[45%]" btnProps="h-[100%]" inputProps="h-[100%]"/>
 			<Button type="btn-primary w-[45%]" text="Agregar al carrito" />
 		</div>
 	</div>
