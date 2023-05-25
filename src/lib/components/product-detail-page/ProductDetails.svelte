@@ -1,6 +1,6 @@
 <script>
 	import Button from '$lib/components/utils/Button.svelte';
-	import Quantity from '$lib/components/utils/Quantity.svelte';
+	import Quantity from '$lib/components/utils/quantity/Quantity.svelte';
 	import ProductSpecs from './ProductSpecs.svelte';
 
     let description = false;
@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="flex justify-between max-w-[400px]">
-			<Quantity props="w-[45%]" />
+			<Quantity containerProps="w-[45%]" btnProps="h-[100%]" inputProps="h-[100%]"/>
 			<Button type="btn-primary w-[45%]" text="Agregar al carrito" />
 		</div>
 	</div>

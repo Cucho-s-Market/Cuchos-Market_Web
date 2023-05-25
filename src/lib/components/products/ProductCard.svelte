@@ -1,6 +1,6 @@
 <script>
 	import Button from "../utils/Button.svelte";
-	import Quantity from "../utils/Quantity.svelte";
+	import Quantity from "../utils/quantity/Quantity.svelte";
 
     let showQty = false;
 
