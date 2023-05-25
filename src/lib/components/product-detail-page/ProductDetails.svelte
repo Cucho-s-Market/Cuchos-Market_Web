@@ -35,12 +35,12 @@
 		<div class="flex border-y border-br-grey">
 			<Button
 				text="Descripcion"
-				type="bg-transparent border-none text-neutral font-normal hover:bg-transparent"
+				type="bg-transparent border-none text-neutral hover:bg-transparent {description ? 'font-bold' : 'font-normal'}"
                 click={() => {showDescription(true)}}
 			/>
 			<Button
 				text="Informacion"
-				type="bg-transparent border-none text-neutral font-normal hover:bg-transparent"
+				type="bg-transparent border-none text-neutral hover:bg-transparent {!description ? 'font-bold' : 'font-normal'}"
                 click={() => {showDescription(false)}}
 			/>
 		</div>

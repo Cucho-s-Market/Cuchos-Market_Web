@@ -69,7 +69,7 @@
   <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-plus" click={()=> {addToCart()}}/>
 {/if}
 
-<div class="flex flex-row justify-between w-full {props}">
+<div class="flex flex-row justify-between {props}">
 		<Button type="btn-primary rounded-none rounded-l w-[25%] active:transform-none" svg={{name: 'minus'}} click={()=> {modifyQty('minus')}}/>
 		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none w-[50%]"  bind:value="{value}"/>
 		<Button type="btn-primary rounded-none rounded-r w-[25%] active:transform-none" svg={{name: 'plus'}} click={() => {modifyQty('plus')}}/>
