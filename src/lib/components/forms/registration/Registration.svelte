@@ -1,73 +1,77 @@
 <script>
-	import Button from "$lib/components/utils/Button.svelte";
-	import Link from "$lib/components/utils/Link.svelte";
-	import Input from "$lib/components/utils/Input.svelte";
+	import Button from '$lib/components/utils/Button.svelte';
+	import Link from '$lib/components/utils/Link.svelte';
+	import Input from '$lib/components/utils/Input.svelte';
+	import Svg from '$lib/components/utils/SVG.svelte';
+	let screenSize;
 </script>
-<!-- div father  container mx flex items-stretch flex-wrap bg-light-grey h-auto -->
-<div class="w-[1920px] h-[1080px] bg-primary-content">
-  
-  <!--rectangle div1 bro-->
-  <div class="bg-primary w-[29px] h-[1030px] left-0 top-0 absolute"></div>
-  <!--end rectangle-->
 
-  <!--div2 bro-->
-  <div class="absolute w-[1231px] h-[1030px] left-[29px] top-0 right-[660px] bottom-[50px]">
-    <!--logo-->
-    <div class="absolute w-[111px] h-[29px] top-[35px] left-[83px]">
-      <img src="" alt="logo Cucho's">
-    </div>
-    
-    <!--form
-    self-auto sm:self-start md:self-end lg:self-center xl:self-stretch w-2/3 p-4
-    -->
-    <div class="absolute w-[413px] h-[800px] top-[158px] bottom-[190px] left-[300px] right-[1121px]">
+<svelte:window bind:innerWidth={screenSize} />
+<div class="w-full h-full bg-primary-content">
+	<!-- Orange bar -->
+	<div class="bg-primary w-[29px] h-full left-0 top-0 absolute" />
+	<!--end rectangle-->
 
-      <div class="h-[48px] w-[400px]">
-        <p class="top-0 absolute text-[#000000] not-italic font-semibold text-[24px] leading-[18px]">Bienvenidos a Cucho's Market!</p>
-        <p class="top-[29px] t absolute text-[#000000] not-italic font-normal text-[14px] leading-[18px]">Crea una cuenta o <Link text="inicia sesión" href="./"/></p>
-      </div>
+	<!--logo-->
+	<div class="w-full pl-20 p-6">
+		<Svg name={'cuchos-logo'} />
+	</div>
 
-      <div class="absolute top-[116px] w-[400px] h-[70px] ">
-        <div class="absolute w-[180px] top-0 left-0">
-          <Input props="h-10" label="Nombre"/>
-        </div>
-        <div class="absolute w-[180px] top-0 right-0">
-          <Input props="h-10" label="Apellido"/>
-        </div>
-      </div>
+	<div class="flex pl-[20%] w-full h-full {screenSize < 1100 ? 'pl-[0px] justify-center' : ''}">
+		<!-- Form div -->
+		<div class="w-[413px]">
+			<div class="h-[48px] w-[400px] mb-20">
+				<p class="text-[#000000] not-italic font-semibold text-[24px]">
+					Bienvenidos a Cucho's Market!
+				</p>
+				<p class="text-[#000000] not-italic font-normal text-[14px]">
+					Crea una cuenta o <Link text="inicia sesión" href="./" />
+				</p>
+			</div>
 
-        <div class="absolute w-[400px] top-[215px]">
-          <Input props="h-10" type="email" label="Email" />
-        </div>
-        <div class="absolute w-[400px] top-[323px]">
-          <Input props="h-10" type="password" label="Contraseña"/>
-        </div>
-        <div class="absolute w-[400px] top-[422px]">
-            <Input props="h-10" type="password" label="Repetir contraseña"/>
-        </div>
-        <div class="absolute w-[400px] top-[521px]">
-            <Input props="h-10" type="tel" label="Celular"/>
-        </div>
-        <div class="absolute w-[400px] top-[635px]">
-          <p>Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br>Cucho´s Market y aceptando sus <Link text="politicas de privacidad"/> y <Link text="términos de uso"/></p>
-        </div>
-        <div class="flex flex-row absolute w-[400px] h-[36px] top-[736px]">
-            <Button text="Crear cuenta"/>
-        </div>
-        <!--end form-->
-    </div>
-        <!--end div2-->
-  </div>
-  <!--div3 bro img-->
-  <div class="h-[1030px] w-[1000px] left-[920px] top-0 bg-grey absolute p-0" style="background-size: cover; background-image: url(https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80);">
-    <img src="$lib/../assets/supermarketRegistration.jpg" alt="super">
-  </div>
+			<div class="gap-5 flex flex-col">
+				<div class="flex justify-between w-full h-[70px]">
+					<div class="w-[180px]">
+						<Input props="h-10" label="Nombre" />
+					</div>
+					<div class="w-[180px]">
+						<Input props="h-10" label="Apellido" />
+					</div>
+				</div>
+	
+				<div class="w-full">
+					<Input props="h-10" type="email" label="Email" />
+				</div>
+				<div class="w-full">
+					<Input props="h-10" type="password" label="Contraseña" />
+				</div>
+				<div class="w-full">
+					<Input props="h-10" type="password" label="Repetir contraseña" />
+				</div>
+				<div class="w-full">
+					<Input props="h-10" type="tel" label="Celular" mandatory={false}/>
+				</div>
+				<div class="w-full">
+					<p class="text-[12px]">
+						Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br />Cucho´s Market y
+						aceptando sus <Link text="politicas de privacidad" /> y <Link text="términos de uso" />
+					</p>
+				</div>
+				<div class="w-full mt-3">
+					<Button text="Crear cuenta" type={"btn-primary h-[36px] min-h-0 w-[219px]"}/>
+				</div>
+				<!--end form-->
+			</div>
+		</div>
 
-  <!--footer-->
-  <div class="w-[1920px] h-[50px] top-[1030px] left-0 right-0 bottom-0 bg-neutral absolute">
-    <div class="w-[349.33px] h-[33px] top-[9px] left-[785.33px] right-[785.33px] ">
-      <p class="text-[#FFFFFF] font-normal text-[16px] leading-[33.35px] text-center p-">@ 2023 Cucho´s Market</p>
-    </div>
-  </div>
+		{#if screenSize >= 1110}
+			<div class="h-full w-[30%] bg-grey absolute top-0 right-0">
+				<img
+					class="h-full w-full object-cover"
+					src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+					alt="super"
+				/>
+			</div>
+		{/if}
+	</div>
 </div>
-  <!--object- sm:object-cover md:object-fill lg:object-none xl:object-scale-down pt-16 -->
