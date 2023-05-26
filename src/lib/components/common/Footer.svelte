@@ -1,8 +1,8 @@
 <script>
-	import { each } from "svelte/internal";
-
 </script>
 
-<div class="w-full bg-black justify-center my-2 flex h-[50px] items-center">
-	<div class="text-white text-base">@ 2023 Cucho's Market</div>
+<div class="absolute w-full h-[50px] bg-[#000] flex justify-center items-center bottom-0">
+	<div class="text-white text-base">
+		<p>@ 2023 Cucho's Market</p>
+	</div>
 </div>
