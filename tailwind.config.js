@@ -11,7 +11,8 @@ module.exports = {
             "normal-grey": "#8E8E8E",
             "light-grey": "#F8F8F8",
             "neutral-grey": "#746F72",
-            "dark-green": "#388E3C"
+            "dark-green": "#388E3C",
+            "white": "#ffffff"
         },
         extend: {
             fontFamily: {

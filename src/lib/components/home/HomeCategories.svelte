@@ -1,42 +1,66 @@
 <script>
 	import { each } from "svelte/internal";
-
     //con alguna función o criterio debo elegir qué categorias selecionar y mostrar.
+    //Images es el objeto que entra, el cual se itera y del cual se almacena en un segundo objeto las propiedades de interés
     let images = [
-        {   imgCategoria: "https://a6p8a2b3.stackpathcdn.com/gKEgOJqsQRvm5zbo45ba7yTdaFM=/702x526/smart/rockol-img/img/foto/upload/beavis-and-butthead.jpg",
-            nomCategoria: "byb en el sillon"
+        {   imgCategoria: "src/assets/test_images/nasa1.jpg",
+            nomCategoria: "byb en el sillon",
+            url: "google.com"
         },
-        {   source: "https://cdn.shopify.com/s/files/1/0009/5879/1732/products/beavisdesksmel_2048x.jpg?v=1670004186",
-            altInf: "pegandose conitos"
+        {   imgCategoria: "src/assets/test_images/nasa2.jpg",
+            nomCategoria: "pegandose conitos",
+            url: "google.com"
         },
-        {   source: "https://cdn.shopify.com/s/files/1/0009/5879/1732/files/STHECRICKE23042615000_2048x.jpg?v=1682570766",
-            altInf: "calzoncillo"
+        {   imgCategoria: "src/assets/test_images/nasa3.jpg",
+            nomCategoria: "calzoncillo",
+            url: "google.com"
         },
-        {   source: "https://e1.pxfuel.com/desktop-wallpaper/682/121/desktop-wallpaper-beavis-and-butthead-rq-beavis-and-butt-head.jpg",
-            altInf: "cleaning"
+        {   imgCategoria: "src/assets/test_images/nasa4.jpg",
+            nomCategoria: "cleaning",
+            url: "google.com"
         }
     ]
-    //Una vez cargado el recuadro con las categorías (imagen - título), relleno un array para generar las categorías del home
-    // * La idea es cargar solo las 4 primeras para que quede como en el mock, pero alternar los valores para que la disposición no sea siempre la misma.
     
+    let sharedStyles = "h-[52px] border border-orange-600 rounded-md hover:cursor-pointer flex flex-row items-end mx-2 my-2 border-none bg-fit bg-cover bg-center" ;
+
+ 
+    let spanStyles = "text-white mx-2 my-1 bg-neutral-950 bg-opacity-50 sm:mx-4 sm:my-4 sm:font-semibold";
+    let sharedStylesSM = {};
+    let selectedImage = "";
+    let background = "";
+
+    //Puede suceder que hayan más categorías que las renderizables. En este caso, se elige tomar 4 fotos, por tanto, seleccionar solo 4 del total.
+    var arrayCategorias= []
+    function llenarArray(){
+        let i = 0;
+        images.forEach(image => {
+            let categoria = {
+
+                nombre: image.nomCategoria, 
+                imagen: image.nomCategoria,
+                url: image.url
+            }
+            arrayCategorias.push(categoria)
+            i++;
+        });
+    }
+    {llenarArray}
+    let sm_styles = " sm:h-[248px]"
+    let a_styles = " sm:w-4/12";
+    let b_styles = " sm:w-6/12";
 </script>
 
-<div class="homeCategories_container">
-    <div class="homeCategories_row">
-        <div class="homeCategories_col" style="">
-            
+<div class="homeCategories_container w-full my-4 sm:flex sm:flex-wrap">
+        <div class={sharedStyles}{a_styles}{sm_styles} style="background-image: url({images[0].imgCategoria})">
+            <span class={spanStyles} >Ropa</span>
+        </div> 
+        <div class={sharedStyles}{b_styles}{sm_styles} style="background-image: url({images[1].imgCategoria})">
+            <span class={spanStyles}>Tecnología</span>
         </div>
-        <div class="homeCategories_col">
-    
+        <div class={sharedStyles}{b_styles}{sm_styles} style="background-image: url({images[2].imgCategoria})">
+            <span class={spanStyles}>Alimentos</span>
         </div>
-    </div>
-    <div class="homeCategories_row">
-        <div class="homeCategories_col">
-        
+        <div class={sharedStyles}{a_styles}{sm_styles} style="background-image: url({images[3].imgCategoria})">
+            <span class={spanStyles}>Muebles</span>
         </div>
-        <div class="homeCategories_col">
-    
-        </div>
-    </div>
-
 </div>
