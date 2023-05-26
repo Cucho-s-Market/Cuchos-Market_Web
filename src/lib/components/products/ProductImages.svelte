@@ -1,7 +1,7 @@
 <script>
 	import { each } from "svelte/internal";
 
-    let sharedStyles ="rounded-md selected:border-2"
+    let sharedStyles ="rounded-md selected:border-2 hover:cursor-pointer"
     let sideStyles = "w-[50px] h-[50px]"
     let mainStyles = "w-full "
     let imgStyles = "border-2 rounded-md h-inherit object-cover border-orange-400 drop-shadow hover:drop-shadow-lg" 
