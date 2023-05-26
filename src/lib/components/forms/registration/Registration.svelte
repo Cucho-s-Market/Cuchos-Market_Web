@@ -1,9 +1,7 @@
 <script>
-
 	import Button from "$lib/components/utils/Button.svelte";
 	import Link from "$lib/components/utils/Link.svelte";
 	import Input from "$lib/components/utils/Input.svelte";
-
 </script>
 <!-- div father  container mx flex items-stretch flex-wrap bg-light-grey h-auto -->
 <div class="w-[1920px] h-[1080px] bg-primary-content">
