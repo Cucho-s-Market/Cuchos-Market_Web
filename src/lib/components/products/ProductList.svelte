@@ -1,5 +1,6 @@
 <script>
     import Svg from "../utils/SVG.svelte";
+	import Quantity from "../utils/quantity/Quantity.svelte";
     export let item;
     let screenSize;
 </script>
@@ -16,20 +17,18 @@
     <!-- Product description -->
     <div class="m-4 min-w-[12rem] max-w-[12rem]">
         <p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">{item.name}</p>
-        <p class="text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku}</p>
+        <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku}</p>
     </div>
     <!-- Product Qty -->
-    <div class="flex items-center justify-between w-40">
-        <button class="bg-primary mr-2 rounded-lg" ><Svg name={"minus"} color={"#FDFFFC"} stroke={1.5} size={20}/></button>
-        <p class="text-[0.75rem]">{item.qty}</p>
-        <button class="bg-primary ml-2 rounded-lg"><Svg name={"plus"} color={"#FDFFFC"} stroke={1.5} size={20}/></button>
-    </div>
+    <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-0"}/>
     <!-- Product total -->
-    <div class="min-w-[6rem] m-4">   
+    <div class="min-w-[4.5rem] mx-4">   
         <p class="text-[0.75rem] font-semibold">UYU ${item.total}</p>
     </div>
+
+    <button class=""><Svg name={"trash"} size={25}/></button>
+
     
-    <button class="mr-4"><Svg name={"trash"} size={25}/></button>
 </div>
 {:else}
 <!-- MOBILE VERSION -->
@@ -47,14 +46,12 @@
         </div>
         <!-- Product total, qty and delete -->
         <div class="flex items-center justify-between mt-2">
-            <div class="flex justify-between w-40">   
-                <p class="text-[0.75rem] font-semibold">UYU ${item.total}</p>
-
-                <div class="flex justify-between w-20">
-                    <button class="bg-primary mr-2 rounded-lg" ><Svg name={"minus"} color={"#FDFFFC"} stroke={1.5} size={20}/></button>
-                    <p class="text-[0.75rem]">{item.qty}</p>
-                    <button class="bg-primary ml-2 rounded-lg"><Svg name={"plus"} color={"#FDFFFC"} stroke={1.5} size={20}/></button>
+            <div class="flex justify-between items-center">   
+                <div class="min-w-[86px]">
+                    <p class="text-[0.75rem] font-semibold">UYU ${item.total}</p>
                 </div>
+
+                <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-0"}/>
             </div>
 
             <button class="mr-4"><Svg name={"trash"} size={25}/></button>
