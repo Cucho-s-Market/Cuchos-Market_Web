@@ -1,7 +1,5 @@
 <script>
-    import Button from "$lib/components/utils/Button.svelte";
+	import Header from "$lib/components/common/Header/Header.svelte";
 </script>
 
-
-<Button text={"Agregar al carrito"} type="btn-primary"/>
-
+<Header/>
