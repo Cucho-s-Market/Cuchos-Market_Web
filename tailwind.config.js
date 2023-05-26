@@ -10,7 +10,7 @@ module.exports = {
             "bg-product-list": "#FCFCFC",
             "normal-grey": "#8E8E8E",
             "light-grey": "#F8F8F8",
-            "sku-grey" : "#746F72",
+            "neutral-grey": "#746F72",
             "dark-green": "#388E3C"
         },
         extend: {
@@ -34,6 +34,7 @@ module.exports = {
                     "accent-content": "#FDFFFC",
                     "neutral": "#131515",
                     "base-100": "#FDFFFC",
+                    "base-200": "#FCFCFC",
                     "info": "#3E92CC",
                     "success": "#60D394",
                     "warning": "#F9DC5C",
