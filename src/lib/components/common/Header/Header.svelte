@@ -1,9 +1,18 @@
 <script>
-	import Svg from "../../utils/SVG.svelte";
+	import Modal from "$lib/components/utils/Modal.svelte";
+    import Svg from "../../utils/SVG.svelte";
+	import BranchSelector from "../Branch/BranchSelector.svelte";
     export let location = "Central";
     export let cartQty = 0;
-</script>
+    let showModal = false;
 
+    let branches = [
+        {location: 'Central', address: 'Colonia 1815', schedule: 'Abierto de 10 a 20hs', selected: false},
+        {location: 'Montevideo', address: 'La blanqueada 546', schedule: 'Abierto de 9 a 18hs', selected: true},
+        {location: 'Central', address: 'Colonia 1815', schedule: 'Abierto de 10 a 20hs', selected: false},
+    ]
+
+</script>
 
 <div class="fixed w-full">
     <!-- Branch bar -->
@@ -28,7 +37,6 @@
                 </div>
             </div>
             
-        
             <div class="flex gap-6">
                 <!-- Search -->
                 <div class="dropdown dropdown-end">
@@ -70,14 +78,3 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    .scroll-up{
-
-    }
-
-    .scroll-down{
-
-    }
-</style>

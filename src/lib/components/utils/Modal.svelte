@@ -1,6 +1,5 @@
 <script>
 	import Svg from './SVG.svelte';
-    import { onMount } from 'svelte';
 
 	// @ts-ignore
 	let modalOutside;
@@ -18,13 +17,13 @@
 {#if showModal}
 	<label bind:this={modalOutside} for="my-modal-4" class="modal opacity-100 flex visible pointer-events-auto">
 		<label class="modal-box relative w-[530px] h-[584px] border border-primary" for="">
-			<div class="absolute right-4 cursor-pointer" on:click={closeModal}>
-				<Svg name={'letter-x'} />
+			<div class="absolute top-5 right-5 cursor-pointer" on:click={closeModal}>
+				<Svg name={'x'} size={24} stroke={1.5} props={"opacity-70 hover:opacity-100"}/>
 			</div>
 
 			<!-- MAIN CONTENT -->
             <div class="w-full p-10">
-                
+				<slot></slot>
             </div>
 		</label>
 	</label>

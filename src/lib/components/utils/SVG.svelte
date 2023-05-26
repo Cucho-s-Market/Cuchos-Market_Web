@@ -3,6 +3,7 @@
     export let stroke = 1;
     export let size = 36;
     export let color = "#131515";
+    export let props = '';
 </script>
 
 {#if name == "cuchos-logo"}
@@ -17,7 +18,7 @@
     </svg>
     
 {:else if name == "shopping-cart"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-shopping-cart" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
         <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -25,13 +26,13 @@
         <path d="M6 5l14 1l-1 7h-13" />
     </svg>
 {:else if name == "search"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-search" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
         <path d="M21 21l-6 -6" />
     </svg>
 {:else if name == "trash"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-trash" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M4 7l16 0" />
         <path d="M10 11l0 6" />
@@ -50,18 +51,18 @@
         <path d="M20 6H4V4H20V6ZM19 12C17.09 12 15.37 12.76 14.11 14H14V14.11C12.76 15.37 12 17.09 12 19C12 19.34 12.03 19.67 12.08 20H4V14H3V12L4 7H20L21 12V12.3C20.37 12.11 19.7 12 19 12ZM12 14H6V18H12V14ZM18.96 12L18.36 9H5.64L5.04 12H18.96ZM23.8 20.4C23.9 20.4 23.9 20.5 23.8 20.6L22.8 22.3C22.7 22.4 22.6 22.4 22.5 22.4L21.3 22C21 22.2 20.8 22.3 20.5 22.5L20.3 23.8C20.3 23.9 20.2 24 20.1 24H18.1C18 24 17.9 23.9 17.8 23.8L17.6 22.5C17.3 22.4 17 22.2 16.8 22L15.6 22.5C15.5 22.5 15.4 22.5 15.3 22.4L14.3 20.7C14.2 20.6 14.3 20.5 14.4 20.4L15.5 19.6V18.6L14.4 17.8C14.3 17.7 14.3 17.6 14.3 17.5L15.3 15.8C15.4 15.7 15.5 15.7 15.6 15.7L16.8 16.2C17.1 16 17.3 15.9 17.6 15.7L17.8 14.4C17.8 14.3 17.9 14.2 18.1 14.2H20.1C20.2 14.2 20.3 14.3 20.3 14.4L20.5 15.7C20.8 15.8 21.1 16 21.4 16.2L22.6 15.7C22.7 15.7 22.9 15.7 22.9 15.8L23.9 17.5C24 17.6 23.9 17.7 23.8 17.8L22.7 18.6V19.6L23.8 20.4ZM20.5 19C20.5 18.2 19.8 17.5 19 17.5C18.2 17.5 17.5 18.2 17.5 19C17.5 19.8 18.2 20.5 19 20.5C19.8 20.5 20.5 19.8 20.5 19Z" fill="white"/>
     </svg>
 {:else if name == "plus"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-plus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M12 5l0 14" />
         <path d="M5 12l14 0" />
     </svg>
 {:else if name == "minus"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-minus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-minus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M5 12l14 0" />
     </svg>
 {:else if name == "shopping-cart-plus"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-shopping-cart-plus" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
         <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -70,7 +71,7 @@
         <path d="M15 6h6m-3 -3v6" />
     </svg>
 {:else if name == "shopping-cart-x"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-x" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-shopping-cart-x" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
         <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -79,17 +80,19 @@
         <path d="M17 3l4 4" />
         <path d="M21 3l-4 4" />
     </svg>
-{:else if name == "letter-x"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-letter-x" width="30" height="22" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+{:else if name == "x"}
+    <svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-x" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M7 4l10 16" />
-        <path d="M17 4l-10 16" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
     </svg>
-{:else if name == "arrow-narrow-right"}
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <path d="M5 12l14 0" />
-        <path d="M15 16l4 -4" />
-        <path d="M15 8l4 4" />
-    </svg>
+{:else if name == "building-store"}
+<svg xmlns="http://www.w3.org/2000/svg" class="{props} icon icon-tabler icon-tabler-building-store" width="{size}" height="{size}" viewBox="0 0 24 24" stroke-width="{stroke}" stroke="{color}" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3 21l18 0" />
+    <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+    <path d="M5 21l0 -10.15" />
+    <path d="M19 21l0 -10.15" />
+    <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+</svg>
 {/if}
