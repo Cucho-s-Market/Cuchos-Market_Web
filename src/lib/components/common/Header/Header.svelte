@@ -32,7 +32,7 @@
 
 <!-- ------------------------------------- -->
 
-<div class="fixed w-full">
+<div class="fixed w-full z-50">
     <!-- Branch bar -->
     <div class="branch-bar w-full bg-primary">
         <div class="h-10 flex justify-end items-center gap-2 max-w-[1200px] m-auto">
