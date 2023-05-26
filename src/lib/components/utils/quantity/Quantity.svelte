@@ -54,8 +54,8 @@
 </script>
 
 {#if card}
-  <Button type="btn-error  btn-sm absolute left-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-x" click={() => {showQty = false}}/>
-  <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg="shopping-cart-plus" click={()=> {addToCart()}}/>
+  <Button type="btn-error  btn-sm absolute left-5 bottom-20 rounded w-[25%] active:transform-none" svg={{name: "shopping-cart-x"}} click={() => {showQty = false}}/>
+  <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg={{name: "shopping-cart-plus"}} click={()=> {addToCart()}}/>
 {/if}
 
 <div class="flex flex-row justify-between {containerProps}">
