@@ -38,11 +38,11 @@
         </div>
       </div>
 
-      <div class="absolute w-[400px] top-[215px]">
-        <Input type="email" label="Email" />
-      </div>
-      <div class="absolute w-[400px] top-[323px]">
-        <Input type="password" label="Contraseña"/>
+        <div class="absolute w-[400px] top-[215px]">
+          <Input type="email" label="Email" />
+        </div>
+        <div class="absolute w-[400px] top-[323px]">
+          <Input type="password" label="Contraseña"/>
         </div>
         <div class="absolute w-[400px] top-[422px]">
             <Input type="password" label="Repetir contraseña"/>
