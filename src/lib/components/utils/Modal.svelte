@@ -25,7 +25,6 @@
             <div class="w-full p-10">
 				<slot></slot>
             </div>
-			
 		</label>
 	</label>
 {/if}
