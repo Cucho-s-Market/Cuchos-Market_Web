@@ -31,24 +31,24 @@
 
       <div class="absolute top-[116px] w-[400px] h-[70px] ">
         <div class="absolute w-[180px] top-0 left-0">
-          <Input label="Nombre"/>
+          <Input props="h-10" label="Nombre"/>
         </div>
         <div class="absolute w-[180px] top-0 right-0">
-          <Input label="Apellido"/>
+          <Input props="h-10" label="Apellido"/>
         </div>
       </div>
 
         <div class="absolute w-[400px] top-[215px]">
-          <Input type="email" label="Email" />
+          <Input props="h-10" type="email" label="Email" />
         </div>
         <div class="absolute w-[400px] top-[323px]">
-          <Input type="password" label="Contraseña"/>
+          <Input props="h-10" type="password" label="Contraseña"/>
         </div>
         <div class="absolute w-[400px] top-[422px]">
-            <Input type="password" label="Repetir contraseña"/>
+            <Input props="h-10" type="password" label="Repetir contraseña"/>
         </div>
         <div class="absolute w-[400px] top-[521px]">
-            <Input type="tel" label="Celular"/>
+            <Input props="h-10" type="tel" label="Celular"/>
         </div>
         <div class="absolute w-[400px] top-[635px]">
           <p>Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br>Cucho´s Market y aceptando sus <Link text="politicas de privacidad"/> y <Link text="términos de uso"/></p>
