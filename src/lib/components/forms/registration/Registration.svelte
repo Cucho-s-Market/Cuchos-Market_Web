@@ -17,7 +17,7 @@
 		<Svg name={'cuchos-logo'} />
 	</div>
 
-	<div class="flex pl-[20%] w-full h-full {screenSize < 1100 ? 'pl-[0px] justify-center' : ''}">
+	<div class="flex pl-[20%] w-full h-full {screenSize < 1110 ? 'pl-[0px] justify-center' : ''}">
 		<!-- Form div -->
 		<div class="w-[413px]">
 			<div class="h-[48px] w-[400px] mb-20">
