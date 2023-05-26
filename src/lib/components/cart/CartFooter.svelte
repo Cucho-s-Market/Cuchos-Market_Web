@@ -1,5 +1,4 @@
 <script>
-    import Svg from "../utils/SVG.svelte";
     import Button from "../utils/Button.svelte";
 
     export let total = 10;
