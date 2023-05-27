@@ -32,7 +32,7 @@
 
 <!-- ------------------------------------- -->
 
-<div class="fixed w-full z-50">
+<header class="fixed w-full z-50">
     <!-- Branch bar -->
     <div class="branch-bar w-full bg-primary">
         <div class="h-10 flex justify-end items-center gap-2 max-w-[1200px] m-auto">
@@ -42,7 +42,7 @@
             <p class="text-base-100">{location}</p>
         </div>
     </div>
-    <div class="w-full bg-white">
+    <nav class="w-full bg-white">
         <div class="navbar bg-base-100 max-w-[1200px] m-auto justify-between">
             <div class="">
                 <a class="link" href="/"><Svg name={"cuchos-logo"}/></a>
@@ -88,5 +88,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </nav>
+</header>
