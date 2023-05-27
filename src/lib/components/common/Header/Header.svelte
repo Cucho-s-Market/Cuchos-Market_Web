@@ -1,11 +1,13 @@
 <script>
 	import Cart from "$lib/components/cart/Cart.svelte";
+	import Login from "$lib/components/forms/login/Login.svelte";
     import Modal from "$lib/components/utils/Modal.svelte";
     import Svg from "../../utils/SVG.svelte";
 	import BranchSelector from "../Branch/BranchSelector.svelte";
     export let location = "Central";
     export let cartQty = 0;
-    let showModal = false;
+    let showModalBranch = false;
+    let showModalLogin = false;
     let showCart = false;
 
     let branches = [
@@ -16,17 +18,25 @@
 
 </script>
 
+<!-- ------------MODALS--------------- -->
+
 <Cart bind:showCart={showCart}/>
 
-<Modal bind:showModal={showModal}>
+<Modal bind:showModal={showModalBranch}>
     <BranchSelector branches={branches}/>
 </Modal>
 
-<div class="fixed w-full">
+<Modal bind:showModal={showModalLogin}>
+    <Login/>
+</Modal>
+
+<!-- ------------------------------------- -->
+
+<div class="fixed w-full z-50">
     <!-- Branch bar -->
     <div class="branch-bar w-full bg-primary">
         <div class="h-10 flex justify-end items-center gap-2 max-w-[1200px] m-auto">
-            <div class="cursor-pointer" on:click={() => showModal=!showModal}>
+            <div class="cursor-pointer" on:click={() => showModalBranch=!showModalBranch}>
                 <Svg name={"config-store"} size={28}/>
             </div>
             <p class="text-base-100">{location}</p>
@@ -72,13 +82,7 @@
                     </label>
                     <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between">Profile</a>
-                        </li>
-                        <li>
-                            <a>Settings</a>
-                        </li>
-                        <li>
-                            <a>Logout</a>
+                            <a class="justify-between" on:click={() => showModalLogin=!showModalLogin}>Iniciar sesion</a>
                         </li>
                     </ul>
                 </div>
