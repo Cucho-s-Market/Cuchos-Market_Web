@@ -6,7 +6,7 @@
 	];
 </script>
 
-<div class="w-[130px]">
+<div class="sticky top-[120px] w-[130px]">
 	<ul class="bg-base-100 w-full overflow-hidden whitespace-nowrap text-ellipsis">
 		{#each categorias as categoria}
 			<div class="w-full my-2">
