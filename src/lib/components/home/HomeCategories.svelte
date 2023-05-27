@@ -45,9 +45,9 @@
         });
     }
     {llenarArray}
-    let sm_styles = " sm:h-[248px]"
-    let a_styles = " sm:w-4/12";
-    let b_styles = " sm:w-6/12";
+    let sm_styles = " sm:h-[414px]"
+    let a_styles = " sm:w-[40%]";
+    let b_styles = " sm:w-[57%]";
 </script>
 
 <div class="homeCategories_container w-full my-4 sm:flex sm:flex-wrap">
