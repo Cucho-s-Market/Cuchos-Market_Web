@@ -6,7 +6,6 @@
 	import Swiper from "$lib/components/third-party/Swiper.svelte";
 	import Button from "$lib/components/utils/Button.svelte";
 	import Link from "$lib/components/utils/Link.svelte";
-	import Notifications from "$lib/components/utils/Notifications.svelte";
 	import Svg from "$lib/components/utils/SVG.svelte";
 </script>
 
@@ -175,5 +174,3 @@
 	</div>
 	<!-- Footer coming soon -->
 </main>
-
-<Notifications/>
