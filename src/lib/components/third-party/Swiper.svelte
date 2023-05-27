@@ -23,7 +23,6 @@
         autoplay={{
             delay: 4000
         }}
-        pagination={pag ? {clickable: true} : false}
     >
 
         <slot/>

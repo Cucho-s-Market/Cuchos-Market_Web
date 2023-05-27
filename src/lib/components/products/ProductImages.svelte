@@ -17,7 +17,6 @@
         }
     ]
 
-    let activarImg = true;
     //@ts-ignore
     var selectImg = (event) =>{ event.target.src != null ? mainImage = event.target.src : mainImage = dummyImage}
     let mainImage = images[0].source;
