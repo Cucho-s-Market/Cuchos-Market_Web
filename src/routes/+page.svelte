@@ -116,10 +116,12 @@
 	<!-- Most sellers -->
 	<div class="w-full flex items-center justify-between mt-24">
 		<!-- Check products -->
-		<div class="w-[200px] flex flex-col gap-2">
-			<p class="font-bold text-[30px]">Mas vendido</p>
-			<p class="text-neutral-grey">Mira los productos mas exitosos de Chucho’s</p>
-			<Button text={"Ver mas"} type={"w-[156px] h-[46px] min-h-0 btn-primary rounded-[8px]"}/>
+		<div class="flex self-stretch">
+			<div class="w-[200px] flex flex-col gap-4">
+				<p class="font-bold text-[30px]">Mas vendido</p>
+				<p class="text-neutral-grey">Mira los productos mas exitosos de Chucho’s</p>
+				<Button text={"Ver mas"} type={"w-[156px] h-[46px] min-h-0 btn-primary rounded-[8px]"}/>
+			</div>
 		</div>
 		<!-- Slider most sellers -->
 		<div class="w-[80%] flex gap-3">
