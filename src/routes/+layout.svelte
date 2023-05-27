@@ -8,4 +8,4 @@
 <Header/>
 <slot />
 <Notifications/>
-<Footer/>
+<!-- <Footer/> -->
