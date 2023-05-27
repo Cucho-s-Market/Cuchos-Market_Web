@@ -1,11 +1,4 @@
 <script>
-	import { each } from "svelte/internal";
-
-    let sharedStyles ="rounded-md selected:border-2 hover:cursor-pointer"
-    let sideStyles = "w-[50px] h-[50px]"
-    let mainStyles = "w-full "
-    let imgStyles = "border-2 rounded-md h-inherit object-cover border-orange-400 drop-shadow hover:drop-shadow-lg" 
-
     let dummyImage = "https://dummyimage.com/100/09f.png/fff"
 
     //dpe: prototipos de imagenes (remplazar por f que trae objeto por parámetros)
@@ -24,26 +17,26 @@
         }
     ]
 
-    let activarImg = true;
     //@ts-ignore
     var selectImg = (event) =>{ event.target.src != null ? mainImage = event.target.src : mainImage = dummyImage}
     let mainImage = images[0].source;
 </script>
 
 
-
 <div class="w-full gap-4">
     <div class="block sm:flex gap-4"> 
+        <!-- side images -->
         <div class="flex flex-row sm:flex-col gap-4 ">
             {#each images as image}
-                <div class='{sideStyles} {sharedStyles}'>
-                    <img on:click={selectImg} on:keydown={selectImg} src={image.source} alt={image.altInf} class='{imgStyles}'>
+                <div class='w-[50px] h-[50px] rounded-md selected:border-2'>
+                    <img on:click={selectImg} on:keydown={selectImg} src={image.source} alt={image.altInf} class='w-full h-full object-cover border border-neutral-grey rounded-md h-inherit hover:border-primary'>
                 </div>
             {/each}
         </div>
+        <!-- Main image -->
         <div class="gap-2">
-            <div class='{mainStyles} {sharedStyles}'>
-                <img id="mainImage" src="{mainImage}" alt="asd" class='{imgStyles} w-[450px] h-[385px]'>
+            <div class='w-full rounded-md selected:border-2'>
+                <img id="mainImage" src="{mainImage}" alt="asd" class='border-neutral-grey border rounded-md h-inherit object-cover w-[450px] h-[385px]'>
             </div>
         </div>
     </div>
