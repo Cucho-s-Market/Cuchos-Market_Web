@@ -22,7 +22,7 @@
 			</div>
 
 			<!-- MAIN CONTENT -->
-            <div class="w-full p-10">
+            <div class="w-full py-6">
 				<slot></slot>
             </div>
 		</label>
