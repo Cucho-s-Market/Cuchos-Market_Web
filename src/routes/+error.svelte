@@ -10,5 +10,7 @@
     import { page } from '$app/stores';
 </script>
 
+<Header/>
+
 <Errorpage/>
 
