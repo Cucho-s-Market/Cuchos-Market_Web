@@ -1,5 +1,5 @@
 <div class="w-full flex justify-center">
-    <div class=" w-[416px] my-[40px] rounded-xl ErrorContainer bg-primary flex flex-col justify-center items-center">
+    <div class="mt-[180px] w-[416px] my-[40px] rounded-xl ErrorContainer bg-primary flex flex-col justify-center items-center">
         <div class="flex flex-col p-8 justify-center">
             <h1 class ="text-white text-7xl font-bold text-center">ERROR</h1>
             <h1 class ="text-white text-7xl font-bold text-center">404</h1>
