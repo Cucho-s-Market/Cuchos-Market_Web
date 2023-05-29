@@ -3,7 +3,15 @@
 import SideMenu from "$lib/components/admin/common/SideMenu/SideMenu.svelte";
 </script>
 
+<svelte:body/>
+
 <div class="flex">
     <SideMenu/>
     <AdminHeader/>
 </div>
+
+<style>
+    :global(body) {
+		background: #f4f4f4;
+	}
+</style>
