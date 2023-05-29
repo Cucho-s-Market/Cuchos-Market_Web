@@ -14,7 +14,7 @@
 
 </script>
 
-{#if currentPage?.route?.id == '/home' || currentPage?.route?.id == '/catalogo'}
+{#if currentPage?.route?.id == '/' || currentPage?.route?.id == '/catalogo'}
 	<Header/>
 {/if}
 <slot />
