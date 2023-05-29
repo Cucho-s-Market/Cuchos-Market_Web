@@ -6,8 +6,11 @@
 	import Swiper from "$lib/components/third-party/Swiper.svelte";
 	import Button from "$lib/components/utils/Button.svelte";
 	import Link from "$lib/components/utils/Link.svelte";
+	import Notifications from "$lib/components/utils/Notifications.svelte";
 	import Svg from "$lib/components/utils/SVG.svelte";
 </script>
+
+<Header/>
 
 <main class="max-w-[1200px] pt-[160px] m-auto">
 	<!-- Slider main page -->
@@ -114,12 +117,10 @@
 	<!-- Most sellers -->
 	<div class="w-full flex items-center justify-between mt-24">
 		<!-- Check products -->
-		<div class="flex self-stretch">
-			<div class="w-[200px] flex flex-col gap-4">
-				<p class="font-bold text-[30px]">Mas vendido</p>
-				<p class="text-neutral-grey">Mira los productos mas exitosos de Chucho’s</p>
-				<Button text={"Ver mas"} type={"w-[156px] h-[46px] min-h-0 btn-primary rounded-[8px]"}/>
-			</div>
+		<div class="w-[200px] flex flex-col gap-2">
+			<p class="font-bold text-[30px]">Mas vendido</p>
+			<p class="text-neutral-grey">Mira los productos mas exitosos de Chucho’s</p>
+			<Button text={"Ver mas"} type={"w-[156px] h-[46px] min-h-0 btn-primary rounded-[8px]"}/>
 		</div>
 		<!-- Slider most sellers -->
 		<div class="w-[80%] flex gap-3">
@@ -173,4 +174,6 @@
 		</div>
 	</div>
 	<!-- Footer coming soon -->
+	
+	<Notifications/>
 </main>
