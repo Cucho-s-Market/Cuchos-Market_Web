@@ -1,10 +1,9 @@
 <script>
-	import SideMenu from "$lib/components/admin/drawer/SideMenu.svelte";
+	import AdminHeader from "$lib/components/admin/common/AdminHeader.svelte";
+	import SideMenu from "$lib/components/admin/common/SideMenu/SideMenu.svelte";
 </script>
 
 <svelte:body/>
-
-<SideMenu/>
 
 <style>
     :global(body) {
