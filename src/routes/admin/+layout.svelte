@@ -6,4 +6,7 @@ import SideMenu from "$lib/components/admin/common/SideMenu/SideMenu.svelte";
 <div class="flex">
     <SideMenu/>
     <AdminHeader/>
+    <main class="mt-20 p-10">
+        <slot/>
+    </main>
 </div>
