@@ -31,6 +31,7 @@
 	"dependencies": {
 		"chart.js": "^4.3.0",
 		"dotenv": "^16.0.3",
+		"svelte-routing": "^1.8.9",
 		"swiper": "^9.3.1"
 	}
 }
