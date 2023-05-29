@@ -1,7 +1,13 @@
 <script>
-	import LoginAdmin from "$lib/components/forms/login/LoginAdmin.svelte";
+	import SideMenu from "$lib/components/admin/drawer/SideMenu.svelte";
 </script>
 
-<div class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
-    <LoginAdmin/>
-</div>
+<svelte:body/>
+
+<SideMenu/>
+
+<style>
+    :global(body) {
+		background: #f4f4f4;
+	}
+</style>
