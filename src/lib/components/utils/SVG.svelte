@@ -432,8 +432,8 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class="icon icon-tabler icon-tabler-bell-filled"
-		width="{size}"
-		height="{size}"
+		width={size}
+		height={size}
 		viewBox="0 0 {size} {size}"
 		stroke-width={stroke}
 		stroke={color}
@@ -449,6 +449,26 @@
 		/>
 		<path
 			d="M12 2c1.358 0 2.506 .903 2.875 2.141l.046 .171l.008 .043a8.013 8.013 0 0 1 4.024 6.069l.028 .287l.019 .289v2.931l.021 .136a3 3 0 0 0 1.143 1.847l.167 .117l.162 .099c.86 .487 .56 1.766 -.377 1.864l-.116 .006h-16c-1.028 0 -1.387 -1.364 -.493 -1.87a3 3 0 0 0 1.472 -2.063l.021 -.143l.001 -2.97a8 8 0 0 1 3.821 -6.454l.248 -.146l.01 -.043a3.003 3.003 0 0 1 2.562 -2.29l.182 -.017l.176 -.004z"
+			stroke-width="0"
+			fill="currentColor"
+		/>
+	</svg>
+{:else if name == 'info-circle-filled'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="icon icon-tabler icon-tabler-info-circle-filled"
+		width="{size}"
+		height="{size}"
+		viewBox="0 0 {size} {size}"
+		stroke-width="{stroke}"
+		stroke={color}
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path
+			d="M12 2c5.523 0 10 4.477 10 10a10 10 0 0 1 -19.995 .324l-.005 -.324l.004 -.28c.148 -5.393 4.566 -9.72 9.996 -9.72zm0 9h-1l-.117 .007a1 1 0 0 0 0 1.986l.117 .007v3l.007 .117a1 1 0 0 0 .876 .876l.117 .007h1l.117 -.007a1 1 0 0 0 .876 -.876l.007 -.117l-.007 -.117a1 1 0 0 0 -.764 -.857l-.112 -.02l-.117 -.006v-3l-.007 -.117a1 1 0 0 0 -.876 -.876l-.117 -.007zm.01 -3l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
 			stroke-width="0"
 			fill="currentColor"
 		/>
