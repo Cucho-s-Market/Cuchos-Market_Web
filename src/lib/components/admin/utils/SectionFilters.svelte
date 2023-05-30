@@ -6,8 +6,8 @@
 </script>
 
 
-<div class="flex flex-col bg-base-100 mt-10 p-5 rounded-lg shadow-md">
-    <Input label="Buscar por codigo" mandatory={false}/>
+<div class="flex flex-col bg-base-100 mt-10 p-5 rounded-lg shadow">
+    <Input label="Buscar por codigo" props="bg-transparent" mandatory={false}/>
 
     <FilterSelectContainer>
         <FilterSelect/>

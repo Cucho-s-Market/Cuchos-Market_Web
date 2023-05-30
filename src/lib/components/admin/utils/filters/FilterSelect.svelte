@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<select class="select select-primary w-full max-w-xs">
+<select class="select select-primary w-full max-w-xs focus:border-none">
 	<option disabled selected>What is the best headless CMS</option>
 	<option>Strapi</option>
 	<option>Ghost</option>
