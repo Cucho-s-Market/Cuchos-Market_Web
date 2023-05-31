@@ -1,7 +1,5 @@
 <script>
 	import Button from "$lib/components/utils/Button.svelte";
-
-
 </script>
 
 <div class="flex w-full mt-10 justify-between flex-wrap gap-y-5">

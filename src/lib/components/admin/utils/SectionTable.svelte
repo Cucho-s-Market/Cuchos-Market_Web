@@ -1,9 +1,10 @@
 <script>
 	// @ts-nocheck
-	import Svg from '$lib/components/utils/SVG.svelte';
+	import TableButtons from './table/tableButtons.svelte';
 
 	export let thead = [];
 	export let tbody = [];
+	export let buttons = {};
 </script>
 
 <div class="w-full overflow-x-auto mt-10 shadow">
@@ -24,14 +25,18 @@
 						{#each tbody_item as item}
 							<td>{item}</td>
 						{/each}
-						<td><a href="#"><Svg name="info-circle-filled" /></a></td>
+						<td>
+							<TableButtons bind:buttons/>
+						</td>
 					</tr>
 				{:else}
 					<tr class="active">
 						{#each tbody_item as item}
 							<td>{item}</td>
 						{/each}
-						<td><a href="#"><Svg name="info-circle-filled" /></a></td>
+						<td>
+							<TableButtons bind:buttons/>
+						</td>
 					</tr>
 				{/if}
 			{/each}

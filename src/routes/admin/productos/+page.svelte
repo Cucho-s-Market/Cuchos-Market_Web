@@ -4,7 +4,7 @@
 	import SectionTable from '$lib/components/admin/utils/SectionTable.svelte';
 	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
 
-	let tableItems = {
+    let tableItems = {
 		thead: ['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
 		tbody: [
 			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
@@ -22,14 +22,19 @@
 </script>
 
 <SectionHeader
-	title={'Ventas'}
+	title={'Productos'}
+	btn={{
+		name: 'Agregar Producto',
+		btnEvent: () => {
+			alert('click action');
+		}
+	}}
 />
 
-<SectionFilters>
-	<FilterSelect name="{select.name}" options={select.options}/>
+<SectionFilters labelSearch="Buscar por codigo o nombre">
 	<FilterSelect name="{select.name}" options={select.options}/>
 	<FilterSelect name="{select.name}" options={select.options}/>
 	<FilterSelect name="{select.name}" options={select.options}/>
 </SectionFilters>
 
-<SectionTable thead={tableItems.thead} tbody={tableItems.tbody} buttons={{info: true}} />
+<SectionTable thead={tableItems.thead} tbody={tableItems.tbody} buttons={{toggle: true, edit: true}} />
