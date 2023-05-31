@@ -432,8 +432,8 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class="icon icon-tabler icon-tabler-bell-filled"
-		width="{size}"
-		height="{size}"
+		width={size}
+		height={size}
 		viewBox="0 0 {size} {size}"
 		stroke-width={stroke}
 		stroke={color}
@@ -452,5 +452,61 @@
 			stroke-width="0"
 			fill="currentColor"
 		/>
+	</svg>
+{:else if name == 'info-circle-filled'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="icon icon-tabler icon-tabler-info-circle-filled"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width={stroke}
+		stroke={color}
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path
+			d="M12 2c5.523 0 10 4.477 10 10a10 10 0 0 1 -19.995 .324l-.005 -.324l.004 -.28c.148 -5.393 4.566 -9.72 9.996 -9.72zm0 9h-1l-.117 .007a1 1 0 0 0 0 1.986l.117 .007v3l.007 .117a1 1 0 0 0 .876 .876l.117 .007h1l.117 -.007a1 1 0 0 0 .876 -.876l.007 -.117l-.007 -.117a1 1 0 0 0 -.764 -.857l-.112 -.02l-.117 -.006v-3l-.007 -.117a1 1 0 0 0 -.876 -.876l-.117 -.007zm.01 -3l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z"
+			stroke-width="0"
+			fill="currentColor"
+		/>
+	</svg>
+{:else if name == 'edit-circle'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="icon icon-tabler icon-tabler-edit-circle"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width={stroke}
+		stroke={color}
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M12 15l8.385 -8.415a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3z" />
+		<path d="M16 5l3 3" />
+		<path d="M9 7.07a7 7 0 0 0 1 13.93a7 7 0 0 0 6.929 -6" />
+	</svg>
+{:else if name == 'users'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="stroke-current icon icon-tabler icon-tabler-users"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width="{stroke}"
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+		<path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+		<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+		<path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
 	</svg>
 {/if}

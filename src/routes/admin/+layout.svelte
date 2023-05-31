@@ -1,12 +1,27 @@
 <script>
-    import AdminHeader from "$lib/components/admin/common/AdminHeader.svelte";
-import SideMenu from "$lib/components/admin/common/SideMenu/SideMenu.svelte";
+	import AdminHeader from '$lib/components/admin/common/AdminHeader.svelte';
+	import SideMenu from '$lib/components/admin/common/SideMenu/SideMenu.svelte';
+
+	export let data;
 </script>
 
+<svelte:body />
+
 <div class="flex">
-    <SideMenu/>
-    <AdminHeader/>
-    <main class="mt-20 p-10">
-        <slot/>
-    </main>
+	<SideMenu />
+	<AdminHeader />
+
+	{#key data.pathname}
+		<main
+			class="mt-20 p-10 w-full"
+		>
+			<slot />
+		</main>
+	{/key}
 </div>
+
+<style>
+	:global(body) {
+		background: #f4f4f4;
+	}
+</style>
