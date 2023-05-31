@@ -1,10 +1,14 @@
 <script>
+	// @ts-nocheck
+
+	export let name = '';
+	export let options = [];
 </script>
 
 <select class="select select-primary w-full max-w-xs focus:border-none">
-	<option disabled selected>What is the best headless CMS</option>
-	<option>Strapi</option>
-	<option>Ghost</option>
-	<option>Netlify CMS</option>
-	<option>Sanity</option>
+	<option disabled selected>{name}</option>
+	<option>Sin asignar</option>
+	{#each options as option}
+		<option>{option}</option>
+	{/each}
 </select>
