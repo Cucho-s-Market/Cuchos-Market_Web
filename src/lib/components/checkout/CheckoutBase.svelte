@@ -1,27 +1,27 @@
 <script>
+	// @ts-nocheck
 	import ProductList from '../products/ProductList.svelte';
-	import Button from '../utils/Button.svelte';
-	import Svg from '../utils/SVG.svelte';
 	import NavigationProgress from './NavigationProgress.svelte';
+	import {currentStep} from '../../../routes/checkout/stores.js'
+
 	export let titleSection = '';
-	export let buttonText = '';
 	export let items = null;
-	export let currentStep = null;
 </script>
 
 <main class="w-full flex">
 	<!-- Left side checkout -->
-	<div class="w-[50%] border-r border-br-grey pt-[50px]">
-		<NavigationProgress currentStep = {currentStep}/>
+	<div class="w-[50%] totalHigh border-r border-br-grey pt-[30px]">
+		<NavigationProgress currentStep = {$currentStep}/>
 		<div class="flex flex-col justify-between my-8">
 			<p class="font-bold text-[24px]">{titleSection}</p>
-			<slot />
-			<Button text={buttonText} type={'btn-primary w-[160px] h-[51px]'} />
+			<div class="my-10">
+				<slot />
+			</div>
 		</div>
 	</div>
 
 	<!-- Right side checkout -->
-	<div class="w-[50%] py-4 pt-[50px] border-r border-br-grey">
+	<div class="w-[50%] totalHigh py-4 pt-[30px] border-r border-br-grey">
 
 		<div class="px-4 border-b border-br-grey">
 			<p class="font-bold text-[24px]">Detalles de la compra</p>
@@ -53,3 +53,9 @@
         </div>
 	</div>
 </main>
+
+<style>
+	.totalHigh{
+		height: calc(100vh - 109px);
+	}
+</style>
