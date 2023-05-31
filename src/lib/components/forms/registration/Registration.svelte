@@ -14,7 +14,7 @@
 
 	<!--logo-->
 	<div class="w-full pl-20 p-6">
-		<Svg name={'cuchos-logo'} />
+		<Svg name={'cuchos-logo'} size={100}/>
 	</div>
 
 	<div class="flex pl-[20%] w-full h-full {screenSize < 1110 ? 'pl-[0px] justify-center' : ''}">

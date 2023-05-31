@@ -45,7 +45,7 @@
     <nav class="w-full bg-white">
         <div class="navbar bg-base-100 max-w-[1200px] m-auto justify-between">
             <div class="">
-                <a class="link" href="/"><Svg name={"cuchos-logo"}/></a>
+                <a class="link" href="/"><Svg name={"cuchos-logo"} size={100}/></a>
                 <div class="flex font-normal ml-20">
                     <ul class="navbar gap-8">
                         <li><a class="hover:underline" href="/">Home</a></li>
