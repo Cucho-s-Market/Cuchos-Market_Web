@@ -7,9 +7,9 @@
 		<SideMenuOption text="Estadisticas" svg="chart-bar" />
 		<SideMenuOption href="/admin/ventas" text="Ventas" svg="coin" />
 		<SideMenuOption href="/admin/productos" text="Productos" svg="shopping-bag" />
+		<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
 		<SideMenuOption text="Marketing" svg="affiliate" />
 		<SideMenuOption text="Logistica" svg="map-pin" />
-		<SideMenuOption text="Sucursales" svg="building-store" />
 		<SideMenuOption text="Configuracion" svg="settings" />
 	</ul>
 </div>
