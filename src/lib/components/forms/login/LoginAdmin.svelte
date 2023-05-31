@@ -8,7 +8,7 @@ import Svg from "$lib/components/utils/SVG.svelte";
 <main class="w-[400px] h-[415px]">
     <!-- Logo -->
     <div class="flex flex-col justify-center items-center">
-        <Svg name={"cuchos-logo"} size={30}/>
+        <Svg name={"cuchos-logo"} size={200}/>
         <p class="text-neutral-grey text-[12px]">Acceso a gestion de Cucho's Market</p>
     </div>
     <!-- Inputs and login -->
@@ -20,8 +20,8 @@ import Svg from "$lib/components/utils/SVG.svelte";
         <Button text={"Entrar"} type={"w-full min-h-0 h-10 mt-10 btn-primary text-[16px]"}/>
     </div>
     <!-- Links -->
-    <div class="flex flex-col items-center mt-4 gap-2">
+    <div class="flex flex-col items-center mt-4 gap-2 text-xs">
         <Link text={"¿Olvidaste la contraseña?"} type={"link-black font-semibold"}/>
-        <p class="text-neutral-grey">@ 2023 Cucho's Market</p>
+        <p class="text-neutral-grey text-xs">@ 2023 Cucho's Market</p>
     </div>
 </main>
