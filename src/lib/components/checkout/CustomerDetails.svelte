@@ -6,7 +6,8 @@
     import Link from "../utils/Link.svelte";
 	import Modal from "../utils/Modal.svelte";
 
-    export let clientDetails = {name: 'felipe nahuel', lastName: 'Viera cabrera', ci: '52047604', email: 'felipenahuelviera@hotmail.com', phone: '1234354345'};
+    export let clientDetails = null;
+    
     let showModalLogin = false;
 
     const checkCurrentStep = () => {
@@ -30,11 +31,11 @@
             <p>Telefono:</p>
         </div>
         <div class="dataName flex flex-col gap-1">
-            <p>{clientDetails.name ? clientDetails.name : 'N/A'}</p>
+            <p>{clientDetails.firstName ? clientDetails.firstName : 'N/A'}</p>
             <p>{clientDetails.lastName ? clientDetails.lastName : 'N/A'}</p>
-            <p>{clientDetails.ci ? clientDetails.ci : 'N/A'}</p>
+            <p>{clientDetails.dni ? clientDetails.dni : 'N/A'}</p>
             <p>{clientDetails.email ? clientDetails.email : 'N/A'}</p>
-            <p>{clientDetails.phone ? clientDetails.phone : 'N/A'}</p>
+            <p>{clientDetails.telephone ? clientDetails.telephone : 'N/A'}</p>
         </div>
     </div>
 

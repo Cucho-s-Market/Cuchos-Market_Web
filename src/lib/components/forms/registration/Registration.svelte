@@ -112,7 +112,7 @@
 				</div>
 
 				<div class="w-full">
-					<Input bind:value={customer.ci} props="h-10" type="text" label="C.I" />
+					<Input bind:value={customer.ci} props="h-10" type="number" label="C.I" />
 				</div>
 				<div class="w-full">
 					<Input bind:value={customer.email} props="h-10" type="email" label="Email" />
@@ -124,7 +124,7 @@
 					<Input bind:value={customer.confirmPassword} props="h-10" type="password" label="Repetir contraseña" />
 				</div>
 				<div class="w-full">
-					<Input bind:value={customer.phone} props="h-10" type="tel" label="Celular" mandatory={false}/>
+					<Input bind:value={customer.phone} props="h-10" type="number" label="Celular" mandatory={false}/>
 				</div>
 				<div class="w-full">
 					<p class="text-[12px]">

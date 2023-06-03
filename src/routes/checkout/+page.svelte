@@ -7,6 +7,8 @@
 	import ShipMethods from "$lib/components/checkout/ShipMethods.svelte";
     import {currentStep} from "./stores";
 
+    let clientDetails = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : null;
+
     const getProducts = async() => {
         let products = [];
         
@@ -56,7 +58,7 @@
         {#await itemsPromise then items}
             <!-- Step customer details -->
             <CheckoutBase titleSection='Detalles del cliente' items={items}>
-                <CustomerDetails/>
+                <CustomerDetails clientDetails={clientDetails}/>
             </CheckoutBase>
         {/await}
     {/if}

@@ -12,9 +12,6 @@ const fetchController = (() => {
 
         if (method !== "GET") properties.body = JSON.stringify(data);
 
-        console.log('properties ', properties);
-        console.log('url ', url);
-
         const result = await fetch(url, properties);
         if (!result.ok) return null;
 
