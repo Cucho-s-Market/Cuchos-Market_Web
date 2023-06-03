@@ -21,11 +21,11 @@
             <Input label={"Contraseña"} props={"h-10"} type={"password"} mandatory={false}/>
         </div>
         <div class="flex w-full justify-end mt-2">
-            <Link text={"¿Olvidaste la contraseña?"} type={"text-black"}/>
+            <Link text={"¿Olvidaste la contraseña?"} target={false} type={"text-black"}/>
         </div>
         <div class="flex flex-col items-center">
             <Button text={"Entrar"} type={"w-full btn-primary min-h-0 h-10 text-medium mt-8 mb-4"}/>
-            <p><span class="text-neutral-grey">¿No tienes una cuenta? </span><Link text={"Crear cuenta"} type={"text-black font-semibold cursor-pointer"}/></p>
+            <p><span class="text-neutral-grey">¿No tienes una cuenta? </span><Link text={"Crear cuenta"} target={false} type={"text-black font-semibold cursor-pointer"} href={"/registrarse"}/></p>
         </div>
         
     </div>

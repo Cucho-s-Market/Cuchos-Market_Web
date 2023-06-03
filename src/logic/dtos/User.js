@@ -1,11 +1,10 @@
 // @ts-nocheck
-class User {
-    constructor(id, firstName, lastName, email, role, token) {
-        this.id = id;
+export class User {
+    constructor(firstName, lastName, email, password, role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.role = role;
-        this.token = token;
     }
 }
