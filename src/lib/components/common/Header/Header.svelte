@@ -84,6 +84,9 @@
                         <li>
                             <a class="justify-between" on:click={() => showModalLogin=!showModalLogin}>Iniciar sesion</a>
                         </li>
+                        <li>
+                            <a href="/registrarse" class="justify-between">Registrarse</a>
+                        </li>
                     </ul>
                 </div>
             </div>
