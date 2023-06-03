@@ -1,9 +1,15 @@
 <script>
+	// @ts-nocheck
 	export let type = 'text';
 	export let value = '';
 	export let label = 'label';
     export let mandatory = true;
 	export let props = ''
+
+	const handleInput = event => {
+		value = event.target.value;
+	};
+
 </script>
 
 <div class="form-control w-full">
@@ -15,5 +21,5 @@
             {/if}
         </span>
 	</label>
-	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" value={value}/>
+	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value}/>
 </div>

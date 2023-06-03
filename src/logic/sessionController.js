@@ -9,32 +9,25 @@ const sessionController = (() => {
     let paymentMethods = {};
     let address = {};
 
-    async function register() {
+    // ------------------ CUSTOMER REGISTER ------------------
+    async function register(customerDetails) {
       const customer = new Customer(
-        "123",
-        "John",
-        "Doe",
-        "john@example.com",
-        "ROLE",
-        "1990-01-01",
-        "123456789",
-        "123456789"
+        customerDetails.firstName,
+        customerDetails.lastName,
+        customerDetails.email,
+        customerDetails.password,
+        customerDetails.role,
+        customerDetails.birthdate,
+        customerDetails.phone,
+        customerDetails.ci
       );
 
-      console.log(customer);
+      if(customer === null) throw new Error('Error creating customer');
+      
       const res =  await fetchController.execute('http://127.0.0.1:8080/users/customer', 'POST', customer);
-
-      console.log('res ', res);
+      return res;
     }
 
-    
-    // this.login = () => {
-        
-    // }
-
-    // this.logout = () => {
-        
-    //}
 
     return {
       register,

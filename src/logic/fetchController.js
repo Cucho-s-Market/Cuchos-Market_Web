@@ -6,12 +6,14 @@ const fetchController = (() => {
 
         let headers = {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NTY2NTcxNywiZXhwIjoxNjg1NzUyMTE3fQ.4a2oRzDVoLTZAxr2onapRqdW9Q39aSON5YrJpfy3kHc`
         }
 
         let properties = { method: method, headers: headers };
 
         if (method !== "GET") properties.body = JSON.stringify(data);
+
+        console.log('properties ', properties);
+        console.log('url ', url);
 
         const result = await fetch(url, properties);
         if (!result.ok) return null;

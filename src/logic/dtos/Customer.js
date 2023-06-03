@@ -2,8 +2,8 @@
 import { User } from "./User";
     
 export class Customer extends User {
-    constructor(id, firstName, lastName, email, role, birthdate, telephone, dni) {
-        super(id, firstName, lastName, email, role);
+    constructor(firstName, lastName, email, password, role, birthdate, telephone, dni) {
+        super(firstName, lastName, email, password, role);
         this.dni = dni;
         this.birthdate = birthdate;
         this.telephone = telephone;
