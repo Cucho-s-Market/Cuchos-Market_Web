@@ -32,8 +32,7 @@
     let numbers = new RegExp('^[0-9]+$');
     let valueStrArray = [...valueStr];
 
-    if(valueStr.length > 0 && isNaN(value)) {
-
+    if(valueStr.length > 0 && isNaN(value) || valueStr == "0") {
       value = 1;
       valueStr = String(value);
       valueStrArray = [...valueStr];
