@@ -7,10 +7,9 @@
     import Svg from "../../utils/SVG.svelte";
 	import BranchSelector from "../Branch/BranchSelector.svelte";
 	import sessionController from "../../../../logic/sessionController";
-	import cartController from "../../../../logic/cartController";
+	import { cartStore } from "../../../../logic/Stores/CartStore";
 
     export let location = "Central";
-    let cartQty = 0;
     let showModalBranch = false;
     let showModalLogin = false;
     let showCart = false;
@@ -20,7 +19,6 @@
     onMount(async () => {
         // Check if user is logged in
         userIsloggedIn = await sessionController.isUserLoggedIn();
-        cartQty = await cartController.getQtyItems();
     });
 
     let branches = [
@@ -87,7 +85,7 @@
                             <!-- svelte-ignore a11y-click-events-have-key-events -->
                             <div class="indicator" on:click={() => showCart=!showCart}>
                                 <Svg name={"shopping-cart"} size={30}/>
-                                <span class="badge badge-sm indicator-item w-5 h-5 top-1 right-1 bg-primary border-none">{cartQty}</span>
+                                <span class="badge badge-sm indicator-item w-5 h-5 top-1 right-1 bg-primary border-none">{$cartStore?.totalQty || 0}</span>
                             </div>
                         </label>
                     </div>

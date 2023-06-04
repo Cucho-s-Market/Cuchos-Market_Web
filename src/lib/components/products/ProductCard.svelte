@@ -10,7 +10,7 @@
     let userIsloggedIn = false;
 
     onMount(async () => {
-        userIsloggedIn = sessionController.isUserLoggedIn();
+        userIsloggedIn = await sessionController.isUserLoggedIn();
     });
 
     export let item = {
@@ -54,7 +54,7 @@
                 {#if userIsloggedIn}
                     <Button text="Agregar al carrito" type="btn-primary btn-block" click={() => {showQuantity()}}/>
                 {:else}
-                    <Button text="Agregar al carrito" type="btn-primary btn-block btn-disabled"/>
+                    <Button text="Agregar al carrito" type="btn-disabled btn-block"/>
                 {/if}
             {/if}
         </div>

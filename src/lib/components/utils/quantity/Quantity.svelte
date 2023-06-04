@@ -14,6 +14,21 @@
 
   export let value = 1;
 
+  // ----------------- METHODS -----------------
+
+	const handleItemCart = (type) => {
+		debugger;
+		// This will only work inside cart module
+		if(card) return;
+
+		// Remove item from cart
+		cartController.removeItem(item);
+
+		// Add item to cart
+		item.quantity = parseInt(value);
+		cartController.addItem(item);
+	}
+
   //events
   const addToCart = () => {
     if(String(value) === '') {
@@ -54,6 +69,7 @@
       value = 100;
 
     }
+
   };
 
 </script>
@@ -63,8 +79,9 @@
   <Button type="btn-success btn-sm absolute right-5 bottom-20 rounded w-[25%] active:transform-none" svg={{name: "shopping-cart-plus"}} click={()=> {addToCart()}}/>
 {/if}
 
+<!-- Cart quantity or checkout -->
 <div class="flex flex-row justify-between {containerProps}">
     <QuantityButton type='minus' bind:value bind:btnProps/>
-		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}"  bind:value="{value}"/>
-		<QuantityButton type='plus' bind:value bind:btnProps/>
+		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" on:blur={handleItemCart} bind:value="{value}"/>
+	<QuantityButton type='plus' bind:value bind:btnProps/>
 </div>

@@ -6,7 +6,7 @@ import { Customer } from "./dtos/Customer";
 const sessionController = (() => {
 
 	let user = {};
-	let cart = {items: [], total: 0};
+	let cart = {items: [], total: 0, totalQty: 0};
 	let paymentMethods = {};
 	let address = {};
 
