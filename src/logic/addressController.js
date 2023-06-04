@@ -37,6 +37,8 @@ const addressController = (() => {
 
         user.address = selectedAddress;
         sessionController.setUser(user);
+
+        return true;
     }
 
     return {

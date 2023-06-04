@@ -23,7 +23,7 @@
         currentStep.set(null);
     }
 
-    const checkCurrentStep = () => {
+    const checkCurrentStep = async () => {
         debugger;
         // Set current step to 3 and this makes payment methods show
 
@@ -39,7 +39,11 @@
         });
 
         if(addressSelected) {
-            addressController.setSelectedAddress(addressId);
+            const addressSelected = await addressController.setSelectedAddress(addressId);
+            if(addressSelected == null) {
+                alert("No se pudo seleccionar la dirección");
+                return;
+            }
             currentStep.set(3);
         } else {
             alert("Debe seleccionar una dirección de envio o retiro en sucursal");
