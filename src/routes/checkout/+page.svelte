@@ -5,9 +5,20 @@
     import HeaderCheckout from "$lib/components/checkout/HeaderCheckout.svelte";
 	import PaymentMethods from "$lib/components/checkout/PaymentMethods.svelte";
 	import ShipMethods from "$lib/components/checkout/ShipMethods.svelte";
+	import { onMount } from "svelte";
     import {currentStep} from "./stores";
+	import sessionController from "../../logic/sessionController";
+	import cartController from "../../logic/cartController";
 
-    let clientDetails = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : null;
+    let clientDetails = null;
+
+    onMount(async() => {
+        const userIsloggedIn = await sessionController.isUserLoggedIn();
+        const cart = await cartController.getCart();
+
+        // Redirect user to homepage if not logged in or cart is empty
+        if((!userIsloggedIn || cart?.items.length <= 0)) window.location.href = '/';
+    });
 
     const getProducts = async() => {
         let products = [];
@@ -54,7 +65,7 @@
 <HeaderCheckout/>
 
 <div class="w-[1200px] m-auto">
-    {#if $currentStep == null}
+    {#if $currentStep == null && clientDetails}
         {#await itemsPromise then items}
             <!-- Step customer details -->
             <CheckoutBase titleSection='Detalles del cliente' items={items}>
