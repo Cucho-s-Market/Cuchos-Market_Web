@@ -61,11 +61,18 @@ const sessionController = (() => {
 		return user
 	}
 
+	async function getUser() {
+		// Get user from session storage
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
+		return user;
+	}
+
 	return {
 		register,
 		login,
 		logout,
-		isUserLoggedIn
+		isUserLoggedIn,
+		getUser
 	}
 })();
 

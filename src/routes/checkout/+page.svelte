@@ -9,6 +9,7 @@
     import {currentStep} from "./stores";
 	import sessionController from "../../logic/sessionController";
 	import cartController from "../../logic/cartController";
+    import { cartStore } from "../../logic/Stores/CartStore";
 
     let clientDetails = null;
 
@@ -18,30 +19,11 @@
 
         // Redirect user to homepage if not logged in or cart is empty
         if((!userIsloggedIn || cart?.items.length <= 0)) window.location.href = '/';
+
+        clientDetails = await sessionController.getUser();
     });
 
-    const getProducts = async() => {
-        let products = [];
-        
-        const res = await fetch('https://dummyjson.com/products');
-        const data = await res.json();
-        if(data.products) {
-            // @ts-ignore
-            data.products.forEach(element => {
-                products.push({
-                    name: element.title,
-                    price: element.price,
-                    discount: element.discountPercentage,
-                    iso: "UYU",
-                    image: element.images[0],
-                });
-            });
-        }
 
-        return products;
-    }
-
-    let itemsPromise = getProducts();
     let addressess = [
         {address: 'avenida siempre viva', doorNumber: '56', street: 'w y x', city: 'Springfield'},
         {address: 'colonia 1815', doorNumber: 'dd', street: '', city: ''},
@@ -66,29 +48,29 @@
 
 <div class="w-[1200px] m-auto">
     {#if $currentStep == null && clientDetails}
-        {#await itemsPromise then items}
+        {#if $cartStore?.items}
             <!-- Step customer details -->
-            <CheckoutBase titleSection='Detalles del cliente' items={items}>
+            <CheckoutBase titleSection='Detalles del cliente' items={$cartStore?.items}>
                 <CustomerDetails clientDetails={clientDetails}/>
             </CheckoutBase>
-        {/await}
+        {/if}
     {/if}
 
     {#if $currentStep == 2}
-        {#await itemsPromise then items}
+        {#if $cartStore?.items}
             <!-- Step shipping address -->
-            <CheckoutBase titleSection='Metodos de envio' items={items}>
+            <CheckoutBase titleSection='Metodos de envio' items={$cartStore?.items}>
                 <ShipMethods addressess={addressess}/>
             </CheckoutBase>
-        {/await}
+        {/if}
     {/if}
 
     {#if $currentStep == 3}
-        {#await itemsPromise then items}
+        {#if $cartStore?.items}
             <!-- Step payment details -->
-            <CheckoutBase titleSection='Metodos de pago' items={items}>
+            <CheckoutBase titleSection='Metodos de pago' items={$cartStore?.items}>
                 <PaymentMethods paymentMethods={paymentMethods}/>
             </CheckoutBase>
-        {/await}
+        {/if}
     {/if}
 </div>
