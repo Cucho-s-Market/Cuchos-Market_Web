@@ -7,10 +7,7 @@ const sessionController = (() => {
 
 	let user = {};
 	let cart = {items: [], total: 0, totalQty: 0};
-	let paymentMethods = {};
-	let address = {};
 
-	// ------------------ CUSTOMER REGISTER ------------------
 	async function register(customerDetails) {
 		const customer = new Customer(
 			customerDetails.firstName,
@@ -29,15 +26,15 @@ const sessionController = (() => {
 		return res;
 	}
 
-	// ------------------ CUSTOMER LOGIN ------------------
 	async function login(customerDetails) {
 		// login logic
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", customerDetails);
 		if(res == null && res.error) return res;
 		
-		// Store user data in session
+		// Initialize values
 		user = res.data;
 		user.token = res.token;
+		user.address = {};
 		user.isLoggedIn = true;
 
 		sessionStorage.setItem("user", JSON.stringify(user));
@@ -67,12 +64,27 @@ const sessionController = (() => {
 		return user;
 	}
 
+	function setUser(user) {
+		// Set user into session storage
+		sessionStorage.setItem("user", JSON.stringify(user));
+	}
+
+	async function getUserToken(){
+		// Get user token from session storage
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
+		if(user == null) return null;
+
+		return user.token;
+	}
+
 	return {
 		register,
 		login,
 		logout,
 		isUserLoggedIn,
-		getUser
+		getUser,
+		setUser,
+		getUserToken
 	}
 })();
 
