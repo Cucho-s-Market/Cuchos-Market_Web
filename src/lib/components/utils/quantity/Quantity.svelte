@@ -1,19 +1,21 @@
 <script>
+  // @ts-nocheck
+	import cartController from "../../../../logic/cartController";
 	import Button from "../Button.svelte";
 	import { notify } from "../Notifications.svelte";
 	import QuantityButton from "./QuantityButton.svelte";
 
+  export let item = {};
   export let showQty = true;
   export let card = false;
   export let containerProps = "";
   export let btnProps = "";
   export let inputProps = "";
 
-  let value = 1;
+  export let value = 1;
 
   //events
   const addToCart = () => {
-
     if(String(value) === '') {
       value = 1;
     }
@@ -22,12 +24,16 @@
     let strArticulo = value === 1 ? "articulo" : "articulos";
     let strCantidad = value === 1 ? "un" : String(value);
 
-    // @ts-ignore
+    // Add item to cart
+    item.quantity = parseInt(value);
+    cartController.addItem(item);
+
     notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
     showQty = false;
   }
 
-  $: {
+ // @ts-ignore
+   $: {
     let valueStr = String(value);
     let numbers = new RegExp('^[0-9]+$');
     let valueStrArray = [...valueStr];

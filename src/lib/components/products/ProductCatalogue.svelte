@@ -1,4 +1,5 @@
 <script>
+    // @ts-nocheck
 	import ProductCard from "./ProductCard.svelte";
 
     const getProducts = async() => {
@@ -29,7 +30,7 @@
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-fit gap-10 max-w-[1000px]">
     {#await productsPromise then products}
         {#each products as product}
-            <ProductCard data={product}/>
+            <ProductCard item={product}/>
         {/each}
     {/await}
 </div>

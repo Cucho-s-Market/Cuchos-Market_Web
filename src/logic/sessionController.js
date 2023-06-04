@@ -1,3 +1,4 @@
+
 //@ts-nocheck
 import fetchController from "./fetchController";
 import { Customer } from "./dtos/Customer";
@@ -5,7 +6,7 @@ import { Customer } from "./dtos/Customer";
 const sessionController = (() => {
 
 	let user = {};
-	let items = [];
+	let cart = {items: [], total: 0};
 	let paymentMethods = {};
 	let address = {};
 
@@ -40,6 +41,7 @@ const sessionController = (() => {
 		user.isLoggedIn = true;
 
 		sessionStorage.setItem("user", JSON.stringify(user));
+		sessionStorage.setItem("cart", JSON.stringify(cart));
 		return res;
 	}
 
@@ -53,10 +55,17 @@ const sessionController = (() => {
 		window.location.href = "/";
 	}
 
+	async function isUserLoggedIn() {
+		// Check if user is logged in
+		let user = sessionStorage.getItem("user") != null ? true : false;
+		return user
+	}
+
 	return {
 		register,
 		login,
-		logout
+		logout,
+		isUserLoggedIn
 	}
 })();
 
