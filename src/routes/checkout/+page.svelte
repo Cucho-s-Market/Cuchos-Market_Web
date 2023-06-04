@@ -10,8 +10,10 @@
 	import sessionController from "../../logic/sessionController";
 	import cartController from "../../logic/cartController";
     import { cartStore } from "../../logic/Stores/CartStore";
+	import addressController from "../../logic/addressController";
 
     let clientDetails = null;
+    let addressess = [];
 
     onMount(async() => {
         const userIsloggedIn = await sessionController.isUserLoggedIn();
@@ -21,21 +23,8 @@
         if((!userIsloggedIn || cart?.items.length <= 0)) window.location.href = '/';
 
         clientDetails = await sessionController.getUser();
+        addressess = await addressController.getAddresses();
     });
-
-
-    let addressess = [
-        {address: 'avenida siempre viva', doorNumber: '56', street: 'w y x', city: 'Springfield'},
-        {address: 'colonia 1815', doorNumber: 'dd', street: '', city: ''},
-        {address: 'fdsfs', doorNumber: '22', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-        {address: 'sss', doorNumber: '33', street: 'dd', city: 'ss'},
-    ];
 
     let paymentMethods = [
         {id: '123', name: 'paypal', image: 'https://i.pcmag.com/imagery/reviews/068BjcjwBw0snwHIq0KNo5m-15.fit_scale.size_760x427.v1602794215.png'},

@@ -31,7 +31,7 @@
 			<div class="my-10 flex flex-col gap-4 min-h-[400px] max-h-[400px] {items?.length > 5 ? 'overflow-scroll' : ''} overflow-x-hidden">
 				{#if items?.length > 0}
 					{#each items as item}
-						<ProductList {item} />
+						<ProductList {item} inCheckout={true}/>
 					{/each}
 				{/if}
 			</div>

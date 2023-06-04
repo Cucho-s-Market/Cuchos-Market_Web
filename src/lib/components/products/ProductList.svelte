@@ -4,6 +4,7 @@
     import Svg from "../utils/SVG.svelte";
 	import Quantity from "../utils/quantity/Quantity.svelte";
     export let item = null;
+    export let inCheckout = false;
     let screenSize;
 </script>
 
@@ -29,7 +30,9 @@
                 <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>
             </div>
 
-            <button class="" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+            {#if !inCheckout}
+                <button class="" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+            {/if}
         </div>
     {/if}
 {:else}
@@ -57,7 +60,9 @@
                         <Quantity btnProps={"min-w-[0px] w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} value={item.quantity}/>
                     </div>
 
-                    <button class="mr-4" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+                    {#if !inCheckout}
+                        <button class="mr-4" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+                    {/if}
                 </div>
             </div>
         </div>
