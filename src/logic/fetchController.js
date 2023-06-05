@@ -6,7 +6,8 @@ const fetchController = (() => {
 
         let headers = {
             'Content-Type': 'application/json',
-        }
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NjAwMzIyMywiZXhwIjoxNjg2MDg5NjIzfQ.UpPgLqiCPlgWpNb9blT53bzPTnMPgREBZyQ-KiKshuM`
+        };
 
         let properties = { method: method, headers: headers };
 
