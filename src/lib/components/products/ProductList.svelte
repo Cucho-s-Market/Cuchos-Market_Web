@@ -1,7 +1,10 @@
 <script>
+    // @ts-nocheck
+    import cartController from "../../../logic/cartController";
     import Svg from "../utils/SVG.svelte";
 	import Quantity from "../utils/quantity/Quantity.svelte";
     export let item = null;
+    export let inCheckout = false;
     let screenSize;
 </script>
 
@@ -18,16 +21,18 @@
             <!-- Product description -->
             <div class="m-4 min-w-[10rem] max-w-[12rem]">
                 <p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">{item.name}</p>
-                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku}</p>
+                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku ? item.sku : 'N/A'}</p>
             </div>
             <!-- Product Qty -->
-            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"}/>
+            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} item={item} value={item.quantity}/>
             <!-- Product total -->
             <div class="min-w-[4.5rem] mx-4">   
                 <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>
             </div>
 
-            <button class=""><Svg name={"trash"} size={25}/></button>
+            {#if !inCheckout}
+                <button class="" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+            {/if}
         </div>
     {/if}
 {:else}
@@ -52,10 +57,12 @@
                             <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>
                         </div>
 
-                        <Quantity btnProps={"min-w-[0px] w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"}/>
+                        <Quantity btnProps={"min-w-[0px] w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} value={item.quantity}/>
                     </div>
 
-                    <button class="mr-4"><Svg name={"trash"} size={25}/></button>
+                    {#if !inCheckout}
+                        <button class="mr-4" on:click={() => cartController.removeItem(item)}><Svg name={"trash"} size={25}/></button>
+                    {/if}
                 </div>
             </div>
         </div>

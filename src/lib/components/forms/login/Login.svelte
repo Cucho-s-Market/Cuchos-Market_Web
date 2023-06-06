@@ -14,6 +14,7 @@
     let errorMessage = '';
 
     const loginCustomer = async () => {
+        debugger;
         // Validate all fields are filled
         if (customerDetails.email === '' || customerDetails.password === '') {
             alert('Por favor, llene todos los campos');
@@ -32,11 +33,7 @@
         if(result == null || result.error) {errorMessage = result?.message; throw new Error(result?.message);}
         
         // Ask if user is logged in
-        const userIsloggedIn = sessionStorage.getItem('user');
-        if(userIsloggedIn) {
-            // Redirect to home
-            window.location.href = '/';
-        }
+        if(sessionController.isUserLoggedIn()) window.location.href = '/';
     }
 
 </script>

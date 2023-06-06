@@ -3,6 +3,7 @@
 	import ProductList from '../products/ProductList.svelte';
 	import NavigationProgress from './NavigationProgress.svelte';
 	import {currentStep} from '../../../routes/checkout/stores.js'
+	import {cartStore} from '../../../logic/Stores/CartStore.js'
 
 	export let titleSection = '';
 	export let items = null;
@@ -27,10 +28,10 @@
 			<p class="font-bold text-[24px]">Detalles de la compra</p>
 
 			<!-- Buyed Products -->
-			<div class="my-10 flex flex-col gap-4 max-h-[400px] overflow-scroll overflow-x-hidden">
+			<div class="my-10 flex flex-col gap-4 min-h-[400px] max-h-[400px] {items?.length > 5 ? 'overflow-scroll' : ''} overflow-x-hidden">
 				{#if items?.length > 0}
 					{#each items as item}
-						<ProductList {item} />
+						<ProductList {item} inCheckout={true}/>
 					{/each}
 				{/if}
 			</div>
@@ -48,7 +49,7 @@
                 <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
                 <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
                 <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
-                <p class="font-semibold text-[16px] text-neutral-grey">UYU $125000</p>
+                <p class="font-semibold text-[16px] text-neutral-grey">UYU {$cartStore?.total}</p>
             </div>
         </div>
 	</div>

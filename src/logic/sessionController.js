@@ -1,3 +1,4 @@
+
 //@ts-nocheck
 import fetchController from "./fetchController";
 import { Customer } from "./dtos/Customer";
@@ -5,11 +6,8 @@ import { Customer } from "./dtos/Customer";
 const sessionController = (() => {
 
 	let user = {};
-	let items = [];
-	let paymentMethods = {};
-	let address = {};
+	let cart = {items: [], total: 0, totalQty: 0};
 
-	// ------------------ CUSTOMER REGISTER ------------------
 	async function register(customerDetails) {
 		const customer = new Customer(
 			customerDetails.firstName,
@@ -28,18 +26,19 @@ const sessionController = (() => {
 		return res;
 	}
 
-	// ------------------ CUSTOMER LOGIN ------------------
 	async function login(customerDetails) {
 		// login logic
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", customerDetails);
 		if(res == null && res.error) return res;
 		
-		// Store user data in session
+		// Initialize values
 		user = res.data;
 		user.token = res.token;
+		user.address = {};
 		user.isLoggedIn = true;
 
 		sessionStorage.setItem("user", JSON.stringify(user));
+		sessionStorage.setItem("cart", JSON.stringify(cart));
 		return res;
 	}
 
@@ -53,10 +52,39 @@ const sessionController = (() => {
 		window.location.href = "/";
 	}
 
+	async function isUserLoggedIn() {
+		// Check if user is logged in
+		let user = sessionStorage.getItem("user") != null ? true : false;
+		return user
+	}
+
+	async function getUser() {
+		// Get user from session storage
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
+		return user;
+	}
+
+	function setUser(user) {
+		// Set user into session storage
+		sessionStorage.setItem("user", JSON.stringify(user));
+	}
+
+	async function getUserToken(){
+		// Get user token from session storage
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
+		if(user == null) return null;
+
+		return user.token;
+	}
+
 	return {
 		register,
 		login,
-		logout
+		logout,
+		isUserLoggedIn,
+		getUser,
+		setUser,
+		getUserToken
 	}
 })();
 
