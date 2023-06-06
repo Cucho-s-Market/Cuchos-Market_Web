@@ -6,7 +6,7 @@
 </script>
 
 <SectionHeader
-	title={'Usuarios'}
+	title={'Crear Usuario'}
     back={true}
 />
 
