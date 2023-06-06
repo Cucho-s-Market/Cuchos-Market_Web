@@ -57,7 +57,9 @@
 		}
 
 		const response = await sessionController.register(customer);
-		if(response == null || response.error){errorMessage = response?.message; throw new Error('Error al registrar usuario');}
+		if(response == null || response.error) {
+			errorMessage = response?.message; throw new Error('Error al registrar usuario');
+		}
 
 		errorMessage = '';
 		accountCreated = true;
