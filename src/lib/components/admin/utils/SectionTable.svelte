@@ -22,20 +22,20 @@
 			{#each tbody as tbody_item, index}
 				{#if index % 2 === 0}
 					<tr>
-						{#each tbody_item as item}
+						{#each tbody_item.row as item}
 							<td>{item}</td>
 						{/each}
 						<td>
-							<TableButtons bind:buttons/>
+							<TableButtons bind:buttons itemId={tbody_item.id} />
 						</td>
 					</tr>
 				{:else}
 					<tr class="active">
-						{#each tbody_item as item}
+						{#each tbody_item.row as item}
 							<td>{item}</td>
 						{/each}
 						<td>
-							<TableButtons bind:buttons/>
+							<TableButtons bind:buttons itemId={tbody_item.id} />
 						</td>
 					</tr>
 				{/if}

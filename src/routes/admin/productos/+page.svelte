@@ -37,4 +37,4 @@
 	<FilterSelect name="{select.name}" options={select.options}/>
 </SectionFilters>
 
-<SectionTable thead={tableItems.thead} tbody={tableItems.tbody} buttons={{toggle: true, edit: true}} />
+<!-- <SectionTable thead={tableItems.thead} tbody={tableItems.tbody} buttons={{toggle: true, edit: true}} /> -->
