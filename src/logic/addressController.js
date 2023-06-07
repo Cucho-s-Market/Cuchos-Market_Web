@@ -24,10 +24,7 @@ const addressController = (() => {
     // Set selected address into user session
     async function setSelectedAddress(addressId) {
         let user = await sessionController.getUser();
-        if (user == null) return null;
-
-        let addresses = await sessionController.getUser();
-        if(addresses == null) return null;
+        if(user == null) return null;
 
         addresses = addresses.addresses;
         if (addresses == null || addresses?.length <= 0) return null;

@@ -8,6 +8,7 @@
 	import BranchSelector from "../Branch/BranchSelector.svelte";
 	import sessionController from "../../../../logic/sessionController";
 	import { cartStore } from "../../../../logic/Stores/CartStore";
+	import branchController from "../../../../logic/branchController";
 
     export let location = "Central";
     let showModalBranch = false;
@@ -15,17 +16,16 @@
     let showCart = false;
 
     let userIsloggedIn = false;
+    let branches = [];
 
     onMount(async () => {
+        debugger;
         // Check if user is logged in
         userIsloggedIn = await sessionController.isUserLoggedIn();
-    });
 
-    let branches = [
-        {location: 'Central', address: 'Colonia 1815', schedule: 'Abierto de 10 a 20hs', selected: false},
-        {location: 'Montevideo', address: 'La blanqueada 546', schedule: 'Abierto de 9 a 18hs', selected: true},
-        {location: 'Central', address: 'Colonia 1815', schedule: 'Abierto de 10 a 20hs', selected: false},
-    ]
+        // Get branches from backend
+        branches = await branchController.getBranches();
+    });
 
 </script>
 
