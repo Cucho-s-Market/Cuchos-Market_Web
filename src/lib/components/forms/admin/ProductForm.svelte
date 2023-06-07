@@ -54,7 +54,7 @@
 </script>
 
 <div class="flex flex-col w-[400px]">
-	<div class="flex flex-col w-full gap-5 p-5 rounded-lg mt-10 mb-20 bg-base-100 shadow">
+	<div class="flex flex-col w-full gap-5 p-5 rounded-lg my-10 bg-base-100 shadow">
 		<div class="w-full">
 			<Input bind:value={product.name} props="h-10" label="Nombre" />
 		</div>
@@ -67,7 +67,7 @@
             <p class="label">
                 <span class="label-text font-semibold">Categoria <span class="p-1 text-error">*</span></span>
             </p>
-            <select bind:value={product.category} class="select select-primary w-full focus:border-none">
+            <select bind:value={product.category} class="select select-primary w-full bg-light-grey focus:border-none">
                 <option disabled selected>SUCURSAL</option>
                 <option>Sucursal 1</option>
             </select>
@@ -81,15 +81,15 @@
 			<label for="descripcion" class="label">
 				<span class="label-text font-semibold">Descripcion<span class="p-1 text-error">*</span></span>
 			</label>
-			<textarea class="textarea textarea-primary w-full min-h-[200px] max-h-[200px]" name="descripcion" placeholder="Descripcion" />
+			<textarea class="textarea textarea-primary w-full min-h-[200px] max-h-[200px] bg-light-grey" name="descripcion" placeholder="Descripcion" />
 		</div>
 	</div>
 
-	<div class="flex w-full gap-5 p-5 rounded-lg mt-10 mb-20 bg-base-100 shadow">
-		<p class="font-medium text-md mb-10">Imagenes</p>
+	<div class="flex flex-col w-full gap-5 p-5 rounded-lg bg-base-100 shadow">
+		<p class="font-semibold text-md mb-5">Imagenes</p>
 		<div class="flex">
 			<input this:bind={fileUpload} class="hidden" type="file">
-			<Button type="bg-none" text={"Agregar imagen"} click={() => { console.log(fileUpload); }} />
+			<Button type="bg-base-300 border-none w-[70px] h-[70px] hover:bg-primary hover:text-base-100" svg={{name: "camera-plus"}} click={() => { console.log(fileUpload); }} />
 		</div>
 	</div>
 </div>
