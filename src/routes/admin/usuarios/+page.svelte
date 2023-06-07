@@ -7,7 +7,6 @@
 	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 
 	export let data;
 
