@@ -16,7 +16,7 @@
 	const getUser = async () => {
 		const users = data.users;
 
-		if (users.error) {
+		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}

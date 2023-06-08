@@ -5,8 +5,7 @@ const fetchController = (() => {
         let resultFetch = null;
 
         let headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            'Content-Type': 'application/json'
         };
 
         if (token != null) headers.Authorization = `Bearer ${token}`;
