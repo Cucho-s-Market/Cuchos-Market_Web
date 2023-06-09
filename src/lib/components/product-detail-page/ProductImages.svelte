@@ -4,7 +4,7 @@
 
 	let dummyImage = 'https://dummyimage.com/100/09f.png/fff';
     
-    
+	//Array de imagenes que se tomará del back para rellenar el pdp
 	let images = [
         { source: 'https://dummyimage.com/450x450/fff', altInf: 'byb en el sillon' },
 		{ source: 'https://dummyimage.com/440x450/fff', altInf: 'pegandose conitos' },
