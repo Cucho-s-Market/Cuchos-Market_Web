@@ -1,15 +1,20 @@
 // @ts-nocheck
 const fetchController = (() => {
 
-    async function execute(url, method = "GET", data = null, token = null) {
+    async function execute(url, method = "GET", data = null, token = null, authType = 1) {
         let resultFetch = null;
 
         let headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NjAwMzIyMywiZXhwIjoxNjg2MDg5NjIzfQ.UpPgLqiCPlgWpNb9blT53bzPTnMPgREBZyQ-KiKshuM`
+            'Content-Type': 'application/json'
         };
 
-        if (token != null) headers.Authorization = `Bearer ${token}`;
+        if (token != null && authType == 1) {
+            headers.Authorization = `Bearer ${token}`;
+        }
+        else if (token != null && authType == 2) {
+            headers.Authorization = `Basic ${token}`;
+        }
+        
 
         let properties = { method: method, headers: headers };
 

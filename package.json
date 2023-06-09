@@ -30,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"@paypal/paypal-js": "^6.0.0",
+		"buffer": "^6.0.3",
 		"chart.js": "^4.3.0",
 		"dotenv": "^16.0.3",
 		"svelte-routing": "^1.8.9",

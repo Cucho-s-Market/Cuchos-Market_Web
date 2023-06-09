@@ -26,7 +26,7 @@ const addressController = (() => {
         let user = await sessionController.getUser();
         if(user == null) return null;
 
-        addresses = addresses.addresses;
+        let addresses = user?.addresses;
         if (addresses == null || addresses?.length <= 0) return null;
 
         const selectedAddress = addresses.find(address => address.id == addressId);
