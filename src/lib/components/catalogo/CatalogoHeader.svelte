@@ -1,5 +1,5 @@
 <script>
-	export let cantidad = 10;
+	export let qtyItems = 0;
 </script>
 
 <div class="navbar w-full h-[40px] p-[0px]">
@@ -9,7 +9,7 @@
 		</p>
 	</div>
 	<div class="flex space-x-0 pr-2 mr-2">
-		<p class=" border-r-2 border-neutral mr-2 pr-2">{cantidad} Productos</p>
+		<p class=" border-r-2 border-neutral mr-2 pr-2">{qtyItems} Productos</p>
 		<p class="justify-normal grow-0">Ordenado por:</p>
 	</div>
 	<div>
