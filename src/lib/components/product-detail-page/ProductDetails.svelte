@@ -67,7 +67,7 @@
                     {item.descripcion}
                 </p>
             {:else}
-                <ProductSpecs/>
+                <ProductSpecs specData = {item}/>
             {/if}
 		</div>
 	</div>
