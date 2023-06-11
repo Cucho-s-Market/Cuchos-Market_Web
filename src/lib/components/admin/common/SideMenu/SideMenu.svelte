@@ -6,6 +6,7 @@
 	<ul class="menu p-4 w-full text-base-content">
 		<SideMenuOption text="Estadisticas" svg="chart-bar" />
 		<SideMenuOption href="/admin/ventas" text="Ventas" svg="coin" />
+		<SideMenuOption href="/admin/categorias" text="Categorias" svg="shopping-bag" />
 		<SideMenuOption href="/admin/productos" text="Productos" svg="shopping-bag" />
 		<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
 		<SideMenuOption text="Marketing" svg="affiliate" />

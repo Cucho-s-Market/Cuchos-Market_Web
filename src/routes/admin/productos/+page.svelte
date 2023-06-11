@@ -6,28 +6,34 @@
 	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
+	import Button from '$lib/components/utils/Button.svelte';
 
 	export let data;
 
+	let search;
+	let showClearFilters = false;
+
 	let thead = ['Codigo', 'Nombre', 'Precio', 'Marca'];
 	let tbody = [];
+	let products = [];
+	let productsFiltered = [];
 
 	const getProducts = async () => {
-		const products = data.products;
-
+		products = data.products?.data;
+		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
 			return;
 		}
+		
+		productsFiltered = products;
 
-		products.data.forEach((product) => {
+		products.forEach((product) => {
 			tbody.push({
 				id: product.code,
 				row: [product.code, product.name, product.price, product.brand],
 			});
 		});
-
-		console.log(data.products);
 	};
 
 	let selects = [
@@ -37,10 +43,22 @@
 
 	//hay que cambiar
 	getProducts();
+
+	$: {
+		tbody = [];
+		productsFiltered.forEach((product) => {
+			tbody.push({
+				id: product.code,
+				row: [product.code, product.name, product.price, product.brand],
+			});
+		});
+
+		showClearFilters = productsFiltered !== products ? true : false;
+	}
 </script>
 
 <SectionHeader
-	title={'Usuarios'}
+	title={'Productos'}
 	btn={{
 		name: 'Agregar Producto',
 		btnEvent: () => {
@@ -51,10 +69,20 @@
 	}}
 />
 
-<SectionFilters labelSearch="Buscar por nombre o codigo">
+<SectionFilters labelSearch="Buscar por nombre o codigo" bind:search={search} bind:elements={productsFiltered} inputFilters={['name', 'code']}>
 	{#each selects as select}
 		<FilterSelect name={select.name} options={select.options} />
 	{/each}
 </SectionFilters>
 
-<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+{#if showClearFilters}
+	<Button
+	text="Limpiar filtros"
+	type="btn-primary w-fit p-2 mt-5"
+	click={() => {productsFiltered = products;}}
+	/>
+{/if}
+	
+{#key tbody}
+	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+{/key}

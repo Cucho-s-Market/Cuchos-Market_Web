@@ -4,7 +4,7 @@ import fetchController from "./fetchController";
 // @ts-nocheck
 const adminController = (() => {
 
-    let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NjE5Njk5MSwiZXhwIjoxNjg2MjgzMzkxfQ.5RNaOseiAXDtC1l5G-fJ4DnH9ZF5TjTa0pLUQR9lo28";
+    let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NjUxMzExMywiZXhwIjoxNjg2NTk5NTEzfQ.ttmkgXIZPKvSeZlBwcdfxXu6bvx6os6yQ7ppgc2Di_I";
 
     //USERS
     async function getUsers() {
@@ -33,11 +33,20 @@ const adminController = (() => {
 		return res;
     }
 
+    //Categories
+    async function addCategory(category) {
+        if (category === null) throw new Error('Error al intentar crear la categoria.');
+
+		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
+		return res;
+    }
+
     return {
         getUsers,
         registerEmployee,
         getProducts,
         addProduct,
+        addCategory
     }
 })();
 
