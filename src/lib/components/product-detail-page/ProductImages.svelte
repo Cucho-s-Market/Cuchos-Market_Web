@@ -5,16 +5,11 @@
 	let dummyImage = 'https://dummyimage.com/100/09f.png/fff';
     
 	//Array de imagenes que se tomará del back para rellenar el pdp
-	let images = [
-        { source: 'https://dummyimage.com/450x450/fff', altInf: 'byb en el sillon' },
-		{ source: 'https://dummyimage.com/440x450/fff', altInf: 'pegandose conitos' },
-		{ source: 'https://dummyimage.com/430x450/fff', altInf: 'calzoncillo' },
-		{ source: 'https://dummyimage.com/420x450/fff', altInf: 'cleaning' }
-	];
+	export let images = [];
     
 	let imgContent;
     let imagesArray;
-    let mainImage = images[0].source;
+    let mainImage = images[0]; //images[0].source;
 
     onMount(() => {
         imagesArray = [...imgContent.childNodes];
@@ -37,31 +32,34 @@
 	};
 </script>
 
-<div class="w-[40%] gap-4">
-	<div class="block sm:flex gap-4">
-		<!-- side images -->
-		<div bind:this={imgContent} class="flex flex-row sm:flex-col gap-4">
-			{#each images as image}
-				<div class="w-[50px] h-[50px] border rounded-md border-br-grey hover:border-primary hover:border-2 cursor-pointer">
+{#if images.length > 0}
+	<div class="w-[40%] gap-4">
+		<div class="block sm:flex gap-4">
+			<!-- side images -->
+			<div bind:this={imgContent} class="flex flex-row sm:flex-col gap-4">
+				{#each images as image}
+					<div class="w-[50px] h-[50px] border rounded-md border-br-grey hover:border-primary hover:border-2 cursor-pointer">
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<img
+							on:click={selectImg}
+							src={image}
+							alt={image?.altInf || ''}
+							class="w-full h-full object-scale-down rounded-md"
+						/>
+					</div>
+				{/each}
+			</div>
+			<!-- Main image -->
+			<div class="gap-2">
+				<div class="w-full rounded-md selected:border-2">
 					<img
-						on:click={selectImg}
-						src={image.source}
-						alt={image.altInf}
-						class="w-full h-full object-cover rounded-md"
+						id="mainImage"
+						src={mainImage}
+						alt="asd"
+						class="border border-br-grey rounded-md h-inherit object-scale-down w-[450px] h-[385px]"
 					/>
 				</div>
-			{/each}
-		</div>
-		<!-- Main image -->
-		<div class="gap-2">
-			<div class="w-full rounded-md selected:border-2">
-				<img
-					id="mainImage"
-					src={mainImage}
-					alt="asd"
-					class="border border-br-grey rounded-md h-inherit object-cover w-[450px] h-[385px]"
-				/>
 			</div>
 		</div>
 	</div>
-</div>
+{/if}
