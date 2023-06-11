@@ -59,7 +59,7 @@
 	};
 
 	async function getCategories() {
-		categories = await categoryController.getCategories();
+		categories = await categoryController.getCategoriesSelect();
 	};
 
 	getCategories();
