@@ -42,9 +42,34 @@ const categoryController = (() => {
         return branches.data;
     }
 
+    async function findCategoryById(id){
+        const categories = await getCategories();
+        if(categories == null || categories.length <= 0) return null;
+
+        let category = null;
+        
+        categories.forEach(categoryParent => {
+            debugger;
+            if(category != null) return;
+
+            if(categoryParent.id == id){
+                category = categoryParent;
+                return;
+            }
+
+            const categoryFind = categoryParent.subcategories.find(categoryChild => {return categoryChild.id == id});
+            if(categoryFind == null) return;
+
+            category = categoryFind;
+        });
+
+        return category;
+    }
+
     return {
         getCategories,
-        getCategoriesSelect
+        getCategoriesSelect,
+        findCategoryById
     }
 })();
 

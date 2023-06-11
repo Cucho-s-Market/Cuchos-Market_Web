@@ -1,9 +1,21 @@
 <script>
+  // @ts-nocheck
+	import { onMount } from "svelte";
+	import categoryController from "../../../logic/categoryController";
   let breadcrumbs = [
   { url: "/", label: "Home" },
-  { url: "/", label: "Catalogo" },
-  { label: "Alimentos" }
+  { url: "/catalogo", label: "Catalogo" },
+  { label: "category" }
 ];
+
+  export let categoryId;
+
+  onMount(async () => {
+    const category = await categoryController.findCategoryById(categoryId);
+    breadcrumbs[2].label = category.name;
+  });
+
+
 
 </script>
 
