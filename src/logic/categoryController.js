@@ -35,6 +35,12 @@ const categoryController = (() => {
 
         return resultCategories;
     }
+    async function getCategoriesSelect() {
+        const branches = await fetchController.execute("http://localhost:8080/categories");
+        if (branches == null || branches.error) return null;
+
+        return branches.data;
+    }
 
     async function findCategoryById(id){
         const categories = await getCategories();
@@ -62,6 +68,7 @@ const categoryController = (() => {
 
     return {
         getCategories,
+        getCategoriesSelect,
         findCategoryById
     }
 })();

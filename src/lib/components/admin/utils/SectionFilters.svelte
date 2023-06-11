@@ -1,15 +1,42 @@
 <script>
+// @ts-nocheck
+
+	import Button from '$lib/components/utils/Button.svelte';
+
+// @ts-nocheck
+
 	import Input from '$lib/components/utils/Input.svelte';
 	import FilterSelect from './filters/FilterSelect.svelte';
 	import FilterSelectContainer from './filters/FilterSelectContainer.svelte';
 
     export let labelSearch = "Buscar por codigo";
+	export let search;
+	export let elements;
+	export let inputFilters
+
+	let setFilters = () => {
+		elements = elements.filter((element) => { 
+			return inputFilters.some(filter => element[filter].includes(search));
+		});
+
+		search = "";
+	};
 </script>
 
 <div class="flex flex-col bg-base-100 mt-10 p-5 rounded-lg shadow">
-	<Input label={labelSearch} props="bg-transparent" mandatory={false} />
+	<Input label={labelSearch} bind:value={search} props="bg-transparent" mandatory={false} />
 
-	<FilterSelectContainer>
-		<slot />
-	</FilterSelectContainer>
+	<div class="flex w-full gap-10 mt-10">
+		<FilterSelectContainer bind:search={search} bind:elements={elements} bind:inputFilters={inputFilters}>
+			<slot />
+		</FilterSelectContainer>
+	
+		<Button
+			text="Buscar"
+			type="btn-primary w-fit pl-10 pr-10"
+			click={() => {
+				setFilters();
+			}}
+		/>
+	</div>
 </div>

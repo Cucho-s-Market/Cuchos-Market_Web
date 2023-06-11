@@ -2,6 +2,7 @@
 const formValidator = (() => {
     const CI_REGEX = /^[0-9]{8}$/;
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const NUMBER = /^[0-9]+$/;
 
     function email(value) {
 		return EMAIL_REGEX.test(value);
@@ -19,6 +20,10 @@ const formValidator = (() => {
         return array.some(elem => elem === "");
     }
 
+    function isNumber(value) {
+        return NUMBER.test(value);
+    }
+
     function clear(array) {
         return array.map(elem => elem = "");
     }
@@ -28,6 +33,7 @@ const formValidator = (() => {
         ci,
         password,
         emptyValues,
+        isNumber,
         clear
     }
 })();
