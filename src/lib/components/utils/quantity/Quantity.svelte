@@ -82,6 +82,7 @@
 <!-- Cart quantity or checkout -->
 <div class="flex flex-row justify-between {containerProps}">
     <QuantityButton type='minus' bind:value bind:btnProps/>
-		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" on:blur={handleItemCart} bind:value="{value}"/>
+		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" bind:value="{value}"/>
+		<!-- <input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" on:blur={handleItemCart} bind:value="{value}"/> -->
 	<QuantityButton type='plus' bind:value bind:btnProps/>
 </div>
