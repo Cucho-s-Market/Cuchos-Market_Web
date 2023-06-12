@@ -45,9 +45,9 @@
 			<div class="flex flex-col">
 				<p class="text-xs text-success mb-5">{item.status}</p>
 				<h1 class="text-xl text-neutral mb-0.75">
-					{item.name}
+					{item.code}
 				</h1>
-				<p class="text-xs text-neutral-grey">SKU: {item.code}</p>
+				<p class="text-xs text-neutral-grey">SKU: {item.name}</p>
 			</div>
 
 			<div class="flex flex-col">
