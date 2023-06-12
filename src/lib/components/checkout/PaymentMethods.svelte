@@ -25,7 +25,6 @@
 					.Buttons({
 						// Order is created on the server and the order id is returned
 						async createOrder() {
-							debugger;
 							const cart = await cartController.getCart();
 							if (cart == null) return null;
 
@@ -72,7 +71,6 @@
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-							debugger;
 							const responseCapture = await PayPalController.capturePayment(data.orderID);
 							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
 

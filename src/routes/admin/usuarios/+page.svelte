@@ -8,6 +8,8 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
+	import adminController from '../../../logic/adminController.js';
+	import sessionAdminController from '../../../logic/sessionAdminController.js';
 
 	export let data;
 
@@ -20,13 +22,13 @@
 	let usersFiltered = [];
 
 	const getUser = async () => {
-		users = data.users;
+		const users = await adminController.getUsers(sessionAdminController.getUserToken());
 		
 		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}
-		usersFiltered = users.data;
+		usersFiltered = users;
 		
 		usersFiltered.forEach((user) => {
 			tbody.push({

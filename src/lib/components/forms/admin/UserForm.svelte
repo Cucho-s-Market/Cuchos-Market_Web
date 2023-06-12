@@ -9,6 +9,7 @@
 	import { User } from '../../../../logic/dtos/User';
 	import sessionController from '../../../../logic/sessionController';
     import formValidator from '../../../../logic/helpers/formValidator';
+	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let showCustomer = false;
 	let showEmployee = false;
@@ -51,7 +52,7 @@
             
 			if (res.ok) {
                 notify({ type: 'alert-success', text: res.message });
-                formValidator.clear(validationArray);
+                formValidator.clear(validationArray);	
             }
 				
 		} else if (showEmployee) {
@@ -62,7 +63,7 @@
                 return;
             }
 
-			const response = await adminController.registerEmployee(user, 1);
+			const response = await adminController.registerEmployee(user, 1, sessionAdminController.getUserToken());
             
             if(!response) {
                 notify({ type: 'alert-error', text: "Error en el servidor"});

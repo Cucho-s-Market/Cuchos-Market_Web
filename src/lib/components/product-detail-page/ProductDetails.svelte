@@ -21,7 +21,6 @@
 	});
 
 	const addToCart = () => {
-		debugger;
 		if(String(value) === '') {
 			value = 1;
 		}

@@ -13,6 +13,7 @@
 	import categoryController from '../../../../logic/categoryController';
 	import Utils from '../../../../logic/helpers/Utils';
 	import { redirect } from '@sveltejs/kit';
+	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let branches;
 	let categories;
@@ -34,8 +35,8 @@
 
 		product.entryDate = Utils.getDateNow();
 		
-		console.log(product);
-		const res = await adminController.addProduct(product);
+		sessionAdminController
+		const res = await adminController.addProduct(product, sessionAdminController.getUserToken());
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });

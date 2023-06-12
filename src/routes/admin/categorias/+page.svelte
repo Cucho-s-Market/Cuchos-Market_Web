@@ -9,6 +9,7 @@
 	import categoryController from '../../../logic/categoryController.js';
 	import { Category } from '../../../logic/dtos/Category.js';
 	import formValidator from '../../../logic/helpers/formValidator.js';
+	import sessionAdminController from '../../../logic/sessionAdminController.js';
 
 	export let data;
 
@@ -46,8 +47,7 @@
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
 			return;
 		}
-	
-		const res = await adminController.addCategory(category);
+		const res = await adminController.addCategory(category, sessionAdminController.getUserToken());
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });

@@ -14,7 +14,7 @@
 
 </script>
 
-{#if currentPage?.route?.id != "/checkout" && currentPage?.route?.id != "/registrarse"}
+{#if currentPage?.route?.id != "/checkout" && currentPage?.route?.id != "/registrarse" && !currentPage?.route?.id.includes('/admin')}
 	<Header/>
 {/if}
 <slot />
