@@ -12,8 +12,15 @@ const productController = (() => {
         return response;
     }
 
+    async function getProducts() {
+        const response = await fetchController.execute(`http://localhost:8080/products`);
+        if(!response || Object.entries(response).length === 0) return null;
+
+        return response;
+    }
     return {
-        getProduct
+        getProduct,
+        getProducts
     }
 })();
 
