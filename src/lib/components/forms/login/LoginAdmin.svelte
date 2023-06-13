@@ -15,8 +15,8 @@
 	};
 
 	async function login() {
+		debugger;
 		let res = await sessionAdminController.login(userDetails);
-
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
             return

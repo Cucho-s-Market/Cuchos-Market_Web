@@ -23,14 +23,16 @@
 
 	const getUser = async () => {
 		let token = await sessionAdminController.getUserToken();
-	users = await adminController.getUsers(token);
-		
+		users = await adminController.getUsers(token);
+
+		debugger;
+
 		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}
 		usersFiltered = users.data;
-		
+
 		usersFiltered.forEach((user) => {
 			tbody.push({
 				id: user.id,
@@ -51,7 +53,7 @@
 				row: [user.email, user.firstName, user.lastName, user.role]
 			});
 		});
-		
+
 		showClearFilters = usersFiltered !== users.data ? true : false;
 
 		console.log(usersFiltered);
@@ -70,7 +72,12 @@
 	}}
 />
 
-<SectionFilters labelSearch="Buscar por email o nombre" bind:search={search} bind:elements={usersFiltered} inputFilters={['email', 'firstName']}>
+<SectionFilters
+	labelSearch="Buscar por email o nombre"
+	bind:search
+	bind:elements={usersFiltered}
+	inputFilters={['email', 'firstName']}
+>
 	{#each selects as select}
 		<FilterSelect name={select.name} options={select.options} />
 	{/each}
@@ -78,14 +85,16 @@
 
 {#if showClearFilters}
 	<Button
-	text="Limpiar filtros"
-	type="btn-primary w-fit p-2 mt-5"
-	click={() => {usersFiltered = users.data;}}
+		text="Limpiar filtros"
+		type="btn-primary w-fit p-2 mt-5"
+		click={() => {
+			usersFiltered = users.data;
+		}}
 	/>
 {/if}
 
-{#await getUser()} 
-	<span class="loading loading-spinner text-primary"></span>
- {:then}
- <SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+{#await getUser()}
+	<span class="loading loading-spinner text-primary" />
+{:then}
+	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
 {/await}

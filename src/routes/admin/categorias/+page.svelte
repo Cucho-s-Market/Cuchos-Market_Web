@@ -41,6 +41,8 @@
             category.description,
 		];
 
+		debugger
+
 		let emptyValues = formValidator.emptyValues(validationArray);
 		
 		if (emptyValues) {

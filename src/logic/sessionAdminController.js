@@ -7,6 +7,10 @@ import fetchController from "./fetchController";
 
 const sessionAdminController = (() => {
 	async function login(userDetails) {
+		userDetails = {
+			email: 'aye@gmail.com',
+			password: 'qwe'
+		};
 		// login logic
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
 		if(res == null) return null;
@@ -32,6 +36,8 @@ const sessionAdminController = (() => {
 	}
 
 	async function getUser() {
+		if(!sessionStorage) return null;
+
 		// Get user from session storage
 		let user = sessionStorage.getItem("adminOperator") != null ? JSON.parse(sessionStorage.getItem("adminOperator")) : null;
 		return user;

@@ -18,9 +18,18 @@ const productController = (() => {
 
         return response;
     }
+
+    async function addProduct(product, adminToken) {
+        if (product === null) throw new Error('Error al intentar crear el producto.');
+
+		const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, adminToken);
+		return res;
+    }
+
     return {
         getProduct,
-        getProducts
+        getProducts,
+        addProduct
     }
 })();
 
