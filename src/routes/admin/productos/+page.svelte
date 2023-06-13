@@ -41,9 +41,6 @@
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
 
-	//hay que cambiar
-	getProducts();
-
 	$: {
 		tbody = [];
 		productsFiltered.forEach((product) => {
@@ -83,6 +80,10 @@
 	/>
 {/if}
 	
-{#key tbody}
+{#await getProducts()}
+	<span class="loading loading-spinner text-primary"></span>
+{:then}
+	{#key tbody}
 	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
-{/key}
+	{/key}
+{/await}

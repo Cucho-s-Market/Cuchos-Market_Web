@@ -47,7 +47,7 @@
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
 			return;
 		}
-		const res = await adminController.addCategory(category, sessionAdminController.getUserToken());
+		const res = await adminController.addCategory(category, await sessionAdminController.getUserToken());
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });

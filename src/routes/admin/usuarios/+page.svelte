@@ -22,13 +22,14 @@
 	let usersFiltered = [];
 
 	const getUser = async () => {
-		const users = await adminController.getUsers(sessionAdminController.getUserToken());
+		let token = await sessionAdminController.getUserToken();
+	users = await adminController.getUsers(token);
 		
 		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}
-		usersFiltered = users;
+		usersFiltered = users.data;
 		
 		usersFiltered.forEach((user) => {
 			tbody.push({
@@ -42,9 +43,6 @@
 		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
-
-	//hay que cambiar
-	getUser();
 
 	$: {
 		usersFiltered.forEach((user) => {
@@ -86,6 +84,8 @@
 	/>
 {/if}
 
-{#key tbody}
-	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
-{/key}
+{#await getUser()} 
+	<span class="loading loading-spinner text-primary"></span>
+ {:then}
+ <SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+{/await}

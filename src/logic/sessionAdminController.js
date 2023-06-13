@@ -1,5 +1,6 @@
 
 //@ts-nocheck
+import { browser } from "$app/environment";
 import { adminSession } from "../stores";
 import fetchController from "./fetchController";
 
@@ -7,7 +8,6 @@ import fetchController from "./fetchController";
 const sessionAdminController = (() => {
 	async function login(userDetails) {
 		// login logic
-        debugger;
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
 		if(res == null) return null;
 
@@ -39,6 +39,9 @@ const sessionAdminController = (() => {
 
 	async function getUserToken(){
 		// Get user token from session storage
+
+		if(!browser) return null;
+
 		if(!sessionStorage) return null;
 
 		let user = sessionStorage.getItem("adminOperator") != null ? JSON.parse(sessionStorage.getItem("adminOperator")) : null;

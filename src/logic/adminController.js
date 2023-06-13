@@ -6,7 +6,6 @@ const adminController = (() => {
 
     //USERS
     async function getUsers(adminToken) {
-        debugger;
         return await fetchController.execute('http://localhost:8080/users', 'GET', null, adminToken);
     }
 
