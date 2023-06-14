@@ -11,6 +11,7 @@
 	// 	user = await sessionAdminController.getUser();
 	// };
 
+	// debugger;
 	// getUser().then(() => {
 	// 	if (browser) {
 	// 		let path = window.location.href;

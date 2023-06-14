@@ -8,8 +8,8 @@ import fetchController from "./fetchController";
 const sessionAdminController = (() => {
 	async function login(userDetails) {
 		userDetails = {
-			email: 'aye@gmail.com',
-			password: 'qwe'
+			email: 'admin@mail.com',
+			password: 'password'
 		};
 		// login logic
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);

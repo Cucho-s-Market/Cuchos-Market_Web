@@ -25,8 +25,6 @@
 		let token = await sessionAdminController.getUserToken();
 		users = await adminController.getUsers(token);
 
-		debugger;
-
 		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;

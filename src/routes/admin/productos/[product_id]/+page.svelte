@@ -5,7 +5,6 @@
 	import SectionHeader from '$lib/components/admin/utils/SectionHeader.svelte';
 	import ProductForm from '$lib/components/forms/admin/ProductForm.svelte';
 	import branchController from '../../../../logic/branchController';
-	import { Product } from '../../../../logic/dtos/Product';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import formValidator from '../../../../logic/helpers/formValidator';
 	import Button from '$lib/components/utils/Button.svelte';
@@ -13,12 +12,14 @@
 	import Utils from '../../../../logic/helpers/Utils';
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 	import productController from '../../../../logic/productController';
+	import Modal from '$lib/components/utils/Modal.svelte';
 
 	let branches;
 	let categories;
 	let product;
+	let showModalDelete = false;
 
-	let create = async () => {
+	let execute = async () => {
 		let validationArray = [product.name, product.brand, product.price];
 
 		let emptyValues = formValidator.emptyValues(validationArray);
@@ -30,12 +31,12 @@
 
 		product.entryDate = Utils.getDateNow();
 
-		let res = null;
-		debugger;
-		if(res) {
-			res = await productController.addProduct(product, sessionAdminController.getUserToken());
-		} else {
-			res = await productController.editProduct(product, sessionAdminController.getUserToken());
+		const token = await sessionAdminController.getUserToken();
+
+		let res = await productController.addProduct(product, token);
+
+		if (res && res.error) {
+			res = await productController.editProduct(product, token);
 		}
 
 		if (!res) {
@@ -62,6 +63,10 @@
 		path = path[path.length - 1];
 
 		product = await productController.getProduct(path);
+
+		if (product) {
+			product = product.data;
+		}
 	}
 
 	async function getBranches() {
@@ -76,6 +81,45 @@
 	getBranches();
 </script>
 
+<Modal bind:showModal={showModalDelete}>
+	<div class="flex flex-col gap-10 p-10 w-full p-0 justify-center text-center">
+		<p>Confirme la accion</p>
+		<div class="flex justify-around">
+			<Button
+				text="Confirmar"
+				type={'btn-error min-h-0 w-[100px]'}
+				click={async () => {
+					const token = await sessionAdminController.getUserToken();
+
+					let res = await productController.deleteProduct(product, token);
+
+					if (!res) {
+						notify({ type: 'alert-error', text: 'Error en el servidor' });
+						return;
+					}
+
+					if (res.error) {
+						notify({ type: 'alert-error', text: res.message });
+						return;
+					}
+
+					notify({ type: 'alert-success', text: res.message });
+					setTimeout(() => {
+						window.location.href = '/admin/productos';
+					}, 3000);
+				}}
+			/>
+			<Button
+				text="Cancelar"
+				type={'btn-neutral-grey min-h-0 w-[100px]'}
+				click={() => {
+					showModalDelete = false;
+				}}
+			/>
+		</div>
+	</div>
+</Modal>
+
 <SectionHeader title={'Agregar Producto'} back={true} />
 
 <div class="flex justify-around">
@@ -83,21 +127,31 @@
 		<!-- promise is pending -->
 	{:then}
 		<ProductForm bind:product {categories} />
-	{/await}
 
-	<div class="flex flex-col w-fit">
-		<ProductStock {branches} />
+		<div class="flex flex-col w-fit">
+			<ProductStock {branches} />
 
-		<div class="flex">
-			<div class="w-full mt-3">
-				<Button
-					text="Crear Producto"
-					type={'btn-primary h-[36px] min-h-0 w-[219px]'}
-					click={() => {
-						create(product);
-					}}
-				/>
+			<div class="flex gap-10">
+				<div class="w-full mt-3">
+					<Button
+						text="{!product || product?.name == '' ? 'Crear' : 'Actualizar'} Producto"
+						type={'btn-primary h-[36px] min-h-0 w-[219px]'}
+						click={() => {
+							execute(product);
+						}}
+					/>
+				</div>
+
+				<div class="w-full mt-3">
+					<Button
+						svg={{ name: 'trash' }}
+						type={'btn-error h-[36px] min-h-0 w-[70px]'}
+						click={() => {
+							showModalDelete = true;
+						}}
+					/>
+				</div>
 			</div>
 		</div>
-	</div>
+	{/await}
 </div>

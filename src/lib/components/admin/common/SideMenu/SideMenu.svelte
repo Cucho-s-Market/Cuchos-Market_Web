@@ -21,7 +21,9 @@
 				<SideMenuOption href="/admin/categorias" text="Categorias" svg="shopping-bag" />
 			{/if}
 			<SideMenuOption href="/admin/productos" text="Productos" svg="shopping-bag" />
-			<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
+			{#if user.role === 'ADMIN'}
+				<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
+			{/if}
 			<SideMenuOption text="Marketing" svg="affiliate" />
 			<SideMenuOption text="Logistica" svg="map-pin" />
 		</ul>

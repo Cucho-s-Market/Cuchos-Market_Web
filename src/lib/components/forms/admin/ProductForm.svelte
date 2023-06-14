@@ -10,19 +10,21 @@
 
 	export let product = null;
 	export let categories = [];
+	
+	product = product === null ? new Product() : product;
+	
+	let isUpdating = product.name !== "";
 
-	product = !product ? new Product() : product.data;
-
-	console.log(product);
+	console.log(isUpdating);
 </script>
 
 <div class="flex flex-col w-[400px]">
 	<div class="flex flex-col w-full gap-5 p-5 rounded-lg my-10 bg-base-100 shadow">
 		<div class="w-full">
-			<Input bind:value={product.code} props="h-10" label="Codigo" val={product.code} />
+			<Input bind:value={product.code} props="h-10" label="Codigo" disabled={isUpdating}/>
 		</div>
 		<div class="w-full">
-			<Input bind:value={product.name} props="h-10" label="Nombre" val={product.name} />
+			<Input bind:value={product.name} props="h-10" label="Nombre" disabled={isUpdating}/>
 		</div>
 
 		<div class="w-full">

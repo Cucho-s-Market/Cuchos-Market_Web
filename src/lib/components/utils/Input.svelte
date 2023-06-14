@@ -1,11 +1,12 @@
 <script>
 	// @ts-nocheck
 	export let type = 'text';
-	export let val = '';
+	export let value = '';
 	export let label = 'label';
     export let mandatory = true;
 	export let props = ''
 	export let errorMessage = '';
+	export let disabled = false;
 
 	const handleInput = event => {
 		value = event.target.value;
@@ -22,6 +23,6 @@
             {/if}
         </span>
 	</label>
-	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput}/>
+	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value} disabled={disabled}/>
 	<p class="error">{errorMessage}</p>
 </div>
