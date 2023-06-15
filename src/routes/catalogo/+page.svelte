@@ -10,10 +10,11 @@
 	let products = [];
 
 	onMount(async () => {
+		debugger;
 		products = await productController.getProducts();
         if(products == null || products?.error) return null;
 
-        products = products.data;
+        products = products?.data?.content;
 	});
 </script>
 
