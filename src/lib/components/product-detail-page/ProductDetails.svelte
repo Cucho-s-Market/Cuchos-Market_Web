@@ -35,7 +35,6 @@
 		cartController.addItem(item);
 
 		notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
-		showQty = false;
   }
 
 </script>
@@ -46,9 +45,9 @@
 			<div class="flex flex-col">
 				<p class="text-xs text-success mb-5">{item.status}</p>
 				<h1 class="text-xl text-neutral mb-0.75">
-					{item.code}
+					{item.name}
 				</h1>
-				<p class="text-xs text-neutral-grey">SKU: {item.name}</p>
+				<p class="text-xs text-neutral-grey">SKU: {item.code}</p>
 			</div>
 
 			<div class="flex flex-col">
