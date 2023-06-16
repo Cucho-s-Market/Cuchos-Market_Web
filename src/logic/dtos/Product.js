@@ -1,10 +1,13 @@
 // @ts-nocheck
-class Product {
-    constructor(sku, name, description, price, images) {
-        this.sku = sku;
+export class Product {
+    constructor(code, name, description, price, images, brand, category) {
+        this.code = code;
         this.name = name;
         this.description = description;
         this.price = price;
         this.images = images;
+        this.entryDate = Date.now();
+        this.brand = brand;
+        this.categoryId = category;
     }
 }

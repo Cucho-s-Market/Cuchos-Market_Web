@@ -1,4 +1,6 @@
+
 <script>
+	//@ts-nocheck
 	import Button from '$lib/components/utils/Button.svelte';
 	import Quantity from '$lib/components/utils/quantity/Quantity.svelte';
 	import ProductSpecs from './ProductSpecs.svelte';

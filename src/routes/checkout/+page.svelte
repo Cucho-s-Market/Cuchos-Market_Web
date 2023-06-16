@@ -11,9 +11,9 @@
 	import cartController from "../../logic/cartController";
     import { cartStore } from "../../logic/Stores/CartStore";
 	import addressController from "../../logic/addressController";
+	import { userStore } from "../../logic/Stores/UserStore";
 
     let clientDetails = null;
-    let addressess = [];
 
     onMount(async() => {
         const userIsloggedIn = await sessionController.isUserLoggedIn();
@@ -23,7 +23,6 @@
         if((!userIsloggedIn || cart?.items.length <= 0)) window.location.href = '/';
 
         clientDetails = await sessionController.getUser();
-        addressess = await addressController.getAddresses();
     });
 
     let paymentMethods = [
@@ -49,7 +48,7 @@
         {#if $cartStore?.items}
             <!-- Step shipping address -->
             <CheckoutBase titleSection='Metodos de envio' items={$cartStore?.items}>
-                <ShipMethods addressess={addressess}/>
+                <ShipMethods addressess={$userStore?.addresses}/>
             </CheckoutBase>
         {/if}
     {/if}
