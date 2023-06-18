@@ -13,11 +13,17 @@
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 	import productController from '../../../../logic/productController';
 	import Modal from '$lib/components/utils/Modal.svelte';
+	import { browser } from '$app/environment';
 
 	let branches;
 	let categories;
 	let product;
 	let showModalDelete = false;
+	let path = '';
+
+	if(browser) {
+		path = window.location.href;
+	}
 
 	let execute = async () => {
 		let validationArray = [product.name, product.brand, product.price];
@@ -57,15 +63,13 @@
 	};
 
 	async function getProduct() {
-		let path = window.location.href;
+		let productUrl = path.split('/');
+		productUrl = productUrl[productUrl.length - 1];
 
-		path = path.split('/');
-		path = path[path.length - 1];
-
-		product = await productController.getProduct(path);
-
+		product = await productController.getProduct(productUrl);
+		debugger;
 		if (product) {
-			product = product.data;
+			product = product.data.content[0];
 		}
 	}
 
@@ -134,7 +138,7 @@
 			<div class="flex gap-10">
 				<div class="w-full mt-3">
 					<Button
-						text="{!product || product?.name == '' ? 'Crear' : 'Actualizar'} Producto"
+						text="{path.includes('/nuevo') ? 'Crear' : 'Actualizar'} Producto"
 						type={'btn-primary h-[36px] min-h-0 w-[219px]'}
 						click={() => {
 							execute(product);

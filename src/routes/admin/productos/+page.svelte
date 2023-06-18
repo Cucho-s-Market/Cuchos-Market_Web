@@ -19,7 +19,9 @@
 	let productsFiltered = [];
 
 	const getProducts = async () => {
-		products = data.products?.data;
+		const dataProduct = data;
+
+		products = data.products.data.content;
 		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });

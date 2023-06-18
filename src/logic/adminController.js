@@ -6,11 +6,12 @@ const adminController = (() => {
 
     //USERS
     async function getUsers(adminToken) {
+        debugger;
         return await fetchController.execute('http://localhost:8080/users', 'GET', null, adminToken);
     }
 
     async function registerEmployee(employee, branch, adminToken) {
-
+        debugger
 		if (employee === null) throw new Error('Error creating customer');
 
 		const res = await fetchController.execute(`http://127.0.0.1:8080/users/${branch}/employee`, 'POST', employee, adminToken);
