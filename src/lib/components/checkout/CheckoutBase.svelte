@@ -40,15 +40,9 @@
 		<!-- Total statistics -->
 		<div class="w-full flex gap-6 justify-end px-4 my-10">
             <div>
-                <p class="font-semibold text-[16px]">Subtotal:</p>
-                <p class="font-semibold text-[16px]">Impuestos:</p>
-                <p class="font-semibold text-[16px]">Descuentos:</p>
                 <p class="font-semibold text-[16px]">Total:</p>
             </div>
             <div>
-                <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
-                <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
-                <p class="font-medium text-[16px] text-neutral-grey">UYU $67</p>
                 <p class="font-semibold text-[16px] text-neutral-grey">UYU {$cartStore?.total}</p>
             </div>
         </div>

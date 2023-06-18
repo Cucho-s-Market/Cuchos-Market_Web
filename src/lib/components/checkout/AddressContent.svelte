@@ -1,6 +1,12 @@
 <script>
 	// @ts-nocheck
 	export let address = null;
+
+	async function deleteAddress(address_id){
+		debugger;
+		const addressDeleted = await addressController.deleteAddress(address_id);
+		(addressDeleted == null ||addressDeleted?.error) ? notify({text:"Ha ocurrido un error al eliminar la direccion", type:"alert-error"}) : notify({text:"Direccion eliminada con exito", type:"success"});
+	}
 </script>
 
 {#if address}
