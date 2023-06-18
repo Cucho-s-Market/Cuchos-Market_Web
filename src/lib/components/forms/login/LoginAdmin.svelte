@@ -16,7 +16,10 @@
 
 	async function login() {
 		let res = await sessionAdminController.login(userDetails);
+<<<<<<< HEAD
 
+=======
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
             return
