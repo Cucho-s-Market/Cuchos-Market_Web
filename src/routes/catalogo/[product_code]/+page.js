@@ -4,9 +4,9 @@ import productController from '../../../logic/productController.js';
 export async function load({ params }) {
 
     let product_name = params.product_code;
-
+    
     // Convert slug into proper name
-    product_name = product_name.replace(/-/g, " ");
+    product_name = product_name.replace(/_/g, " ");
 
     // Find product by code
     const response = await productController.getProduct(product_name);

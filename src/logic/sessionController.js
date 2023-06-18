@@ -30,9 +30,8 @@ const sessionController = (() => {
 
 	async function login(customerDetails) {
 		// login logic
-		debugger;
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", customerDetails);
-		if (res == null && res.error) return res;
+		if (res == null || res.error) return null;
 
 		// Initialize values
 		user = res.data;

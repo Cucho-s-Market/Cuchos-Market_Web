@@ -10,6 +10,7 @@
 	import orderController from '../../../logic/orderController';
 	import { userStore } from '../../../logic/Stores/UserStore';
 	import { cartStore } from '../../../logic/Stores/CartStore';
+	import { branchStore } from '../../../logic/Stores/BranchStore';
 
 	export let paymentMethods = null;
 
@@ -72,18 +73,21 @@
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-							debugger;
+
+							// TODO - Check if item is available
+
+
 							const responseCapture = await PayPalController.capturePayment(data.orderID);
 							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
 
 							// Create the order on the server
 							var orderDetails = {
-								branchId: 1,
-								totalPrice: $cartStore.total / 39.15,
+								branchId: $branchStore?.selected?.id,
+								totalPrice: $cartStore?.total / 39.15,
 								status: 'PENDING',
-								addressId: $userStore.address.id,
+								addressId: $userStore?.address?.id,
 								type: 'DELIVERY',
-								products: $cartStore.items.map((item) => {
+								products: $cartStore?.items.map((item) => {
 									return {
 										"name": item.name,
 										"unitPrice": item.price,
