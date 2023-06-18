@@ -7,6 +7,9 @@
 	import { loadScript } from '@paypal/paypal-js';
 	import PayPalController from '../../../logic/PayPalController';
 	import cartController from '../../../logic/cartController';
+	import orderController from '../../../logic/orderController';
+	import { userStore } from '../../../logic/Stores/UserStore';
+	import { cartStore } from '../../../logic/Stores/CartStore';
 
 	export let paymentMethods = null;
 
@@ -25,11 +28,10 @@
 					.Buttons({
 						// Order is created on the server and the order id is returned
 						async createOrder() {
-							const cart = await cartController.getCart();
-							if (cart == null) return null;
 
-                            const total = await PayPalController.convertUSDtoUYU(cart.total);
-                            if(total == null || !total) return null;
+							// const total = await PayPalController.convertUSDtoUYU(cart.total);
+							const total = $cartStore.total / 39.15;
+							if (total == null || !total) return null;
 							// const paymentObj = {
 							// 	intent: 'CAPTURE',
 							// 	purchase_units: [
@@ -37,12 +39,12 @@
 							// 			items: cart.items.map((item) => {
 							// 				return {
 							// 					name: String(item.name),
-                            //                     quantity: String(item.quantity),
+							//                     quantity: String(item.quantity),
 							// 					unit_amount: {
 							// 						currency_code: 'USD',
 							// 						value: String(item.price)
 							// 					}
-												
+
 							// 				};
 							// 			}),
 							// 			amount: {
@@ -73,6 +75,25 @@
 						async onApprove(data) {
 							const responseCapture = await PayPalController.capturePayment(data.orderID);
 							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
+
+							// Create the order on the server
+							var orderDetails = {
+								branchId: 1,
+								totalPrice: $cartStore.total / 39.15,
+								status: 'PENDING',
+								addressId: $userStore.address.id,
+								type: 'DELIVERY',
+								products: $cartStore.items.map((item) => {
+									return {
+										"name": item.name,
+										"unitPrice": item.price,
+										"finalPrice": Number(item.price) * Number(item.quantity),
+										"quantity": item.quantity
+									};
+								})
+							};
+
+							const orderCreated = await orderController.createOrder(orderDetails);
 
 							cartController.clearCart();
 							window.location.href = '/catalogo';

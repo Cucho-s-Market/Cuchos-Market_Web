@@ -34,7 +34,6 @@
 		cartController.addItem(item);
 
 		notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
-		showQty = false;
   }
 
 </script>
