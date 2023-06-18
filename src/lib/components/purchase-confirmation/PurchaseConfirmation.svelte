@@ -5,7 +5,6 @@
     
 </script>
 
-<Header/>
 <div class="w-full p-8 bg-br-white flex justify-center h-fit ">   
     <div class="w-[0px] xl:w-full xl:max-w-[768px] invisible xl:visible mt-[120px]">
         <img src="src\assets\supermarketRegistration.jpg" alt="supermercado">
