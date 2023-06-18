@@ -28,6 +28,7 @@
 					.Buttons({
 						// Order is created on the server and the order id is returned
 						async createOrder() {
+
 							// const total = await PayPalController.convertUSDtoUYU(cart.total);
 							const total = $cartStore.total / 39.15;
 							if (total == null || !total) return null;
@@ -72,7 +73,6 @@
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-							debugger;
 							const responseCapture = await PayPalController.capturePayment(data.orderID);
 							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
 

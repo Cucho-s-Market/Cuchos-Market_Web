@@ -27,6 +27,7 @@
     }
 
 </script>
+
 <a href="/catalogo/{createSlug(item?.name || "")}">
     <div class="card w-[220px] round-[10px] p-3 mb-2 border border-br-grey bg-base-100 font-poppins">
         <div class="flex w-[190px] mb-5 h-[190px]">
