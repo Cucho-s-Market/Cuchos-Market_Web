@@ -8,7 +8,11 @@
 	import { Customer } from '../../../../logic/dtos/Customer';
 	import { User } from '../../../../logic/dtos/User';
 	import sessionController from '../../../../logic/sessionController';
+<<<<<<< HEAD
+    import formValidator from '../../../../logic/helpers/formValidator';
+=======
 	import formValidator from '../../../../logic/helpers/formValidator';
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let showCustomer = false;
@@ -47,8 +51,44 @@
 			return;
 		}
 
+<<<<<<< HEAD
+            if(res.error) {
+                notify({ type: 'alert-error', text: res.message});
+                return;
+            }
+            
+			if (res.ok) {
+                notify({ type: 'alert-success', text: res.message });
+                formValidator.clear(validationArray);	
+            }
+				
+		} else if (showEmployee) {
+			let emptyValues = formValidator.emptyValues([user.firstName, user.lastName, user.password, repeatPassword]);
+
+            if(emptyValues || !formValidator.email(user.email)) {
+                notify({ type: 'alert-error', text: "Verifique los campos." });
+                return;
+            }
+
+			const response = await adminController.registerEmployee(user, 1, sessionAdminController.getUserToken());
+            
+            if(!response) {
+                notify({ type: 'alert-error', text: "Error en el servidor"});
+                return;
+            }
+
+            if(response.error) {
+                notify({ type: 'alert-error', text: response.message});
+                return;
+            }
+
+			if (response.ok) {
+                notify({ type: 'alert-success', text: response.message });
+            }
+=======
 		if (response.ok) {
 			notify({ type: 'alert-success', text: response.message });
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		}
 	};
 </script>

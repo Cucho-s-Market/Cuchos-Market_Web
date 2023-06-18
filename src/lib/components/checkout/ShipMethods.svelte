@@ -1,35 +1,30 @@
 <script>
     // @ts-nocheck
-    import { userStore } from '../../../logic/Stores/UserStore';
     import addressController from '../../../logic/addressController';
 	import { currentStep } from '../../../routes/checkout/stores';
 	import Button from '../utils/Button.svelte';
-	import Modal from '../utils/Modal.svelte';
-	import { notify } from '../utils/Notifications.svelte';
     import AddressContent from './AddressContent.svelte';
     import ContentSelector from './ContentSelector.svelte';
-	import AddressForm from './AddressForm.svelte';
-    
+
     export let addressess = null;
     let selectedAddress = null;
-    let addressToEdit = null;
+
     const addressSucursal = {
         id: 23,
         address: 'Central',
         doorNumber: '4875',
-        location: 'yaguaron',
+        street: 'yaguaron',
         city: 'Montevideo'
     }
 
     let takeAway = false;
-    let showAddressForm = false;
-    let editForm = false;
-
+    
     const goToPreviousStep = () => {
         currentStep.set(null);
     }
 
     const checkCurrentStep = async () => {
+        debugger;
         // Set current step to 3 and this makes payment methods show
 
         // Validate if addresses are selected
@@ -46,35 +41,23 @@
         if(addressSelected) {
             const addressSelected = await addressController.setSelectedAddress(addressId);
             if(addressSelected == null) {
-                notify({text: "No se pudo seleccionar la direccion", type: 'alert-error'});
+                alert("No se pudo seleccionar la dirección");
                 return;
             }
             currentStep.set(3);
         } else {
-            notify({text: "Debe seleccionar una dirección de envio o retiro en sucursal", type: 'alert-error'});
+            alert("Debe seleccionar una dirección de envio o retiro en sucursal");
         }
     }
-    
+
 </script>
 
-<Modal bind:showModal={showAddressForm}>
-    <AddressForm bind:showModal={showAddressForm} bind:isEdit={editForm} address={addressToEdit}/>
-</Modal>
-
 <div class="w-full">
-    <div class="w-[400px] flex justify-between">
-        <p class="font-semibold text-neutral-grey">Envio a domicilio</p>
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="cursor-pointer" on:click={() => {showAddressForm=!showAddressForm; editForm = false; addressToEdit={}}}>
-            <p class="text-[14px] text-neutral-grey">Crear nueva direccion</p>
-        </div>
-    </div>
-    
-    <div class="w-[400px] h-[400px] mb-4 overflow-scroll overflow-x-hidden border-b border-b-light-grey {addressess?.length < 4 ? 'overflow-y-hidden' : ''}">
+    <p class="font-semibold text-neutral-grey">Envio a domicilio</p>
+    <div class="h-[400px] mb-4 overflow-scroll overflow-x-hidden border-b border-b-light-grey {addressess.length < 4 ? 'overflow-y-hidden' : ''}">
         {#if addressess?.length > 0}
             {#each addressess as address}
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div class="address-option" data-id={address.id} on:click={() =>{editForm = true; showAddressForm=!showAddressForm; addressToEdit = address}}>
+                <div class="address-option" data-id={address.id}>
                     <ContentSelector bind:takeAway={takeAway}>
                         <AddressContent {address} />
                     </ContentSelector>

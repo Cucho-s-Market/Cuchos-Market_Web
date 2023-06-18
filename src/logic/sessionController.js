@@ -2,13 +2,11 @@
 //@ts-nocheck
 import fetchController from "./fetchController";
 import { Customer } from "./dtos/Customer";
-import { cartStore } from "./Stores/CartStore";
-import { userStore } from "./Stores/UserStore";
 
 const sessionController = (() => {
 
 	let user = {};
-	let cart = { items: [], total: 0, totalQty: 0 };
+	let cart = {items: [], total: 0, totalQty: 0};
 
 	async function register(customerDetails) {
 		const customer = new Customer(
@@ -39,15 +37,16 @@ const sessionController = (() => {
 		user.address = {};
 		user.isLoggedIn = true;
 
-		userStore.set(user);
-		cartStore.set(cart);
+		sessionStorage.setItem("user", JSON.stringify(user));
+		sessionStorage.setItem("cart", JSON.stringify(cart));
 		return res;
 	}
 
 	async function logout() {
 		// logout logic
-		sessionStorage.removeItem("user");
-		sessionStorage.removeItem("cart");
+		user = {};
+		sessionStorage.clear();
+		localStorage.clear();
 		
 		// Redirect user to homepage
 		window.location.href = "/";
@@ -55,13 +54,13 @@ const sessionController = (() => {
 
 	async function isUserLoggedIn() {
 		// Check if user is logged in
-		let user = sessionStorage.getItem("user") != "null" ? true : false;
+		let user = sessionStorage.getItem("user") != null ? true : false;
 		return user
 	}
 
 	async function getUser() {
 		// Get user from session storage
-		let user = sessionStorage.getItem("user") != "null" ? JSON.parse(sessionStorage.getItem("user")) : null;
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
 		return user;
 	}
 
@@ -70,10 +69,10 @@ const sessionController = (() => {
 		sessionStorage.setItem("user", JSON.stringify(user));
 	}
 
-	async function getUserToken() {
+	async function getUserToken(){
 		// Get user token from session storage
-		let user = sessionStorage.getItem("user") != "null" ? JSON.parse(sessionStorage.getItem("user")) : null;
-		if (user == null) return null;
+		let user = sessionStorage.getItem("user") != null ? JSON.parse(sessionStorage.getItem("user")) : null;
+		if(user == null) return null;
 
 		return user.token;
 	}

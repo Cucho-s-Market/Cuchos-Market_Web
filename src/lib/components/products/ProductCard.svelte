@@ -6,16 +6,21 @@
 	import Quantity from "../utils/quantity/Quantity.svelte";
 
     let showQty = false;
-    
+    let dummyImage = "https://dummyimage.com/200/000/fff";
     let userIsloggedIn = false;
 
     onMount(async () => {
         userIsloggedIn = await sessionController.isUserLoggedIn();
     });
 
-    let dummyImage = 'https://dummyimage.com/100/09f.png/fff';
-
-    export let item = {};
+    export let item = {
+        name: "",
+        purchasePrice: 0,
+        price: 0,
+        discount: 0,
+        iso: "UYU",
+        image: "https://dummyimage.com/200/000/fff"
+    };
 
     //methods
     const showQuantity = () => {
@@ -30,6 +35,13 @@
 
 <a href="/catalogo/{createSlug(item?.name || "")}">
     <div class="card w-[220px] round-[10px] p-3 mb-2 border border-br-grey bg-base-100 font-poppins">
+        
+        {#if item?.quantity > 0}
+            <p class="text-xs text-success mb-5">Disponible</p>
+        {:else}
+            <p class="text-xs text-error mb-5">Sin stock</p>
+        {/if}
+
         <div class="flex w-[190px] mb-5 h-[190px]">
             <img class="rounded-[5px] object-scale-down" src="{item.images?.length > 0 ? item.images[0] : dummyImage}" alt="{item.name}" />
         </div>
@@ -43,7 +55,7 @@
     
                 {#if item.discount > 0}
                      <div class="flex justify-center">
-                         <p class="contents font-regular text-xs font-medium text-dark-green">{item?.discount ? item?.discount : 'N/A'}% off</p>
+                         <p class="contents font-regular text-xs font-medium text-dark-green">{item.discount}% off</p>
                      </div>
                 {/if}
             </div>
@@ -52,7 +64,7 @@
                 {#if showQty}
                     <Quantity bind:showQty={showQty} card={true} item={item}/>
                 {:else}
-                    {#if userIsloggedIn}
+                    {#if userIsloggedIn && item?.quantity > 0}
                         <Button text="Agregar al carrito" type="btn-primary btn-block" click={() => {showQuantity()}}/>
                     {:else}
                         <Button text="Agregar al carrito" type="btn-disabled btn-block"/>

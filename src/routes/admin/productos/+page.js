@@ -1,11 +1,10 @@
-import productController from '../../../logic/productController';
+import adminController from '../../../logic/adminController';
 
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
 
-    productController
-    const products = await productController.getProducts();
+    const products = await adminController.getProducts();
 
     return {products};
 }

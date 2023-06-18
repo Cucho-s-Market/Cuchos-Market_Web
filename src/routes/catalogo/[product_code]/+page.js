@@ -14,6 +14,6 @@ export async function load({ params }) {
 
     return {
         status: 200,
-        product: response.data.content[0]
+        product: response?.data?.content[0]
     }
 }

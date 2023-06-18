@@ -22,15 +22,25 @@
 	let usersFiltered = [];
 
 	const getUser = async () => {
+<<<<<<< HEAD
+		const users = await adminController.getUsers(sessionAdminController.getUserToken());
+		
+=======
 		let token = await sessionAdminController.getUserToken();
 		users = await adminController.getUsers(token);
 
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		if (!users || users.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}
+<<<<<<< HEAD
+		usersFiltered = users;
+		
+=======
 		usersFiltered = users.data;
 
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		usersFiltered.forEach((user) => {
 			tbody.push({
 				id: user.id,

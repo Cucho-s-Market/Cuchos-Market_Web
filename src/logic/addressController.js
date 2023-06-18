@@ -1,8 +1,7 @@
 // @ts-nocheck
 import fetchController from "./fetchController";
 import sessionController from "./sessionController";
-import {Address} from "./dtos/Address";
-import { userStore } from "./Stores/UserStore";
+
 // @ts-nocheck
 const addressController = (() => {
 
@@ -61,31 +60,6 @@ const addressController = (() => {
         return userAddress;
     }
 
-    async function validateAddress(address){
-
-        if(address.address == "") {
-            alert("Debe ingresar una direccion");
-            return false;
-        }
-
-        if(address.doorNumber == "") {
-            alert("Debe ingresar un numero de puerta");
-            return false;
-        }
-
-        if(address.location == "") {
-            alert("Debe ingresar una ciudad");
-            return false;
-        }
-
-        if(address.state == "") {
-            alert("Debe ingresar un estado");
-            return false;
-        }
-
-        return true;
-    }
-
     // Set selected address into user session
     async function setSelectedAddress(addressId) {
         let user = await sessionController.getUser();
@@ -103,25 +77,10 @@ const addressController = (() => {
         return true;
     }
 
-    async function setAddressStorageFromDB(){
-        const addresses = await getAddresses();
-        if(addresses == null) return null;
-
-        const user = await sessionController.getUser();
-        if(user == null) return null;
-
-        user.addresses = addresses;
-        userStore.set(user);
-    }
-
     return {
-        createAddress,
-        updateAddress,
-        deleteAddress,
         getAddresses,
         setSelectedAddress,
-        getSelectedAddress,
-        validateAddress
+        getSelectedAddress
     }
 })();
 

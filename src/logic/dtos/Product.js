@@ -1,6 +1,6 @@
 // @ts-nocheck
 export class Product {
-    constructor(code = '', name = '', description  = '', price = '', images = null, brand = '', category = '') {
+    constructor(code, name, description, price, images, brand, category) {
         this.code = code;
         this.name = name;
         this.description = description;

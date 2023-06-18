@@ -3,16 +3,11 @@
 
 	import Button from '$lib/components/utils/Button.svelte';
 	import Link from '$lib/components/utils/Link.svelte';
-	import { onMount } from 'svelte';
-	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	export let title = 'Title';
 	export let btn = {};
 	export let back = false;
 
-	let user = null;
-
-	let getUser = (async () => {user = await sessionAdminController.getUser();});
 </script>
 
 <div class="flex w-full justify-between">
@@ -25,15 +20,9 @@
 		{/if}
 	</div>
 
-	{#await getUser()}
-		<!-- promise is pending -->
-	{:then}
-		{#if user.role === 'ADMIN'}
-			{#if Object.keys(btn).length !== 0}
-				<div class="flex">
-					<Button text={btn.name} click={btn.btnEvent} />
-				</div>
-			{/if}
-		{/if}
-	{/await}
+	{#if Object.keys(btn).length !== 0}
+		<div class="flex">
+			<Button text={btn.name} click={btn.btnEvent} />
+		</div>
+	{/if}
 </div>

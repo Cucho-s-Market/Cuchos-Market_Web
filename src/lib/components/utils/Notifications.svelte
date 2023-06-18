@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 
 	// @ts-ignore
-	export const notify = ({ text, type, props}) => {
+	export const notify = ({ text, type, props }) => {
 		if (browser) {
 			const notification = new Notification({
 				// @ts-ignore

@@ -1,16 +1,15 @@
 <script>
-	// @ts-nocheck
-	import CatalogoHeader from '$lib/components/catalogo/CatalogoHeader.svelte';
-	import CatalogoSidebar from '$lib/components/catalogo/CatalogoSidebar.svelte';
-	import ProductCatalogue from '$lib/components/products/ProductCatalogue.svelte';
-	import Notifications from '$lib/components/utils/Notifications.svelte';
-	import { onMount } from 'svelte';
-	import productController from '../../logic/productController';
+    // @ts-nocheck
+	import CatalogoHeader from "$lib/components/catalogo/CatalogoHeader.svelte";
+	import CatalogoSidebar from "$lib/components/catalogo/CatalogoSidebar.svelte";
+	import ProductCatalogue from "$lib/components/products/ProductCatalogue.svelte";
+	import Notifications from "$lib/components/utils/Notifications.svelte";
+	import { onMount } from "svelte";
+	import productController from "../../logic/productController";
 
-	let products = [];
+    let products;
 
 	onMount(async () => {
-
 		products = await productController.getProducts();
 		if (products == null || products?.error) return null;
 
@@ -40,3 +39,4 @@
 
 	<Notifications />
 </main>
+    

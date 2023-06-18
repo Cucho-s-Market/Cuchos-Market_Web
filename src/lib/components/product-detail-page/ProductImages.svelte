@@ -9,7 +9,7 @@
     
 	let imgContent;
     let imagesArray;
-    let mainImage = images?.length > 0 ? images[0] : dummyImage;
+    let mainImage = images[0]; //images[0].source;
 
     onMount(() => {
         imagesArray = [...imgContent.childNodes];
@@ -32,7 +32,7 @@
 	};
 </script>
 
-{#if images?.length > 0}
+{#if images.length > 0}
 	<div class="w-[40%] gap-4">
 		<div class="block sm:flex gap-4">
 			<!-- side images -->

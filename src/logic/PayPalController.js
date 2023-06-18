@@ -39,7 +39,6 @@ const PayPalController = (() => {
     }
 
     async function convertUSDtoUYU(uyu_value){
-        debugger;
         const response = await fetchController.execute("https://cotizaciones-brou-v2-e449.fly.dev/currency/latest");
         if(!response || Object.entries(response).length === 0) return null;
 

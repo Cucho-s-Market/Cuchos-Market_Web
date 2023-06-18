@@ -8,7 +8,6 @@ const productController = (() => {
     // Find item by slug
     async function getProduct(name) {
         debugger;
-
         let branch_id = await branchController.getSelectedBranch() || null; 
         if(branch_id == null) return null;
 

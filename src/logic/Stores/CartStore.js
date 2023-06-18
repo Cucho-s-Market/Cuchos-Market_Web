@@ -7,8 +7,6 @@ export const cartStore = writable((browser && sessionStorage.getItem("cart") != 
 // Create writable for store cart in session storage
 if (browser){
     cartStore.subscribe(cart => {
-        if(cart == null) sessionStorage.setItem("cart", null);
-        else
         sessionStorage.setItem("cart", JSON.stringify(cart));
     });
 }   

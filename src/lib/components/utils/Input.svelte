@@ -6,7 +6,6 @@
     export let mandatory = true;
 	export let props = ''
 	export let errorMessage = '';
-	export let disabled = false;
 
 	const handleInput = event => {
 		value = event.target.value;
@@ -23,6 +22,6 @@
             {/if}
         </span>
 	</label>
-	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value} disabled={disabled}/>
+	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value}/>
 	<p class="error">{errorMessage}</p>
 </div>

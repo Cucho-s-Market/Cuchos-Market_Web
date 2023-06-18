@@ -10,10 +10,15 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import categoryController from '../../../../logic/categoryController';
 	import Utils from '../../../../logic/helpers/Utils';
+<<<<<<< HEAD
+	import { redirect } from '@sveltejs/kit';
+	import sessionAdminController from '../../../../logic/sessionAdminController';
+=======
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 	import productController from '../../../../logic/productController';
 	import Modal from '$lib/components/utils/Modal.svelte';
 	import { browser } from '$app/environment';
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 
 	let branches;
 	let categories;
@@ -36,6 +41,11 @@
 		}
 
 		product.entryDate = Utils.getDateNow();
+<<<<<<< HEAD
+		
+		sessionAdminController
+		const res = await adminController.addProduct(product, sessionAdminController.getUserToken());
+=======
 
 		const token = await sessionAdminController.getUserToken();
 
@@ -44,6 +54,7 @@
 		if (res && res.error) {
 			res = await productController.editProduct(product, token);
 		}
+>>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });
