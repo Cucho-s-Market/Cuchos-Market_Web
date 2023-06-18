@@ -4,52 +4,48 @@ import fetchController from "./fetchController";
 // @ts-nocheck
 const adminController = (() => {
 
+    let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4NjUxMzExMywiZXhwIjoxNjg2NTk5NTEzfQ.ttmkgXIZPKvSeZlBwcdfxXu6bvx6os6yQ7ppgc2Di_I";
+
     //USERS
-    async function getUsers(adminToken) {
-        debugger;
-        return await fetchController.execute('http://localhost:8080/users', 'GET', null, adminToken);
+    async function getUsers() {
+        return await fetchController.execute('http://localhost:8080/users', 'GET', null, token);
     }
 
-    async function registerEmployee(employee, branch, adminToken) {
-<<<<<<< HEAD
+    async function registerEmployee(employee, branch) {
 
-=======
-        debugger
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		if (employee === null) throw new Error('Error creating customer');
 
-		const res = await fetchController.execute(`http://127.0.0.1:8080/users/${branch}/employee`, 'POST', employee, adminToken);
+		const res = await fetchController.execute(`http://127.0.0.1:8080/users/${branch}/employee`, 'POST', employee, token);
 		return res;
 	}
 
-<<<<<<< HEAD
 
     //PRODUCTS
 
-    async function getProducts(adminToken) {
-        return await fetchController.execute('http://localhost:8080/products', 'GET', null, adminToken);
+    async function getProducts(product) {
+        return await fetchController.execute('http://localhost:8080/products', 'GET', null, token);
     }
 
-    async function addProduct(product, adminToken) {
+    async function addProduct(product) {
         if (product === null) throw new Error('Error al intentar crear el producto.');
 
-		const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, adminToken);
+		const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, token);
 		return res;
     }
 
-=======
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
     //Categories
-    async function addCategory(category, adminToken) {
+    async function addCategory(category) {
         if (category === null) throw new Error('Error al intentar crear la categoria.');
 
-		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, adminToken);
+		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
 		return res;
     }
 
     return {
         getUsers,
         registerEmployee,
+        getProducts,
+        addProduct,
         addCategory
     }
 })();

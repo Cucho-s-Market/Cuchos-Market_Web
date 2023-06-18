@@ -21,6 +21,7 @@
 	});
 
 	const addToCart = () => {
+		debugger;
 		if(String(value) === '') {
 			value = 1;
 		}
@@ -34,7 +35,6 @@
 		cartController.addItem(item);
 
 		notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
-		showQty = false;
   }
 
 </script>
@@ -43,7 +43,13 @@
 	<div class="flex flex-col max-w-[680px] min-w-[450px] font-poppins bg-base-200 rounded-[10px] border border-br-grey">
 		<div class="flex flex-col p-5 justify-between min-h-[280px]">
 			<div class="flex flex-col">
-				<p class="text-xs text-success mb-5">{item.status}</p>
+
+				{#if item?.quantity > 0}
+					<p class="text-xs text-success mb-5">Disponible</p>
+				{:else}
+					<p class="text-xs text-error mb-5">Sin stock</p>
+				{/if}
+
 				<h1 class="text-xl text-neutral mb-0.75">
 					{item.name}
 				</h1>
@@ -55,7 +61,7 @@
 				<h4 class="text-2xl text-neutral font-bold">UYU {item.price}</h4>
 			</div>
 
-			{#if isLoggedIn}
+			{#if isLoggedIn && item?.quantity > 0}
 				<div class="flex justify-between max-w-[400px]">
 					<Quantity bind:value={value} containerProps="w-[45%]" btnProps="h-[100%]" inputProps="h-[100%]"/>
 					<Button type="btn-primary w-[45%]" text="Agregar al carrito" click={addToCart}/>

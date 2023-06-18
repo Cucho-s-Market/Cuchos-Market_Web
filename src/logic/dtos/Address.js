@@ -1,5 +1,5 @@
 // @ts-nocheck
-class Address {
+export class Address {
     constructor(id, address, doorNumber, location, state) {
         this.id = id;
         this.address = address;

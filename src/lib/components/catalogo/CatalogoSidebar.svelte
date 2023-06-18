@@ -6,6 +6,7 @@
 	let categories = [];
 
 	onMount(async () => {
+		debugger;
 		categories = await categoryController.getCategories();
 	});
 

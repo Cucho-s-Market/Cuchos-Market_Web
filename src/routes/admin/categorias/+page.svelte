@@ -6,9 +6,9 @@
 	import Input from '$lib/components/utils/Input.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import adminController from '../../../logic/adminController.js';
+	import categoryController from '../../../logic/categoryController.js';
 	import { Category } from '../../../logic/dtos/Category.js';
 	import formValidator from '../../../logic/helpers/formValidator.js';
-	import sessionAdminController from '../../../logic/sessionAdminController.js';
 
 	export let data;
 
@@ -40,18 +40,14 @@
             category.description,
 		];
 
-
 		let emptyValues = formValidator.emptyValues(validationArray);
 		
 		if (emptyValues) {
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
 			return;
 		}
-<<<<<<< HEAD
-		const res = await adminController.addCategory(category, sessionAdminController.getUserToken());
-=======
-		const res = await adminController.addCategory(category, await sessionAdminController.getUserToken());
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
+	
+		const res = await adminController.addCategory(category);
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });

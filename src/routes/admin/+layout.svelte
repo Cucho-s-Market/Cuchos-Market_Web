@@ -17,7 +17,7 @@
 <svelte:body />
 
 <div class="flex">
-	{#if currentPage?.route?.id !== '/admin/auth/login'}
+	{#if currentPage?.route?.id !== '/admin/login'}
 		<SideMenu />
 		<AdminHeader />
 		{#key data.pathname}
