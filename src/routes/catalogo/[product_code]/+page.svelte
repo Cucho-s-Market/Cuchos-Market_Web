@@ -14,7 +14,7 @@
 {#if data && data.status != "404"}
 	<main class="max-w-[1200px] pt-[160px] m-auto">
 		<div class="flex mb-10">
-			<Breadcrumbs categoryId={data.product.categoryId}/>
+			<Breadcrumbs categoryId={data?.product?.categoryId}/>
 		</div>
 		<div class="flex justify-between">
 			<ProductImages images={data.product.images}/>

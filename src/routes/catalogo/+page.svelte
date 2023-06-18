@@ -10,29 +10,33 @@
 	let products = [];
 
 	onMount(async () => {
-		debugger;
-		products = await productController.getProducts();
-        if(products == null || products?.error) return null;
 
-        products = products?.data?.content;
+		products = await productController.getProducts();
+		if (products == null || products?.error) return null;
+
+		products = products?.data?.content;
 	});
 </script>
 
 <main class="w-[1200px] pt-[160px] m-auto">
-	{#if products.length > 0}
-		<CatalogoHeader qtyItems={products?.length || 0} />
+	<CatalogoHeader qtyItems={products?.length || 0} />
 
-		<div class="flex justify-between pt-[80px]">
-			<!-- Side bar categories -->
-			<sidebar>
-				<CatalogoSidebar />
-			</sidebar>
-			<!-- Items catalog -->
+	<div class="flex justify-between pt-[80px]">
+		<!-- Side bar categories -->
+		<sidebar>
+			<CatalogoSidebar />
+		</sidebar>
+		<!-- Items catalog -->
+		{#if products?.length > 0}
 			<div>
 				<ProductCatalogue {products} />
 			</div>
-		</div>
+		{:else}
+			<div class="flex justify-center items-center">
+				<p class="text-2xl">No hay productos disponibles</p>
+			</div>
+		{/if}
+	</div>
 
-		<Notifications />
-	{/if}
+	<Notifications />
 </main>

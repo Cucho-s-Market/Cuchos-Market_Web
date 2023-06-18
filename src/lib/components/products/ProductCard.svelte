@@ -23,14 +23,14 @@
     }
 
     function createSlug(str) {
-        return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        return str.toLowerCase().replace(/\s/g, '_');
     }
 
 </script>
-<a href="/catalogo/{createSlug(item?.code || "")}">
+<a href="/catalogo/{createSlug(item?.name || "")}">
     <div class="card w-[220px] round-[10px] p-3 mb-2 border border-br-grey bg-base-100 font-poppins">
         <div class="flex w-[190px] mb-5 h-[190px]">
-            <img class="rounded-[5px] object-cover" src="{item.images?.length > 0 ? item.images[0] : dummyImage}" alt="{item.name}" />
+            <img class="rounded-[5px] object-scale-down" src="{item.images?.length > 0 ? item.images[0] : dummyImage}" alt="{item.name}" />
         </div>
         <div class="card-body p-0 gap-5 justify-center">
             <h3 class="flex justify-center font-medium text-sm text-center h-[2em]">{item.name}</h3>

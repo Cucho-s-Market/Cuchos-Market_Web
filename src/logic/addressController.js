@@ -35,6 +35,7 @@ const addressController = (() => {
 
     // Delete address
     async function deleteAddress(addressId) {
+        debugger;
         const userToken = await sessionController.getUserToken();
         let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address/" + addressId, "DELETE", null, userToken);
         if (resultAddress == null || resultAddress.error) return null;
