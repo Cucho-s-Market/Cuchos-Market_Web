@@ -20,4 +20,5 @@
         <p class="text-primary font-medium">Peso</p>
         <p class="text-normal-grey font-medium">{item?.weight ? item?.weight : 'N/A'}</p>
     </div>
+
 </div>
