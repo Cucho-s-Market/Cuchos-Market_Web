@@ -21,7 +21,6 @@
 	});
 
 	const addToCart = () => {
-		debugger;
 		if(String(value) === '') {
 			value = 1;
 		}
@@ -51,9 +50,9 @@
 				{/if}
 
 				<h1 class="text-xl text-neutral mb-0.75">
-					{item.name}
+					{item.code}
 				</h1>
-				<p class="text-xs text-neutral-grey">SKU: {item.code}</p>
+				<p class="text-xs text-neutral-grey">SKU: {item.name}</p>
 			</div>
 
 			<div class="flex flex-col">

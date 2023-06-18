@@ -17,7 +17,6 @@
   // ----------------- METHODS -----------------
 
 	const handleItemCart = (type) => {
-		debugger;
 		// This will only work inside cart module
 		if(card) return;
 

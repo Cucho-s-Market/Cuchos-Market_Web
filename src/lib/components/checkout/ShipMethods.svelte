@@ -30,7 +30,6 @@
     }
 
     const checkCurrentStep = async () => {
-        debugger;
         // Set current step to 3 and this makes payment methods show
 
         // Validate if addresses are selected

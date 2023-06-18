@@ -19,7 +19,9 @@
 	let productsFiltered = [];
 
 	const getProducts = async () => {
-		products = data.products?.data;
+		const dataProduct = data;
+
+		products = data.products.data.content;
 		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
@@ -40,9 +42,6 @@
 		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
-
-	//hay que cambiar
-	getProducts();
 
 	$: {
 		tbody = [];
@@ -83,6 +82,10 @@
 	/>
 {/if}
 	
-{#key tbody}
+{#await getProducts()}
+	<span class="loading loading-spinner text-primary"></span>
+{:then}
+	{#key tbody}
 	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
-{/key}
+	{/key}
+{/await}
