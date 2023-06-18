@@ -9,8 +9,8 @@
 	import sessionController from "../../../../logic/sessionController";
 	import { cartStore } from "../../../../logic/Stores/CartStore";
 	import branchController from "../../../../logic/branchController";
-	import { branchStore } from "../../../../logic/Stores/BranchStore";
 
+    export let location = "Central";
     let showModalBranch = false;
     let showModalLogin = false;
     let showCart = false;
@@ -33,14 +33,15 @@
 <Cart bind:showCart={showCart}/>
 
 <Modal bind:showModal={showModalBranch}>
-    <BranchSelector branches={branches?.branches}/>
+    <BranchSelector branches={branches}/>
 </Modal>
 
 <Modal bind:showModal={showModalLogin}>
     <Login/>
 </Modal>
 
-<!-- --------------------------------------->
+<!-- ------------------------------------- -->
+
 <header class="fixed w-full z-50">
     <!-- Branch bar -->
     <div class="branch-bar w-full bg-primary">
@@ -49,7 +50,7 @@
             <div class="cursor-pointer" on:click={() => showModalBranch=!showModalBranch}>
                 <Svg name={"config-store"} size={28}/>
             </div>
-            <p class="text-base-100">{$branchStore?.selected?.name || ''}</p>
+            <p class="text-base-100">{location}</p>
         </div>
     </div>
     <nav class="w-full bg-white">
