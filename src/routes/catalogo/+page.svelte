@@ -4,39 +4,49 @@
 	import CatalogoSidebar from "$lib/components/catalogo/CatalogoSidebar.svelte";
 	import ProductCatalogue from "$lib/components/products/ProductCatalogue.svelte";
 	import Notifications from "$lib/components/utils/Notifications.svelte";
-	import { onMount } from "svelte";
-	import productController from "../../logic/productController";
 
-    let products;
+    const getProducts = async() => {
+        let products = [];
+        
+        const res = await fetch('https://dummyjson.com/products');
+        const data = await res.json();
+        if(data.products) {
+            // @ts-ignore
+            data.products.forEach(element => {
+                products.push({
+                    name: element.title,
+                    price: element.price,
+                    discount: element.discountPercentage,
+                    iso: "UYU",
+                    image: element.images[0],
+                });
+            });
+        }
 
-	onMount(async () => {
-		products = await productController.getProducts();
-		if (products == null || products?.error) return null;
+        return products;
+    }
 
-		products = products?.data?.content;
-	});
+    let productsPromise = getProducts();
+
 </script>
 
 <main class="w-[1200px] pt-[160px] m-auto">
-	<CatalogoHeader qtyItems={products?.length || 0} />
+    {#await productsPromise then products}
+            <CatalogoHeader qtyItems = {products?.length || 0}/>
 
-	<div class="flex justify-between pt-[80px]">
-		<!-- Side bar categories -->
-		<sidebar>
-			<CatalogoSidebar />
-		</sidebar>
-		<!-- Items catalog -->
-		{#if products?.length > 0}
-			<div>
-				<ProductCatalogue {products} />
-			</div>
-		{:else}
-			<div class="flex justify-center items-center">
-				<p class="text-2xl">No hay productos disponibles</p>
-			</div>
-		{/if}
-	</div>
+            <div class="flex justify-between pt-[80px]">
+                <!-- Side bar categories -->
+                <sidebar>
+                    <CatalogoSidebar/>
+                </sidebar>
+                <!-- Items catalog -->
+                <div>
+                    <ProductCatalogue products={products}/>
+                </div>
+            </div>
+        
 
-	<Notifications />
+        <Notifications/>
+    {/await}
 </main>
     
