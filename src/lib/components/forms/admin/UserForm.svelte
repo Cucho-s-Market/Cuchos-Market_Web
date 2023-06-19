@@ -18,43 +18,7 @@
 	let ci = '';
 	let user = new User();
 
-	$: {
-		showCustomer = role === 'CLIENTE' ? true : false;
-		showEmployee = role === 'EMPLEADO' ? true : false;
-	}
-
 	let register = async () => {
-		if (showCustomer) {
-			let customer = new Customer();
-			customer = user;
-			customer.ci = ci;
-            let validationArray = [customer.ci, customer.firstName, customer.lastName, customer.password, repeatPassword];
-
-            let emptyValues = formValidator.emptyValues(validationArray);
-
-            if(emptyValues || !formValidator.ci(customer.ci) || !formValidator.email(customer.email)) {
-                notify({ type: 'alert-error', text: "Verifique los campos." });
-                return;
-            }
-
-			const res = await sessionController.register(customer);
-
-            if(!res) {
-                notify({ type: 'alert-error', text: "Error en el servidor"});
-                return;
-            }
-
-            if(res.error) {
-                notify({ type: 'alert-error', text: res.message});
-                return;
-            }
-            
-			if (res.ok) {
-                notify({ type: 'alert-success', text: res.message });
-                formValidator.clear(validationArray);
-            }
-				
-		} else if (showEmployee) {
 			let emptyValues = formValidator.emptyValues([user.firstName, user.lastName, user.password, repeatPassword]);
 
             if(emptyValues || !formValidator.email(user.email)) {
@@ -77,7 +41,7 @@
 			if (response.ok) {
                 notify({ type: 'alert-success', text: response.message });
             }
-		}
+		
 	};
 </script>
 
@@ -107,13 +71,8 @@
 		<Input bind:value={repeatPassword} props="h-10" type="password" label="Repetir Contraseña" />
 	</div>
 
-	{#if showCustomer}
-		<div class="w-full">
-			<Input bind:value={ci} props="h-10" type="number" label="C.I" />
-		</div>
-	{/if}
 
-	{#if showEmployee}
+
 		<div class="flex flex-col w-full">
             <p class="label">
                 <span class="label-text font-semibold">Sucursal <span class="p-1 text-error">*</span></span>
@@ -123,8 +82,6 @@
                 <option>Sucursal 1</option>
             </select>
         </div>
-	{/if}
-
 	<div class="w-full mt-3">
 		<Button
 			text="Crear usuario"

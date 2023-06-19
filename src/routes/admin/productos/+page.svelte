@@ -19,13 +19,14 @@
 	let productsFiltered = [];
 
 	const getProducts = async () => {
-		products = data.products?.data;
+		products = data;
+
 		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
 			return;
 		}
-		
+		products = data.products.data.content;
 		productsFiltered = products;
 
 		products.forEach((product) => {
@@ -48,7 +49,7 @@
 		tbody = [];
 		productsFiltered.forEach((product) => {
 			tbody.push({
-				id: product.code,
+				id: product.name.replace(' ', "_"),
 				row: [product.code, product.name, product.price, product.brand],
 			});
 		});
