@@ -1,25 +1,17 @@
 
 //@ts-nocheck
-<<<<<<< HEAD
-=======
 import { browser } from "$app/environment";
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 import { adminSession } from "../stores";
 import fetchController from "./fetchController";
 
 
 const sessionAdminController = (() => {
 	async function login(userDetails) {
-<<<<<<< HEAD
-		// login logic
-        debugger;
-=======
 		userDetails = {
 			email: 'admin@mail.com',
 			password: 'password'
 		};
 		// login logic
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
 		if(res == null) return null;
 
@@ -44,11 +36,8 @@ const sessionAdminController = (() => {
 	}
 
 	async function getUser() {
-<<<<<<< HEAD
-=======
 		if(!sessionStorage) return null;
 
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		// Get user from session storage
 		let user = sessionStorage.getItem("adminOperator") != null ? JSON.parse(sessionStorage.getItem("adminOperator")) : null;
 		return user;
@@ -56,12 +45,9 @@ const sessionAdminController = (() => {
 
 	async function getUserToken(){
 		// Get user token from session storage
-<<<<<<< HEAD
-=======
 
 		if(!browser) return null;
 
->>>>>>> a579048ec9fac24e15c12dccdb3f2bc1fa8d7fce
 		if(!sessionStorage) return null;
 
 		let user = sessionStorage.getItem("adminOperator") != null ? JSON.parse(sessionStorage.getItem("adminOperator")) : null;

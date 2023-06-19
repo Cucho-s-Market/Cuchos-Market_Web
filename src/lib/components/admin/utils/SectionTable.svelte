@@ -5,6 +5,7 @@
 	export let thead = [];
 	export let tbody = [];
 	export let buttons = {};
+
 </script>
 
 <div class="w-full overflow-x-auto mt-10 shadow">
