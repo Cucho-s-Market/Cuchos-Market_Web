@@ -7,10 +7,13 @@
     export let order = null;
 
     onMount(async () => {
-        
+        if(!order) window.location.href = '/';
     })
 
 </script>
 
-<HeaderCheckout/>
-<PurchaseConfirmation/>
+{#if order}
+    <HeaderCheckout/>
+    <PurchaseConfirmation/>
+{/if}
+

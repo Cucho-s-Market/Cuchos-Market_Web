@@ -32,28 +32,6 @@
 							// const total = await PayPalController.convertUSDtoUYU(cart.total);
 							const total = $cartStore.total / 39.15;
 							if (total == null || !total) return null;
-							// const paymentObj = {
-							// 	intent: 'CAPTURE',
-							// 	purchase_units: [
-							// 		{
-							// 			items: cart.items.map((item) => {
-							// 				return {
-							// 					name: String(item.name),
-							//                     quantity: String(item.quantity),
-							// 					unit_amount: {
-							// 						currency_code: 'USD',
-							// 						value: String(item.price)
-							// 					}
-
-							// 				};
-							// 			}),
-							// 			amount: {
-							// 				currency_code: 'USD',
-							// 				value: String(10)
-							// 			}
-							// 		}
-							// 	]
-							// };
 
 							const paymentObj = {
 								intent: 'CAPTURE',
@@ -68,12 +46,11 @@
 							};
 
 							const orderId = await PayPalController.createOrder(paymentObj);
-							console.log('orderId', orderId);
 							return orderId;
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-
+							debugger;
 							// TODO - Check if item is available
 
 
@@ -85,13 +62,11 @@
 								branchId: $branchStore?.selected?.id,
 								totalPrice: $cartStore?.total / 39.15,
 								status: 'PENDING',
-								addressId: $userStore?.address?.id,
-								type: 'DELIVERY',
+								addressId: ($userStore?.address?.isBranch) ? null : $userStore?.address?.id,
+								type: ($userStore?.address?.isBranch) ? 'PICK_UP' : 'DELIVERY',
 								products: $cartStore?.items.map((item) => {
 									return {
 										"name": item.name,
-										"unitPrice": item.price,
-										"finalPrice": Number(item.price) * Number(item.quantity),
 										"quantity": item.quantity
 									};
 								})
