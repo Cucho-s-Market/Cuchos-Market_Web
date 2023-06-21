@@ -1,8 +1,11 @@
 // @ts-nocheck
 import fetchController from "./fetchController";
 import sessionController from "./sessionController";
-import {Address} from "./dtos/Address";
+import { Address } from "./dtos/Address";
 import { userStore } from "./Stores/UserStore";
+import { get } from "svelte/store";
+import { branchStore } from "./Stores/BranchStore";
+
 // @ts-nocheck
 const addressController = (() => {
 
@@ -10,9 +13,9 @@ const addressController = (() => {
     async function createAddress(address) {
         debugger;
         const userToken = await sessionController.getUserToken();
-        
+
         const newAddress = new Address(null, address.address, address.doorNumber, address.location, address.state);
-        
+
         let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address", "POST", newAddress, userToken);
         if (resultAddress == null || resultAddress.error) return null;
 
@@ -61,24 +64,24 @@ const addressController = (() => {
         return userAddress;
     }
 
-    async function validateAddress(address){
+    async function validateAddress(address) {
 
-        if(address.address == "") {
+        if (address.address == "") {
             alert("Debe ingresar una direccion");
             return false;
         }
 
-        if(address.doorNumber == "") {
+        if (address.doorNumber == "") {
             alert("Debe ingresar un numero de puerta");
             return false;
         }
 
-        if(address.location == "") {
+        if (address.location == "") {
             alert("Debe ingresar una ciudad");
             return false;
         }
 
-        if(address.state == "") {
+        if (address.state == "") {
             alert("Debe ingresar un estado");
             return false;
         }
@@ -87,15 +90,23 @@ const addressController = (() => {
     }
 
     // Set selected address into user session
-    async function setSelectedAddress(addressId) {
+    async function setSelectedAddress(addressId, takeAway = false) {
         let user = await sessionController.getUser();
-        if(user == null) return null;
+        if (user == null) return null;
 
-        let addresses = user?.addresses;
-        if (addresses == null || addresses?.length <= 0) return null;
+        let selectedAddress = null;
 
-        const selectedAddress = addresses.find(address => address.id == addressId);
-        if (selectedAddress == null) return null;
+        if (!takeAway) {
+            let addresses = user?.addresses;
+            if (addresses == null || addresses?.length <= 0) return null;
+
+            selectedAddress = addresses.find(address => address.id == addressId);
+            if (selectedAddress == null) return null;
+        }
+        else {
+            selectedAddress = get(branchStore)?.selected;
+            selectedAddress.isBranch = true;
+        }
 
         user.address = selectedAddress;
         sessionController.setUser(user);
@@ -103,12 +114,12 @@ const addressController = (() => {
         return true;
     }
 
-    async function setAddressStorageFromDB(){
+    async function setAddressStorageFromDB() {
         const addresses = await getAddresses();
-        if(addresses == null) return null;
+        if (addresses == null) return null;
 
         const user = await sessionController.getUser();
-        if(user == null) return null;
+        if (user == null) return null;
 
         user.addresses = addresses;
         userStore.set(user);
