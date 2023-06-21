@@ -26,7 +26,7 @@
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
 			return;
 		}
-		
+
 		products = [];
 
 		if(data.products) {
