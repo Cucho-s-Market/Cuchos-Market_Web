@@ -26,7 +26,13 @@
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
 			return;
 		}
-		products = data.products.data.content;
+		
+		products = [];
+
+		if(data.products) {
+			products = data.products?.data?.content;
+		}
+
 		productsFiltered = products;
 
 		products.forEach((product) => {
@@ -52,6 +58,7 @@
 			tbody.push({
 				id: product.name.replace(' ', "_"),
 				row: [product.code, product.name, product.price, product.brand],
+				stock: product.quantity
 			});
 		});
 

@@ -12,15 +12,9 @@
 	let currentStock = stock;
 
 	let update = async () => {
-		debugger;
 		const res = await productController.updateStock(productId, stock);
 
 		if (!res) {
-			notify({ text: 'Ha ocurrido un error en el servidor', type: 'alert-error' });
-			return;
-		}
-
-		if (res.error) {
 			notify({ text: 'Ha ocurrido un error en el servidor', type: 'alert-error' });
 			return;
 		}
@@ -33,6 +27,8 @@
 		if (res.ok) {
 			notify({ type: 'alert-success', text: res.message });
 		}
+
+		showUpdate = false;
 	};
 
 	$: {

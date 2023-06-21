@@ -39,7 +39,7 @@
 								{/each}
 
 								{#if user.role === 'EMPLOYEE'}
-									<td><TableStock qty={tbody_item.stock} productId={tbody_item.id} /></td>
+									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
 								{/if}
 
 								{#if user.role === 'ADMIN'}
@@ -55,7 +55,7 @@
 								{/each}
 
 								{#if user.role === 'EMPLOYEE'}
-									<td><TableStock qty={tbody_item.stock} productId={tbody_item.id} /></td>
+									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
 								{/if}
 
 								{#if user.role === 'ADMIN'}
