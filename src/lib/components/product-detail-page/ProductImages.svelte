@@ -5,16 +5,11 @@
 	let dummyImage = 'https://dummyimage.com/100/09f.png/fff';
     
     
-	let images = [
-        { source: 'https://dummyimage.com/450x450/fff', altInf: 'byb en el sillon' },
-		{ source: 'https://dummyimage.com/440x450/fff', altInf: 'pegandose conitos' },
-		{ source: 'https://dummyimage.com/430x450/fff', altInf: 'calzoncillo' },
-		{ source: 'https://dummyimage.com/420x450/fff', altInf: 'cleaning' }
-	];
+	export let images = [];
     
 	let imgContent;
     let imagesArray;
-    let mainImage = images[0].source;
+    let mainImage = images[0];
 
     onMount(() => {
         imagesArray = [...imgContent.childNodes];
@@ -23,6 +18,7 @@
 
 	//@ts-ignore
 	var selectImg = (event) => {
+		debugger;
 		const img = event.target;
 		const imgParent = img.parentNode;
 
@@ -43,11 +39,12 @@
 		<div bind:this={imgContent} class="flex flex-row sm:flex-col gap-4">
 			{#each images as image}
 				<div class="w-[50px] h-[50px] border rounded-md border-br-grey hover:border-primary hover:border-2 cursor-pointer">
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<img
 						on:click={selectImg}
-						src={image.source}
-						alt={image.altInf}
-						class="w-full h-full object-cover rounded-md"
+						src={image}
+						alt={image}
+						class="w-full h-full object-scale-down rounded-md"
 					/>
 				</div>
 			{/each}
@@ -59,7 +56,7 @@
 					id="mainImage"
 					src={mainImage}
 					alt="asd"
-					class="border border-br-grey rounded-md h-inherit object-cover w-[450px] h-[385px]"
+					class="border border-br-grey rounded-md h-inherit object-scale-down w-[450px] h-[385px]"
 				/>
 			</div>
 		</div>
