@@ -25,7 +25,6 @@
 				<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
 			{/if}
 			<SideMenuOption text="Marketing" svg="affiliate" />
-			<SideMenuOption text="Logistica" svg="map-pin" />
 		</ul>
 	</div>
 {/if}

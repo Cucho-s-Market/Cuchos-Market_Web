@@ -49,7 +49,6 @@ const categoryController = (() => {
         let category = null;
         
         categories.forEach(categoryParent => {
-            debugger;
             if(category != null) return;
 
             if(categoryParent.id == id){

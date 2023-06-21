@@ -7,10 +7,12 @@ import sessionAdminController from "./sessionAdminController";
 const productController = (() => {
 
     // Find item by slug
-    async function getProduct(name, user = 'CUSTOMER') {
+    async function getProduct(name) {
         let branch = '';
 
-        if (user === "CUSTOMER") {
+        let user = await sessionAdminController.getUser();
+
+        if (user === "CUSTOMER" || user === "EMPLOYEE") {
             let branch_id = await branchController.getSelectedBranch() || null;
             if (branch_id == null) return null;
 
@@ -23,10 +25,12 @@ const productController = (() => {
         return response;
     }
 
-    async function getProducts(user = 'CUSTOMER') {
+    async function getProducts() {
         let branch = '';
 
-        if (user === "CUSTOMER") {
+        let user = await sessionAdminController.getUser();
+
+        if (user === "CUSTOMER" || user === "EMPLOYEE") {
             let branch_id = await branchController.getSelectedBranch() || null;
             if (branch_id == null) return null;
 
@@ -41,7 +45,6 @@ const productController = (() => {
     }
 
     async function addProduct(product) {
-        product.entryDate = '2023-06-18';
         if (product === null) throw new Error('Error al intentar crear el producto.');
 
         let token = await sessionAdminController.getUserToken();
@@ -63,12 +66,34 @@ const productController = (() => {
 		return res;
     }
 
+    async function updateStock(productId, stock) {
+        if (!productId) throw new Error('Error al intentar crear el producto.');
+
+        const branch = await branchController.getSelectedBranch();
+
+        if(!branch) return null;
+
+        let token = await sessionAdminController.getUserToken();
+
+        debugger;
+
+        const sendStock = {
+            product_id: productId,
+            branch_id: branch.id,
+            quantity: parseInt(stock)
+        };
+
+		const res = await fetchController.execute(`http://127.0.0.1:8080/products/employee/stock`, 'PUT', sendStock, token);
+		return res;
+    }
+
     return {
         getProduct,
         getProducts,
         addProduct,
         editProduct,
-        deleteProduct
+        deleteProduct,
+        updateStock
     }
 })();
 

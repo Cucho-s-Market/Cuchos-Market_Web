@@ -5,13 +5,9 @@
 	import Input from '$lib/components/utils/Input.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import adminController from '../../../../logic/adminController';
-	import { Customer } from '../../../../logic/dtos/Customer';
 	import { User } from '../../../../logic/dtos/User';
-	import sessionController from '../../../../logic/sessionController';
     import formValidator from '../../../../logic/helpers/formValidator';
 
-	let showCustomer = false;
-	let showEmployee = false;
     let repeatPassword = '';
 
 	let role;

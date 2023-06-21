@@ -33,6 +33,7 @@
 			tbody.push({
 				id: product.code,
 				row: [product.code, product.name, product.price, product.brand],
+				stock: product.quantity
 			});
 		});
 	};
@@ -85,5 +86,5 @@
 {/if}
 	
 {#key tbody}
-	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
 {/key}
