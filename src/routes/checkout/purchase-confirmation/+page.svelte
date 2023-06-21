@@ -3,17 +3,24 @@
 	import HeaderCheckout from '$lib/components/checkout/HeaderCheckout.svelte';
 	import { onMount } from 'svelte';
     import PurchaseConfirmation from '../../../lib/components/purchase-confirmation/PurchaseConfirmation.svelte';
-
-    export let order = null;
+	import sessionController from '../../../logic/sessionController';
+	import { userStore } from '../../../logic/Stores/UserStore';
 
     onMount(async () => {
-        if(!order) window.location.href = '/';
-    })
+        let user = await sessionController.getUser();
+        if (!user) window.location.href = '/';
 
+        if(!user?.orderCreated) window.location.href = '/';
+
+        // If order was created we are going to delete it so the user cannot go back to this page
+        user.orderCreated = false;
+        sessionController.setUser(user);
+    });
 </script>
 
-{#if order}
+{#if $userStore?.orderCreated}
     <HeaderCheckout/>
-    <PurchaseConfirmation/>
+    <PurchaseConfirmation email={$userStore?.email}/>
 {/if}
+
 

@@ -11,6 +11,8 @@
 	import { userStore } from '../../../logic/Stores/UserStore';
 	import { cartStore } from '../../../logic/Stores/CartStore';
 	import { branchStore } from '../../../logic/Stores/BranchStore';
+	import { notify } from '../utils/Notifications.svelte';
+	import sessionController from '../../../logic/sessionController';
 
 	export let paymentMethods = null;
 
@@ -51,31 +53,49 @@
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
 							debugger;
-							// TODO - Check if item is available
-
-
-							const responseCapture = await PayPalController.capturePayment(data.orderID);
-							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
 
 							// Create the order on the server
 							var orderDetails = {
 								branchId: $branchStore?.selected?.id,
 								totalPrice: $cartStore?.total / 39.15,
 								status: 'PENDING',
-								addressId: ($userStore?.address?.isBranch) ? null : $userStore?.address?.id,
-								type: ($userStore?.address?.isBranch) ? 'PICK_UP' : 'DELIVERY',
+								addressId: $userStore?.address?.isBranch ? null : $userStore?.address?.id,
+								type: $userStore?.address?.isBranch ? 'PICK_UP' : 'DELIVERY',
 								products: $cartStore?.items.map((item) => {
 									return {
-										"name": item.name,
-										"quantity": item.quantity
+										name: item.name,
+										quantity: item.quantity
 									};
 								})
 							};
 
 							const orderCreated = await orderController.createOrder(orderDetails);
 
+							if (!orderCreated || orderCreated.error) {
+								notify({ text: 'Error al crear la orden', type: 'alert-error' });
+								setTimeout(() => {
+									window.location.href = '/';
+								}, 2000);
+								return;
+							}
+
+							const responseCapture = await PayPalController.capturePayment(data.orderID);
+							if (responseCapture.status != 'COMPLETED') {
+								notify({ text: 'Error al crear la orden', type: 'alert-error' });
+								setTimeout(() => {
+									window.location.href = '/';
+								}, 2000);
+								return;
+							}
+
 							cartController.clearCart();
-							window.location.href = '/catalogo';
+
+							// Create boolean that indicates that the order was created
+							const user = await sessionController.getUser();
+							user.orderCreated = true;
+							sessionController.setUser(user);
+
+							window.location.href = '/checkout/purchase-confirmation';
 						}
 					})
 					.render('#paypal-button-container');

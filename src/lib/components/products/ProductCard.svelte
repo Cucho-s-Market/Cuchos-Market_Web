@@ -57,7 +57,7 @@
                 {#if showQty}
                     <Quantity bind:showQty={showQty} card={true} item={item}/>
                 {:else}
-                    {#if userIsloggedIn}
+                    {#if userIsloggedIn && item?.quantity > 0}
                         <Button text="Agregar al carrito" type="btn-primary btn-block" click={() => {showQuantity()}}/>
                     {:else}
                         <Button text="Agregar al carrito" type="btn-disabled btn-block"/>

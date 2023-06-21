@@ -32,33 +32,35 @@
 
 </script>
 
-<HeaderCheckout/>
+{#if clientDetails}
+    <HeaderCheckout/>
 
-<div class="w-[1200px] m-auto">
-    {#if $currentStep == null && clientDetails}
-        {#if $cartStore?.items}
-            <!-- Step customer details -->
-            <CheckoutBase titleSection='Detalles del cliente' items={$cartStore?.items}>
-                <CustomerDetails clientDetails={clientDetails}/>
-            </CheckoutBase>
+    <div class="w-[1200px] m-auto">
+        {#if $currentStep == null && clientDetails}
+            {#if $cartStore?.items}
+                <!-- Step customer details -->
+                <CheckoutBase titleSection='Detalles del cliente' items={$cartStore?.items}>
+                    <CustomerDetails clientDetails={clientDetails}/>
+                </CheckoutBase>
+            {/if}
         {/if}
-    {/if}
 
-    {#if $currentStep == 2}
-        {#if $cartStore?.items}
-            <!-- Step shipping address -->
-            <CheckoutBase titleSection='Metodos de envio' items={$cartStore?.items}>
-                <ShipMethods addressess={$userStore?.addresses}/>
-            </CheckoutBase>
+        {#if $currentStep == 2}
+            {#if $cartStore?.items}
+                <!-- Step shipping address -->
+                <CheckoutBase titleSection='Metodos de envio' items={$cartStore?.items}>
+                    <ShipMethods addressess={$userStore?.addresses}/>
+                </CheckoutBase>
+            {/if}
         {/if}
-    {/if}
 
-    {#if $currentStep == 3}
-        {#if $cartStore?.items}
-            <!-- Step payment details -->
-            <CheckoutBase titleSection='Metodos de pago' items={$cartStore?.items}>
-                <PaymentMethods paymentMethods={paymentMethods}/>
-            </CheckoutBase>
+        {#if $currentStep == 3}
+            {#if $cartStore?.items}
+                <!-- Step payment details -->
+                <CheckoutBase titleSection='Metodos de pago' items={$cartStore?.items}>
+                    <PaymentMethods paymentMethods={paymentMethods}/>
+                </CheckoutBase>
+            {/if}
         {/if}
-    {/if}
-</div>
+    </div>
+{/if}
