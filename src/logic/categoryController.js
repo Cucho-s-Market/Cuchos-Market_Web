@@ -1,5 +1,6 @@
 // @ts-nocheck
 import fetchController from "./fetchController";
+import sessionAdminController from "./sessionAdminController";
 
 const categoryController = (() => {
 
@@ -65,10 +66,19 @@ const categoryController = (() => {
         return category;
     }
 
+    async function addCategory(category) {
+        if (category === null) throw new Error('Error al intentar crear la categoria.');
+
+        const token = await sessionAdminController.getUserToken();
+		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
+		return res;
+    }
+
     return {
         getCategories,
         getCategoriesSelect,
-        findCategoryById
+        findCategoryById,
+        addCategory
     }
 })();
 

@@ -5,7 +5,6 @@
 	import Input from '$lib/components/utils/Input.svelte';
 
 	let fileUpload;
-	let selectedOption;
 
 	export let product;
 	export let categories = [];
@@ -37,7 +36,7 @@
         </div>
 
 		<div class="w-full">
-			<Input bind:value={product.brand} props="h-10" label="Marca" />
+			<Input bind:value={product.brand} props="h-10" label="Marca"/>
 		</div>
 
 		<div class="w-full">
