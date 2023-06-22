@@ -11,39 +11,39 @@ const productController = (() => {
         let branch = '';
         let response = null;
 
-        let user = await sessionAdminController.getUser();
-        if (user) {
-            if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
+        // let user = await sessionAdminController.getUser();
+        // if (user) {
+        //     if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
                 let branch_id = await branchController.getSelectedBranch() || null;
                 if (branch_id == null) return null;
 
                 branch = `&branch_id=${branch_id?.id}`;
-            }
+            // }
 
             response = await fetchController.execute(`http://localhost:8080/products?name=${name}${branch}`);
             if (!response || Object.entries(response).length === 0) return null;
-        }
+        // }
 
         return response;
     }
 
-    async function getProducts() {
+    async function getProducts(category_id = "") {
         let branch = '';
         let response = null;
 
-        let user = await sessionAdminController.getUser();
+        // let user = await sessionAdminController.getUser();
 
-        if(user) {
-            if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
+        // if(user) {
+        //     if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
                 let branch_id = await branchController.getSelectedBranch() || null;
                 if (branch_id == null) return null;
                 branch = `?branch_id=${branch_id?.id}`;
-            }
+            // }
     
     
-            response = await fetchController.execute(`http://localhost:8080/products${branch}`);
+            response = await fetchController.execute(`http://localhost:8080/products${branch}&category_id=${category_id}`);
             if (!response || response?.error) return null;
-        }
+        // }
 
         return response;
     }
