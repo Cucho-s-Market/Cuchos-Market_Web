@@ -24,7 +24,7 @@
 	<div class="flex justify-between pt-[80px]">
 		<!-- Side bar categories -->
 		<sidebar>
-			<CatalogoSidebar />
+			<CatalogoSidebar bind:productsFiltered={products}/>
 		</sidebar>
 		<!-- Items catalog -->
 		{#if products?.length > 0}

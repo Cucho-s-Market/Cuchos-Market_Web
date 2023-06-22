@@ -27,7 +27,6 @@ const categoryController = (() => {
 
             // Filter categories children
             const filteredCategoriesChildren = categories.filter(category => category.categoryParent == categoryParent.id);
-            if(filteredCategoriesChildren == null || filteredCategoriesChildren.length <= 0) return null;
 
             categoryParentObj.subcategories = filteredCategoriesChildren;
 
