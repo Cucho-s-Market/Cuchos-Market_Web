@@ -70,20 +70,24 @@
 	}}
 />
 
-<SectionFilters labelSearch="Buscar por email o nombre" bind:search={search} bind:elements={usersFiltered} inputFilters={['email', 'firstName']}>
-	{#each selects as select}
-		<FilterSelect name={select.name} options={select.options} />
-	{/each}
-</SectionFilters>
-
-{#if showClearFilters}
-	<Button
-	text="Limpiar filtros"
-	type="btn-primary w-fit p-2 mt-5"
-	click={() => {usersFiltered = users.data;}}
-	/>
-{/if}
-
-{#key tbody}
-	<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
-{/key}
+{#await users then}
+	{#if users}
+		<SectionFilters labelSearch="Buscar por email o nombre" bind:search={search} bind:elements={usersFiltered} inputFilters={['email', 'firstName']}>
+			{#each selects as select}
+				<FilterSelect name={select.name} options={select.options} />
+			{/each}
+		</SectionFilters>
+		
+		{#if showClearFilters}
+			<Button
+			text="Limpiar filtros"
+			type="btn-primary w-fit p-2 mt-5"
+			click={() => {usersFiltered = users.data;}}
+			/>
+		{/if}
+		
+		{#key tbody}
+			<SectionTable {thead} {tbody} buttons={{ toggle: true, edit: true }} />
+		{/key}
+	{/if}
+{/await}

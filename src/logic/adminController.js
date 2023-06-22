@@ -24,19 +24,11 @@ const adminController = (() => {
     async function getProducts(product) {
         return await fetchController.execute('http://localhost:8080/products', 'GET', null, token);
     }
-    //Categories
-    async function addCategory(category) {
-        if (category === null) throw new Error('Error al intentar crear la categoria.');
-
-		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
-		return res;
-    }
 
     return {
         getUsers,
         registerEmployee,
-        getProducts,
-        addCategory
+        getProducts
     }
 })();
 
