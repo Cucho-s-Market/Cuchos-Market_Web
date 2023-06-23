@@ -4,8 +4,6 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import Input from '$lib/components/utils/Input.svelte';
 
-	let fileUpload;
-
 	export let product;
 	export let categories = [];
 </script>
@@ -50,7 +48,7 @@
 	<div class="flex flex-col w-full gap-5 p-5 rounded-lg bg-base-100 shadow">
 		<p class="font-semibold text-md mb-5">Imagenes</p>
 		<div class="flex">
-			<input this:bind={fileUpload} class="hidden" type="file">
+			<input on:change={(event) => {event.target.files[0]}} class="hidden" type="file">
 			<Button type="bg-base-300 border-none w-[70px] h-[70px] hover:bg-primary hover:text-base-100" svg={{name: "camera-plus"}} click={() => { console.log(fileUpload); }} />
 		</div>
 	</div>
