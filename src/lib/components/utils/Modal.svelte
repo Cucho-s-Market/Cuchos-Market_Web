@@ -133,28 +133,28 @@
 		<!-- MAIN CONTENT -->
 		<div class="w-full">
 			<form>   
-				<div class="relative h-full mt-[20px]">
+				<div class="relative h-full mt-[20px] ">
 					<!-- <input type="search" id="default-search" class="w-[364px] block p-4 pl-5 text-sm text-primary-900 rounded-lg bg-grey-50" placeholder="Search" >
 					<div class="absolute top-5 opacity-100 right-5 cursor-pointer" on:click={closeModal}>
 						<Svg name={'x'} size={20} stroke={1.5} props={"opacity-70 hover:opacity-100 pb-[5px]"}/>
 					</div> -->
 					<!-- <button type="submit" class="text-white absolute right-2.5  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button> -->
 					<label for="search"></label>
-					<input id="default-search" bind:value={search} on:input={handle_search} class="w-[364px] block p-4 pl-5 text-sm text-primary-900 rounded-lg bg-grey-50" placeholder="Search" />
+					<input id="default-search" bind:value={search} on:input={handle_search} class="w-[364px] border border-primary block p-4 pl-5 text-sm text-primary-900 rounded-lg bg-grey-50" placeholder="Search" />
 					<div class="absolute top-5 opacity-100 right-5 cursor-pointer" on:click={closeModal}>
 						<Svg name={'x'} size={20} stroke={1.5} props={"opacity-70 hover:opacity-100 pb-[5px]"}/>
 					</div>
 					{#if searching}
 						<Loading />
 					{/if}
-					<div class="mt-1 bg-white rounded max-h-[260px] overflow-scroll overflow-x-hidden">
+					<div class="mt-1 bg-white rounded max-h-[260px] overflow-scroll overflow-x-hidden ">
 						{#if products?.length > 0}
-							<div class="p-4">
+							<div class="p-4 ">
 								{#each products as product}
 									<a href='/catalogo/{createSlug(product?.name || "")}'>
-										<div class="h-[64px] flex flex-row">
-											<div class="w-[60px] h-[60px] aspect-square border border-br-grey">
-												<img class="h-[56px] w-[56px] object-scale-down" src="{product?.images[0]}" alt="">
+										<div class="mb-1 h-[64px]  flex flex-row hover:border-primary hover:border-2 rounded-lg">
+											<div class="w-[60px] h-[60px] aspect-square border border-br-grey ">
+												<img class="h-[56px] w-[56px] object-scale-down rounded-lg" src="{product?.images[0]}" alt="">
 											</div>
 											<div class="px-2 flex flex-col text-sm">
 												<div id="product-name">
