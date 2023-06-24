@@ -7,6 +7,7 @@
 	import Link from '$lib/components/utils/Link.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import Svg from '$lib/components/utils/SVG.svelte';
+	import branchController from '../../../../logic/branchController';
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let userDetails = {
@@ -23,10 +24,19 @@
 
 		notify({ type: 'alert-success', text: 'Iniciando sesion.' });
 
+		let user = await sessionAdminController.getUser();
+
+		if(user.role === 'EMPLOYEE') {
+			await branchController.getBranches();
+			await branchController.selectBranch(user.branch.id);
+		}
+
 		setTimeout(() => {
 			if (browser) {
 				window.location.href = '/admin';
 			}
+
+
 		}, 2000);
 	}
 </script>

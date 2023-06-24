@@ -1,9 +1,5 @@
 <script>
 	// @ts-nocheck
-
-	import Button from '$lib/components/utils/Button.svelte';
-	import { filters } from '../../../../../routes/checkout/stores';
-
 	let container = {};
 	export let elements = [];
 	export let inputFilters = [];

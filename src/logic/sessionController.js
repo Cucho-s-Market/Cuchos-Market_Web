@@ -78,6 +78,28 @@ const sessionController = (() => {
 		return user.token;
 	}
 
+	async function sentForgotPassword(email){
+		debugger;
+		const res = await fetchController.execute("http://localhost:8080/users/auth/resetPassword", "POST", {"email": email});
+		if (res == null || res.error) return null;
+
+		return res;
+	}
+
+	async function checkForgotPasswordToken(token){
+		debugger;
+		const res = await fetchController.execute("http://localhost:8080/users/token", "GET", null, token);
+		if (res == null || res.error) return null;
+
+		return res;
+	}
+
+	async function changePasswordUser(token, password){
+		debugger;
+		const res = await fetchController.execute("http://localhost:8080/users/updatePassword", "PUT", {"password": password}, token);
+		return res;
+	}
+
 	return {
 		register,
 		login,
@@ -85,7 +107,10 @@ const sessionController = (() => {
 		isUserLoggedIn,
 		getUser,
 		setUser,
-		getUserToken
+		getUserToken,
+		sentForgotPassword,
+		checkForgotPasswordToken,
+		changePasswordUser
 	}
 })();
 

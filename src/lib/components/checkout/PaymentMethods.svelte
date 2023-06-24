@@ -11,6 +11,8 @@
 	import { userStore } from '../../../logic/Stores/UserStore';
 	import { cartStore } from '../../../logic/Stores/CartStore';
 	import { branchStore } from '../../../logic/Stores/BranchStore';
+	import { notify } from '../utils/Notifications.svelte';
+	import sessionController from '../../../logic/sessionController';
 
 	export let paymentMethods = null;
 
@@ -32,28 +34,6 @@
 							// const total = await PayPalController.convertUSDtoUYU(cart.total);
 							const total = $cartStore.total / 39.15;
 							if (total == null || !total) return null;
-							// const paymentObj = {
-							// 	intent: 'CAPTURE',
-							// 	purchase_units: [
-							// 		{
-							// 			items: cart.items.map((item) => {
-							// 				return {
-							// 					name: String(item.name),
-							//                     quantity: String(item.quantity),
-							// 					unit_amount: {
-							// 						currency_code: 'USD',
-							// 						value: String(item.price)
-							// 					}
-
-							// 				};
-							// 			}),
-							// 			amount: {
-							// 				currency_code: 'USD',
-							// 				value: String(10)
-							// 			}
-							// 		}
-							// 	]
-							// };
 
 							const paymentObj = {
 								intent: 'CAPTURE',
@@ -68,39 +48,54 @@
 							};
 
 							const orderId = await PayPalController.createOrder(paymentObj);
-							console.log('orderId', orderId);
 							return orderId;
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-
-							// TODO - Check if item is available
-
-
-							const responseCapture = await PayPalController.capturePayment(data.orderID);
-							if (responseCapture.status != 'COMPLETED') window.location.href = '/';
+							debugger;
 
 							// Create the order on the server
 							var orderDetails = {
 								branchId: $branchStore?.selected?.id,
 								totalPrice: $cartStore?.total / 39.15,
 								status: 'PENDING',
-								addressId: $userStore?.address?.id,
-								type: 'DELIVERY',
+								addressId: $userStore?.address?.isBranch ? null : $userStore?.address?.id,
+								type: $userStore?.address?.isBranch ? 'PICK_UP' : 'DELIVERY',
 								products: $cartStore?.items.map((item) => {
 									return {
-										"name": item.name,
-										"unitPrice": item.price,
-										"finalPrice": Number(item.price) * Number(item.quantity),
-										"quantity": item.quantity
+										name: item.name,
+										quantity: item.quantity
 									};
 								})
 							};
 
 							const orderCreated = await orderController.createOrder(orderDetails);
 
+							if (!orderCreated || orderCreated.error) {
+								notify({ text: orderCreated?.message || "Error del servidor.", type: 'alert-error' });
+								setTimeout(() => {
+									window.location.href = '/';
+								}, 2000);
+								return;
+							}
+
+							const responseCapture = await PayPalController.capturePayment(data.orderID);
+							if (responseCapture.status != 'COMPLETED') {
+								notify({ text: 'Error al crear la orden en PayPal', type: 'alert-error' });
+								setTimeout(() => {
+									window.location.href = '/';
+								}, 2000);
+								return;
+							}
+
 							cartController.clearCart();
-							window.location.href = '/catalogo';
+
+							// Create boolean that indicates that the order was created
+							const user = await sessionController.getUser();
+							user.orderCreated = true;
+							sessionController.setUser(user);
+
+							window.location.href = '/checkout/purchase-confirmation';
 						}
 					})
 					.render('#paypal-button-container');

@@ -55,7 +55,7 @@
             <Input bind:value={customerDetails.password} label={"Contraseña"} props={"h-10"} type={"password"} mandatory={false}/>
         </div>
         <div class="flex w-full justify-end mt-2">
-            <Link text={"¿Olvidaste la contraseña?"} target={false} type={"text-black"}/>
+            <Link text={"¿Olvidaste la contraseña?"} target={false} href={"/forgot-password"} type={"text-black"}/>
         </div>
         <div class="flex flex-col items-center">
             <Button text={"Entrar"} type={"w-full btn-primary min-h-0 h-10 text-medium mt-8 mb-4"} click={loginCustomer}/>

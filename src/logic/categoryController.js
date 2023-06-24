@@ -1,5 +1,6 @@
 // @ts-nocheck
 import fetchController from "./fetchController";
+import sessionAdminController from "./sessionAdminController";
 
 const categoryController = (() => {
 
@@ -26,7 +27,6 @@ const categoryController = (() => {
 
             // Filter categories children
             const filteredCategoriesChildren = categories.filter(category => category.categoryParent == categoryParent.id);
-            if(filteredCategoriesChildren == null || filteredCategoriesChildren.length <= 0) return null;
 
             categoryParentObj.subcategories = filteredCategoriesChildren;
 
@@ -49,7 +49,6 @@ const categoryController = (() => {
         let category = null;
         
         categories.forEach(categoryParent => {
-            debugger;
             if(category != null) return;
 
             if(categoryParent.id == id){
@@ -66,10 +65,19 @@ const categoryController = (() => {
         return category;
     }
 
+    async function addCategory(category) {
+        if (category === null) throw new Error('Error al intentar crear la categoria.');
+
+        const token = await sessionAdminController.getUserToken();
+		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
+		return res;
+    }
+
     return {
         getCategories,
         getCategoriesSelect,
-        findCategoryById
+        findCategoryById,
+        addCategory
     }
 })();
 

@@ -513,10 +513,10 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class="stroke-current icon icon-tabler icon-tabler-camera-plus"
-		width="{size}"
-		height="{size}"
+		width={size}
+		height={size}
 		viewBox="0 0 {size} {size}"
-		stroke-width="{stroke}"
+		stroke-width={stroke}
 		fill="none"
 		stroke-linecap="round"
 		stroke-linejoin="round"
@@ -528,5 +528,22 @@
 		<path d="M16 19h6" />
 		<path d="M19 16v6" />
 		<path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+	</svg>
+{:else if name == 'reload'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="icon icon-tabler icon-tabler-reload"
+		width={size} 
+		height={size} 
+		viewBox="0 0 {size}  {size}"
+		stroke-width={stroke}
+		stroke="#000000"
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
+		<path d="M20 4v5h-5" />
 	</svg>
 {/if}

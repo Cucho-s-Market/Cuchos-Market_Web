@@ -29,6 +29,12 @@
 </script>
 <a href="/catalogo/{createSlug(item?.name || "")}">
     <div class="card w-[220px] round-[10px] p-3 mb-2 border border-br-grey bg-base-100 font-poppins">
+        {#if item?.quantity > 0}
+            <p class="text-xs text-success mb-5">Disponible</p>
+        {:else}
+            <p class="text-xs text-error mb-5">Sin stock</p>
+        {/if}
+        
         <div class="flex w-[190px] mb-5 h-[190px]">
             <img class="rounded-[5px] object-scale-down" src="{item.images?.length > 0 ? item.images[0] : dummyImage}" alt="{item.name}" />
         </div>
@@ -51,7 +57,7 @@
                 {#if showQty}
                     <Quantity bind:showQty={showQty} card={true} item={item}/>
                 {:else}
-                    {#if userIsloggedIn}
+                    {#if userIsloggedIn && item?.quantity > 0}
                         <Button text="Agregar al carrito" type="btn-primary btn-block" click={() => {showQuantity()}}/>
                     {:else}
                         <Button text="Agregar al carrito" type="btn-disabled btn-block"/>

@@ -45,7 +45,7 @@
         });
 
         if(addressSelected) {
-            const addressSelected = await addressController.setSelectedAddress(addressId);
+            const addressSelected = await addressController.setSelectedAddress(addressId, takeAway);
             if(addressSelected == null) {
                 notify({text: "No se pudo seleccionar la direccion", type: 'alert-error'});
                 return;

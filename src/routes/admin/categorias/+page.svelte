@@ -5,7 +5,7 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import Input from '$lib/components/utils/Input.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
-	import adminController from '../../../logic/adminController.js';
+	import categoryController from '../../../logic/categoryController.js';
 	import { Category } from '../../../logic/dtos/Category.js';
 	import formValidator from '../../../logic/helpers/formValidator.js';
 	import sessionAdminController from '../../../logic/sessionAdminController.js';
@@ -17,6 +17,7 @@
     let category = new Category();
 
 	const getCategories = async () => {
+		debugger;
 		const categories = data.categories;
 
 		if (!categories || categories.error) {
@@ -48,7 +49,7 @@
 			return;
 		}
 		const token = await sessionAdminController.getUserToken();
-		const res = await adminController.addCategory(category, token);
+		const res = await categoryController.addCategory(category, token);
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });
