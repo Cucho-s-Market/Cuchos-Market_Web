@@ -2,9 +2,7 @@
 import { Product } from '../../../../logic/dtos/Product.js';
 import productController from '../../../../logic/productController.js';
 
-export async function load({ params }) {
-
-    debugger;
+export async function load({ params }) {    
     let product_name = params.product_id;
     let productResponse = new Product();
 

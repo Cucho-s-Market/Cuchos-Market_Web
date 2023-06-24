@@ -14,10 +14,12 @@
 	import productController from '../../../../logic/productController';
 	import Modal from '$lib/components/utils/Modal.svelte';
 	import { browser } from '$app/environment';
+	import firebaseController from '../../../../logic/third-party/firebaseController';
 
 	let branches;
 	let categories;
 	let product;
+	let arrayImages;
 	let showModalDelete = false;
 	let path = '';
 	export let data;
@@ -56,12 +58,25 @@
 			return;
 		}
 
+		//uploading images
+		if(arrayImages.length > 0) {
+			arrayImages.forEach(element => {
+				if(element?.new) {
+					upload(element.file);
+				}
+			});
+		}
+
 		notify({ type: 'alert-success', text: res.message });
 		formValidator.clear(validationArray);
 		setTimeout(() => {
-			window.location.href = '/admin/productos';
+			window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
 		}, 3000);
 	};
+
+	async function upload(file) {
+		firebaseController.upload(file, product.name.replace(' ', '_'))
+	}
 
 	async function getProduct() {
 		product = data.product;
@@ -122,10 +137,8 @@
 <SectionHeader title={'Agregar Producto'} back={true} />
 
 <div class="flex justify-around">
-	{#await getProduct()}
-		<!-- promise is pending -->
-	{:then}
-		<ProductForm bind:product {categories} />
+	{#await getProduct() then}
+		<ProductForm bind:product bind:arrayImages {categories} />
 
 		<div class="flex flex-col w-fit">
 			<ProductStock {branches} />
