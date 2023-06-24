@@ -72,7 +72,7 @@
 							const orderCreated = await orderController.createOrder(orderDetails);
 
 							if (!orderCreated || orderCreated.error) {
-								notify({ text: 'Error al crear la orden', type: 'alert-error' });
+								notify({ text: orderCreated?.message || "Error del servidor.", type: 'alert-error' });
 								setTimeout(() => {
 									window.location.href = '/';
 								}, 2000);
@@ -81,7 +81,7 @@
 
 							const responseCapture = await PayPalController.capturePayment(data.orderID);
 							if (responseCapture.status != 'COMPLETED') {
-								notify({ text: 'Error al crear la orden', type: 'alert-error' });
+								notify({ text: 'Error al crear la orden en PayPal', type: 'alert-error' });
 								setTimeout(() => {
 									window.location.href = '/';
 								}, 2000);

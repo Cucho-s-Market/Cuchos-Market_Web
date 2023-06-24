@@ -35,12 +35,21 @@
         // Send request to change password
         const res = await sessionController.changePasswordUser(token, customerDetails.password);
         if(!res || res.error){
-            message = res?.error;
+            notify({ text: res?.message || "Error al cambiar la contraseña.", type: "alert-error" });
             waiting = false;
             return;
         }
 
+        waiting = false;
+        customerDetails = {
+            password: '',
+            confirmPassword: ''
+        };
         notify({ text: "Contraseña cambiada con éxito.", type: "alert-success" });
+
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 2000);
     }
 
 </script>

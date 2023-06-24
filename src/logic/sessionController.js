@@ -95,9 +95,8 @@ const sessionController = (() => {
 	}
 
 	async function changePasswordUser(token, password){
-		const res = await fetchController.execute("http://localhost:8080/users/auth/updatePassword", "PUT", {"password": password}, token);
-		if (res == null || res.error) return null;
-
+		debugger;
+		const res = await fetchController.execute("http://localhost:8080/users/updatePassword", "PUT", {"password": password}, token);
 		return res;
 	}
 

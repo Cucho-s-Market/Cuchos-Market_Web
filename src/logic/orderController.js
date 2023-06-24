@@ -25,8 +25,6 @@ const orderController = (() => {
         if (userToken == null) return null;
 
         const response = await fetchController.execute("http://localhost:8080/orders", "POST", order, userToken);
-        if (response == null || response.error) return null;
-
         return response;
     }
 
