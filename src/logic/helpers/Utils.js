@@ -20,7 +20,7 @@ const Utils = (() => {
         sec = sec < 10 ? '0' + sec : sec;
 
         //${hour}:${min}:${sec}
-        return `${year}-${month}-${day}`;
+        return `${year}-${month}-${15}`;
     }
 
     return {

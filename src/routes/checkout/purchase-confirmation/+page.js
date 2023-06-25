@@ -3,7 +3,7 @@
 // import productController from '../../../logic/productController.js';
 
 // export async function load({ params }) {
-//     debugger;
+//     
 //     let orderId = params.orderId;
 
 //     // Find product by code

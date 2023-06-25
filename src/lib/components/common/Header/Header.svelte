@@ -19,7 +19,7 @@
     let branches = [];
 
     onMount(async () => {
-        debugger;
+        
         // Check if user is logged in
         userIsloggedIn = await sessionController.isUserLoggedIn();
 

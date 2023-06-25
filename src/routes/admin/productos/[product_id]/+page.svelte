@@ -40,11 +40,17 @@
 
 		product.entryDate = Utils.getDateNow();
 
+		
+
 		const token = await sessionAdminController.getUserToken();
 
 		let res = await productController.addProduct(product, token);
 
 		if (res && res.error) {
+			const olderImages  = arrayImages.filter(elem => {return !elem.new});
+
+			product.images = olderImages.map(elem => {return JSON.stringify({url: elem.url, name: elem.name})});
+
 			res = await productController.editProduct(product, token);
 		}
 
@@ -60,22 +66,43 @@
 
 		//uploading images
 		if(arrayImages.length > 0) {
-			arrayImages.forEach(element => {
-				if(element?.new) {
-					upload(element.file);
-				}
-			});
-		}
+			let uploadImgs = await uploadImages(arrayImages);
 
-		notify({ type: 'alert-success', text: res.message });
-		formValidator.clear(validationArray);
-		setTimeout(() => {
-			window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
-		}, 3000);
+			if(uploadImgs) {
+				;
+				notify({ type: 'alert-success', text: res.message });
+				formValidator.clear(validationArray);
+				setTimeout(() => {
+					window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
+				}, 3000);
+			}
+		} else {
+			if(uploadImages.ok) {
+				notify({ type: 'alert-success', text: res.message });
+				formValidator.clear(validationArray);
+				setTimeout(() => {
+					window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
+				}, 3000);
+			}
+		}
 	};
 
-	async function upload(file) {
-		firebaseController.upload(file, product.name.replace(' ', '_'))
+
+	async function uploadImages(arrayImages) {
+		let res = false;
+
+		arrayImages.forEach((element) => {
+			if(element?.new) {
+				const  imageUploaded = firebaseController.upload(element.file, product.name.replace(' ', '_'))
+				if(imageUploaded.ok) {
+					res = true;
+					return;
+				}
+				res = false;
+			}
+		});
+
+		return true;
 	}
 
 	async function getProduct() {

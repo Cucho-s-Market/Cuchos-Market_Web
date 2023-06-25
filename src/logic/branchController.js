@@ -29,7 +29,7 @@ const branchController = (() => {
     }
 
     async function selectBranch(branchId) {
-        debugger;
+        
         let branches = get(branchStore);
         if (branches == null) return;
 

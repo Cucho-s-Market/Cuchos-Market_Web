@@ -8,6 +8,8 @@
 	import { v4 } from 'uuid';
 	import firebaseController from '../../../../logic/third-party/firebaseController';
 	import Svg from '$lib/components/utils/SVG.svelte';
+	import { onMount } from 'svelte';
+	import Modal from '$lib/components/utils/Modal.svelte';
 
 	export let product;
 	export let categories = [];
@@ -17,33 +19,73 @@
 	let arrayImagesLength = 0;
 
 	let path = '';
+	let selectedItem = null;
 	let showAdd = true;
+	let modalDeleteImage = false;
 
 	if(browser) {
 		path = window.location.href;
 	}
 
+	onMount(async () => {
+		arrayImages = product.images === null ? [] : product.images;
+		arrayImages = arrayImages.map(elem => JSON.parse(elem));
+		arrayImages = arrayImages.map(elem => {return {url: elem.url, name: elem.name, new: false}});
+		showAdd = arrayImages.length < 4 ? true: false;
+	});
+
 	async function addImage(file) {
 		if(arrayImages.length < 4) {
 			const tempUrl = URL.createObjectURL(file);
-
 			arrayImages.push({file: file, url: tempUrl, name: v4(), new: true});
-
 			arrayImagesLength = arrayImages.length;
-
 			showAdd = arrayImages.length < 4 ? true: false;
-
 			fileInput.value = '';
 		}
 	}
 
+	function showModalDeleteImage(item) {
+		modalDeleteImage = true;
+		selectedItem = item;
+	}
+
 	async function removeImage(item) {
-		arrayImages = arrayImages.filter(elem => elem.name !== item.name);
+		let tempArray = arrayImages;
+
+		if(!item.new) {
+			firebaseController.remove(item.name, product.name);
+		}
+
+		arrayImages = tempArray.filter(elem => elem.name !== item.name);
 		arrayImagesLength = arrayImages.length;
 		showAdd = arrayImages.length < 4 ? true: false;
 		fileInput.value = '';
 	}
 </script>
+
+<Modal bind:showModal={modalDeleteImage}>
+	<div class="flex flex-col gap-10 p-10 w-full p-0 justify-center text-center">
+		<p>Confirme la accion.</p>
+		<p>La imagen se eliminara de forma permanente.</p>
+		<div class="flex justify-around">
+			<Button
+				text="Confirmar"
+				type={'btn-error min-h-0 w-[100px]'}
+				click={async () => {
+					removeImage(selectedItem);
+					modalDeleteImage = false;
+				}}
+			/>
+			<Button
+				text="Cancelar"
+				type={'btn-neutral-grey min-h-0 w-[100px]'}
+				click={() => {
+					modalDeleteImage = false;
+				}}
+			/>
+		</div>
+	</div>
+</Modal>
 
 <div class="flex flex-col w-[400px]">
 	<div class="flex flex-col w-full gap-5 p-5 rounded-lg my-10 bg-base-100 shadow">
@@ -82,20 +124,19 @@
 		</div>
 	</div>
 
-		<div class="flex flex-col w-full gap-5 p-5 rounded-lg bg-base-100 shadow">
-			<p class="font-semibold text-md mb-5">Imagenes</p>
-			<div class="flex gap-5">
-				{#key arrayImagesLength}
-					{#each arrayImages as item}
-						<div class="bg-base-300 relative border border-primary rounded-md w-[70px] h-[70px] hover:bg-primary cursor-pointer">
-							<div class="bg-error rounded absolute right-0 top-[-10px] cursor-pointer" on:click={() => {removeImage(item)}}><Svg name="trash"/></div>
-							<img class="w-full h-full object-cover rounded-md" src="{item.url}" alt="{item.name}">
-						</div>
-					{/each}
-				{/key}
-				<input bind:this={fileInput} class="file-input file-input-bordered file-input-primary hidden" on:change={(event) => {addImage(event.target.files[0])}} type="file">
-				<Button type="bg-base-300 border-none w-[70px] h-[70px] hover:bg-primary hover:text-base-100 {showAdd ? 'flex' : 'hidden'}" svg={{name: "camera-plus"}} click={() => { if(fileInput) { fileInput.click(); } }} />
-			</div>
+	<div class="flex flex-col w-full gap-5 p-5 rounded-lg bg-base-100 shadow">
+		<p class="font-semibold text-md mb-5">Imagenes</p>
+		<div class="flex gap-5">
+			{#key arrayImagesLength}
+				{#each arrayImages as item}
+					<div class="bg-base-300 relative border border-primary rounded-md w-[70px] h-[70px] hover:bg-primary cursor-pointer">
+						<div class="bg-error rounded absolute right-0 top-[-10px] cursor-pointer" on:click={() => {showModalDeleteImage(item);}}><Svg name="trash"/></div>
+						<img class="w-full h-full object-cover rounded-md" src="{item.url}" alt="{item.name}">
+					</div>
+				{/each}
+			{/key}
+			<input bind:this={fileInput} class="file-input file-input-bordered file-input-primary hidden" on:change={(event) => {addImage(event.target.files[0])}} type="file">
+			<Button type="bg-base-300 border-none w-[70px] h-[70px] hover:bg-primary hover:text-base-100 {showAdd ? 'flex' : 'hidden'}" svg={{name: "camera-plus"}} click={() => { if(fileInput) { fileInput.click(); } }} />
 		</div>
-
+	</div>
 </div>

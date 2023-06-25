@@ -2,7 +2,7 @@
 
 import { notify } from '$lib/components/utils/Notifications.svelte';
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { deleteObject, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import productController from '../productController';
 import sessionAdminController from '../sessionAdminController';
@@ -34,12 +34,15 @@ const firebaseController = (() => {
 	async function upload(file, productName) {
 		if (!file) return null;
 
+        
+
         const fileName = `${productName}__${v4()}.png`;
 
 		const imageRef = ref(storage, fileName);
 
 		const uploadFile = await uploadBytes(imageRef, file);
 
+        
         if(!uploadFile) {
             
             notify({
@@ -47,44 +50,91 @@ const firebaseController = (() => {
                 type: 'alert-error'
             });
         }
-  
+
         if (uploadFile.metadata) {
             const filePath = await getPath(uploadFile.metadata);
-
+       
             let productDB = await productController.getProduct(productName.replaceAll(' ', '_'));
 
             if(productDB) {
                 productDB = productDB.data.content[0];
-
+                
                 if(productDB.images === null) productDB.images = [];
 
-                productDB.images.push(filePath);
+                
+                productDB.images.push(JSON.stringify({url: filePath, name: fileName}));
 
-                debugger;
-
+                
                 const token = await sessionAdminController.getUserToken();
                 const res = await productController.editProduct(productDB, token);
 
                 if (!res) {
                     notify({ type: 'alert-error', text: 'Error en el servidor' });
-                    return;
+                    return null;
                 }
         
                 if (res.error) {
                     notify({ type: 'alert-error', text: res.message });
-                    return;
+                    return null;
                 }
 
                 notify({
                     text: `Imagen de producto ${productName} se ha guardado correctamente`,
                     type: 'alert-success'
                 });
+
+                return {ok: true};
             }
         }
 	}
 
+    async function remove(fileName, productName) {
+		if (!fileName) return null;
+
+		try {
+            const imageRef = ref(storage, fileName);
+		    const uploadFile = await deleteObject(imageRef);
+        } catch (error) {
+            console.log(error);
+        }
+
+        let productDB = await productController.getProduct(productName.replaceAll(' ', '_'));
+
+        if(productDB) {
+            productDB = productDB.data.content[0];
+            
+            productDB.images = productDB.images.filter(elem => {
+                elem = JSON.parse(elem);
+                return elem.name !== fileName;
+            });
+
+               
+
+            const token = await sessionAdminController.getUserToken();
+            const res = await productController.editProduct(productDB, token);
+
+            if (!res) {
+                notify({ type: 'alert-error', text: 'Error en el servidor' });
+                return null;
+            }
+
+            if (res.error) {
+                notify({ type: 'alert-error', text: res.message });
+                return null;
+            }
+
+            notify({
+                text: `${fileName} se ha eliminado correctamente.`,
+                type: 'alert-success'
+            });
+
+            return {ok: true};
+        }
+	}
+
 	return {
-		upload
+		upload,
+        remove
 	};
 })();
 

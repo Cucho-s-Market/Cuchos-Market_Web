@@ -4,7 +4,7 @@ import {cartStore} from "./Stores/CartStore";
 const cartController = (() => {
 
     async function addItem(item) {
-        debugger;
+        
         let cart = sessionStorage.getItem("cart") != null ? JSON.parse(sessionStorage.getItem("cart")) : null;
         if (cart == null) return;
 

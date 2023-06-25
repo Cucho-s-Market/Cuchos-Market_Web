@@ -20,7 +20,7 @@
 	const getProducts = async () => {
 		products = data;
 
-		debugger;
+		
 		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });

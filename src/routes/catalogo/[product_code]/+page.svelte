@@ -7,7 +7,7 @@
 	export let data;
 
 	onMount(async () => {
-		debugger;
+		
 		if(!data || data.status == 404) window.location.href = "/catalogo";
 	});
 

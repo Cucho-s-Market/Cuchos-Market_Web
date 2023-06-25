@@ -14,7 +14,7 @@
     let errorMessage = '';
 
     const loginCustomer = async () => {
-        debugger;
+        
         // Validate all fields are filled
         if (customerDetails.email === '' || customerDetails.password === '') {
             alert('Por favor, llene todos los campos');

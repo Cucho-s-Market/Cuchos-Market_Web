@@ -57,7 +57,8 @@ const productController = (() => {
     }
 
     async function editProduct(product, adminToken) {
-        if (product === null) throw new Error('Error al intentar crear el producto.');
+        
+        if (product === null) throw new Error('Error al intentar actualizar el producto.');
 
         const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'PUT', product, adminToken);
         return res;

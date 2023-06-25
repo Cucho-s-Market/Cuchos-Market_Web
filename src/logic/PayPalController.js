@@ -5,7 +5,7 @@ import fetchController from "./fetchController";
 const PayPalController = (() => {
     // use the orders api to create an order
     async function createOrder(paymentObj) {
-        debugger;
+        
         const accessToken = await generateAccessToken();
         const url = `https://api-m.sandbox.paypal.com/v2/checkout/orders`;
         const response = await fetchController.execute(url, "POST", paymentObj, accessToken);
@@ -14,7 +14,7 @@ const PayPalController = (() => {
 
     // use the orders api to capture payment for an order
     async function capturePayment(orderId) {
-        debugger;
+        
         const accessToken = await generateAccessToken();
         const url = `https://api-m.sandbox.paypal.com/v2/checkout/orders/${orderId}/capture`;
         const response = await fetchController.execute(url, "POST", null, accessToken);
@@ -39,7 +39,7 @@ const PayPalController = (() => {
     }
 
     async function convertUSDtoUYU(uyu_value){
-        debugger;
+        
         const response = await fetchController.execute("https://cotizaciones-brou-v2-e449.fly.dev/currency/latest");
         if(!response || Object.entries(response).length === 0) return null;
 

@@ -52,7 +52,7 @@
 						},
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
-							debugger;
+							
 
 							// Create the order on the server
 							var orderDetails = {
