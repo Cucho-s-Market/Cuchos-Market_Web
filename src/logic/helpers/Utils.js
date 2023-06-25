@@ -1,4 +1,8 @@
 // @ts-nocheck
+import { browser } from "$app/environment";
+import LoadingOverlay from "$lib/components/utils/LoadingOverlay.svelte";
+
+// @ts-nocheck
 const Utils = (() => {
     
     function getDateNow() {
@@ -23,8 +27,34 @@ const Utils = (() => {
         return `${year}-${month}-${15}`;
     }
 
+    function showLoading(time) {
+        if (browser) {
+			const loading = new LoadingOverlay({
+				target: document.querySelector('body')
+			});
+
+			if(time && parseInt(time)) {
+                setTimeout(() => {
+                    loading.$destroy();
+                }, time);
+            }
+		}
+    }
+
+    function removeLoading() {
+        if(browser) {
+            const loadings = document.querySelectorAll('.loading-overlay');
+
+            loadings.forEach(element => {
+                element.remove();
+            });
+        }
+    }
+
     return {
-        getDateNow
+        getDateNow,
+        showLoading,
+        removeLoading
     }
 })();
 

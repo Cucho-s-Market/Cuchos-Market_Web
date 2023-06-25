@@ -29,18 +29,25 @@
 	}
 
 	let execute = async () => {
+		Utils.showLoading();
+
 		let validationArray = [product.name, product.brand, product.price];
 
 		let emptyValues = formValidator.emptyValues(validationArray);
 
 		if (emptyValues || !formValidator.isNumber(product.price)) {
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
+			Utils.removeLoading();
+			return;
+		}
+
+		if(arrayImages.length === 0) {
+			notify({ type: 'alert-error', text: 'El producto tiene que tener al menos una imagen.' });
+			Utils.removeLoading();
 			return;
 		}
 
 		product.entryDate = Utils.getDateNow();
-
-		
 
 		const token = await sessionAdminController.getUserToken();
 
@@ -56,11 +63,13 @@
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });
+			Utils.removeLoading();
 			return;
 		}
 
 		if (res.error) {
 			notify({ type: 'alert-error', text: res.message });
+			Utils.removeLoading();
 			return;
 		}
 
@@ -69,21 +78,20 @@
 			let uploadImgs = await uploadImages(arrayImages);
 
 			if(uploadImgs) {
-				;
+				Utils.removeLoading();
 				notify({ type: 'alert-success', text: res.message });
 				formValidator.clear(validationArray);
 				setTimeout(() => {
 					window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
 				}, 3000);
 			}
-		} else {
-			if(uploadImages.ok) {
-				notify({ type: 'alert-success', text: res.message });
-				formValidator.clear(validationArray);
-				setTimeout(() => {
-					window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
-				}, 3000);
-			}
+		} else if(uploadImages.ok) {
+			Utils.removeLoading();
+			notify({ type: 'alert-success', text: res.message });
+			formValidator.clear(validationArray);
+			setTimeout(() => {
+				window.location.href = `/admin/productos/${product.name.replace(' ', '_')}`;
+			}, 3000);
 		}
 	};
 
@@ -95,6 +103,11 @@
 			if(element?.new) {
 				const  imageUploaded = firebaseController.upload(element.file, product.name.replace(' ', '_'))
 				if(imageUploaded.ok) {
+					Utils.removeLoading();
+					notify({
+						text: `Imagen de producto ${productName} se ha guardado correctamente`,
+						type: 'alert-success'
+					});
 					res = true;
 					return;
 				}

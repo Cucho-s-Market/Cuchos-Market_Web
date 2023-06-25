@@ -1,8 +1,10 @@
 // @ts-nocheck
+import ProductImages from "$lib/components/product-detail-page/ProductImages.svelte";
 import { branchStore } from "./Stores/BranchStore";
 import branchController from "./branchController";
 import fetchController from "./fetchController";
 import sessionAdminController from "./sessionAdminController";
+import firebaseController from "./third-party/firebaseController";
 
 const productController = (() => {
 
@@ -67,7 +69,19 @@ const productController = (() => {
     async function deleteProduct(product, adminToken) {
         if (product === null) throw new Error('Error al intentar crear el producto.');
 
+        let productsImages = JSON.parse(product.images);
+
+        if(productsImages.name) {
+            productsImages = [productsImages];
+        }
+
         const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'DELETE', product, adminToken);
+        if(res) {
+            productsImages.forEach(element => {
+                firebaseController.remove(element.name);
+            });
+        }
+
         return res;
     }
 

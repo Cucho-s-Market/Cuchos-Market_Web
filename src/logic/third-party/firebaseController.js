@@ -78,17 +78,12 @@ const firebaseController = (() => {
                     return null;
                 }
 
-                notify({
-                    text: `Imagen de producto ${productName} se ha guardado correctamente`,
-                    type: 'alert-success'
-                });
-
                 return {ok: true};
             }
         }
 	}
 
-    async function remove(fileName, productName) {
+    async function remove(fileName, productName = null) {
 		if (!fileName) return null;
 
 		try {
@@ -98,38 +93,42 @@ const firebaseController = (() => {
             console.log(error);
         }
 
-        let productDB = await productController.getProduct(productName.replaceAll(' ', '_'));
+        if(productName) {
+            let productDB = await productController.getProduct(productName.replaceAll(' ', '_'));
 
-        if(productDB) {
-            productDB = productDB.data.content[0];
-            
-            productDB.images = productDB.images.filter(elem => {
-                elem = JSON.parse(elem);
-                return elem.name !== fileName;
-            });
+            if(productDB) {
+                productDB = productDB.data.content[0];
+                
+                productDB.images = productDB.images.filter(elem => {
+                    elem = JSON.parse(elem);
+                    return elem.name !== fileName;
+                });
 
-               
+                
 
-            const token = await sessionAdminController.getUserToken();
-            const res = await productController.editProduct(productDB, token);
+                const token = await sessionAdminController.getUserToken();
+                const res = await productController.editProduct(productDB, token);
 
-            if (!res) {
-                notify({ type: 'alert-error', text: 'Error en el servidor' });
-                return null;
+                if (!res) {
+                    notify({ type: 'alert-error', text: 'Error en el servidor' });
+                    return null;
+                }
+
+                if (res.error) {
+                    notify({ type: 'alert-error', text: res.message });
+                    return null;
+                }
+
+                notify({
+                    text: `Imagen eliminada correctamente.`,
+                    type: 'alert-success'
+                });
+
+                return {ok: true};
             }
-
-            if (res.error) {
-                notify({ type: 'alert-error', text: res.message });
-                return null;
-            }
-
-            notify({
-                text: `${fileName} se ha eliminado correctamente.`,
-                type: 'alert-success'
-            });
-
-            return {ok: true};
         }
+
+        return null;
 	}
 
 	return {

@@ -10,6 +10,7 @@
 	import Svg from '$lib/components/utils/SVG.svelte';
 	import { onMount } from 'svelte';
 	import Modal from '$lib/components/utils/Modal.svelte';
+	import Utils from '../../../../logic/helpers/Utils';
 
 	export let product;
 	export let categories = [];
@@ -22,12 +23,15 @@
 	let selectedItem = null;
 	let showAdd = true;
 	let modalDeleteImage = false;
+	let showTrash = false;
 
 	if(browser) {
 		path = window.location.href;
 	}
 
 	onMount(async () => {
+		Utils.showLoading(2000);
+
 		arrayImages = product.images === null ? [] : product.images;
 		arrayImages = arrayImages.map(elem => JSON.parse(elem));
 		arrayImages = arrayImages.map(elem => {return {url: elem.url, name: elem.name, new: false}});
@@ -50,16 +54,23 @@
 	}
 
 	async function removeImage(item) {
+		Utils.showLoading();
 		let tempArray = arrayImages;
+		let res = null;
 
 		if(!item.new) {
-			firebaseController.remove(item.name, product.name);
+			res = await firebaseController.remove(item.name, product.name);
+
+			if(res.ok) {
+				Utils.removeLoading();
+			}
 		}
 
 		arrayImages = tempArray.filter(elem => elem.name !== item.name);
 		arrayImagesLength = arrayImages.length;
 		showAdd = arrayImages.length < 4 ? true: false;
 		fileInput.value = '';
+		Utils.removeLoading();
 	}
 </script>
 
@@ -72,8 +83,8 @@
 				text="Confirmar"
 				type={'btn-error min-h-0 w-[100px]'}
 				click={async () => {
-					removeImage(selectedItem);
 					modalDeleteImage = false;
+					removeImage(selectedItem);
 				}}
 			/>
 			<Button
@@ -129,8 +140,13 @@
 		<div class="flex gap-5">
 			{#key arrayImagesLength}
 				{#each arrayImages as item}
-					<div class="bg-base-300 relative border border-primary rounded-md w-[70px] h-[70px] hover:bg-primary cursor-pointer">
-						<div class="bg-error rounded absolute right-0 top-[-10px] cursor-pointer" on:click={() => {showModalDeleteImage(item);}}><Svg name="trash"/></div>
+					<div class="bg-base-300 relative border border-primary rounded-md w-[70px] h-[70px] hover:bg-primary cursor-pointer" on:mouseover={() => {showTrash = true}}>
+
+							{#if showTrash}
+								<div class="bg-error rounded absolute right-0 top-[-10px] cursor-pointer z-20" on:click={() => {showModalDeleteImage(item)}} on:mouseout={() => {showTrash = false}}><Svg name="trash"/></div>
+							{/if}
+			
+
 						<img class="w-full h-full object-cover rounded-md" src="{item.url}" alt="{item.name}">
 					</div>
 				{/each}
