@@ -51,10 +51,20 @@ const Utils = (() => {
         }
     }
 
+    function isEditMode () {
+        if (browser) {
+            const res = window.location.pathname !== '/admin/productos/nuevo';
+            return res;
+        }
+
+        return false;
+    }
+
     return {
         getDateNow,
         showLoading,
-        removeLoading
+        removeLoading,
+        isEditMode
     }
 })();
 

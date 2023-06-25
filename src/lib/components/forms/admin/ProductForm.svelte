@@ -101,10 +101,10 @@
 <div class="flex flex-col w-[400px]">
 	<div class="flex flex-col w-full gap-5 p-5 rounded-lg my-10 bg-base-100 shadow">
 		<div class="w-full">
-			<Input bind:value={product.code} props="h-10" label="Codigo" />
+			<Input bind:value={product.code} disabled={Utils.isEditMode()} props="h-10" label="Codigo" />
 		</div>
 		<div class="w-full">
-			<Input bind:value={product.name} props="h-10" label="Nombre" />
+			<Input bind:value={product.name} disabled={Utils.isEditMode()} props="h-10" label="Nombre" />
 		</div>
 
 		<div class="w-full">
