@@ -5,12 +5,12 @@
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
 	import Input from '$lib/components/utils/Input.svelte';
-	import { v4 } from 'uuid';
 	import firebaseController from '../../../../logic/third-party/firebaseController';
 	import Svg from '$lib/components/utils/SVG.svelte';
 	import { onMount } from 'svelte';
 	import Modal from '$lib/components/utils/Modal.svelte';
 	import Utils from '../../../../logic/helpers/Utils';
+	import { nanoid } from 'nanoid';
 
 	export let product;
 	export let categories = [];
@@ -41,7 +41,7 @@
 	async function addImage(file) {
 		if(arrayImages.length < 4) {
 			const tempUrl = URL.createObjectURL(file);
-			arrayImages.push({file: file, url: tempUrl, name: v4(), new: true});
+			arrayImages.push({file: file, url: tempUrl, name: nanoid(), new: true});
 			arrayImagesLength = arrayImages.length;
 			showAdd = arrayImages.length < 4 ? true: false;
 			fileInput.value = '';
@@ -145,9 +145,8 @@
 							{#if showTrash}
 								<div class="bg-error rounded absolute right-0 top-[-10px] cursor-pointer z-20" on:click={() => {showModalDeleteImage(item)}} on:mouseout={() => {showTrash = false}}><Svg name="trash"/></div>
 							{/if}
-			
 
-						<img class="w-full h-full object-cover rounded-md" src="{item.url}" alt="{item.name}">
+						<img class="w-full h-full object-cover rounded-md" src="{item.url}" alt="{item.alt}">
 					</div>
 				{/each}
 			{/key}

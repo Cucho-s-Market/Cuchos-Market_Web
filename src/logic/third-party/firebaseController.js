@@ -3,7 +3,7 @@
 import { notify } from '$lib/components/utils/Notifications.svelte';
 import { initializeApp } from 'firebase/app';
 import { deleteObject, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { v4 } from 'uuid';
+import { nanoid } from 'nanoid';
 import productController from '../productController';
 import sessionAdminController from '../sessionAdminController';
 
@@ -34,9 +34,9 @@ const firebaseController = (() => {
 	async function upload(file, productName) {
 		if (!file) return null;
 
-        
+        const imageId = nanoid();
 
-        const fileName = `${productName}__${v4()}.png`;
+        const fileName = `${productName}__${imageId}.png`;
 
 		const imageRef = ref(storage, fileName);
 
@@ -62,7 +62,7 @@ const firebaseController = (() => {
                 if(productDB.images === null) productDB.images = [];
 
                 
-                productDB.images.push(JSON.stringify({url: filePath, name: fileName}));
+                productDB.images.push(JSON.stringify({url: filePath, name: fileName, alt: `${productDB.name.replace(' ', '_')}__${imageId}`}));
 
                 
                 const token = await sessionAdminController.getUserToken();
