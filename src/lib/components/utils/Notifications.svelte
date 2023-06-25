@@ -18,4 +18,4 @@
 	};
 </script>
 
-<div id="notifications" class="flex flex-col gap-5 fixed bottom-10 right-5" />
+<div id="notifications" class="flex flex-col z-60 gap-5 fixed bottom-10 right-5" />

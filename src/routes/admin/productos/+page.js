@@ -7,9 +7,7 @@ import sessionAdminController from '../../../logic/sessionAdminController';
 /** @type {import('./$types').PageLoad} */
 export async function load() {
 
-    const products = await productController.getProducts();
-
-    debugger;
+    const products = await productController.getProducts(); 
 
     return {products};
 }

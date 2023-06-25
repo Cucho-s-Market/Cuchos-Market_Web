@@ -18,7 +18,7 @@
 
 	//@ts-ignore
 	var selectImg = (event) => {
-		debugger;
+		
 		const img = event.target;
 		const imgParent = img.parentNode;
 

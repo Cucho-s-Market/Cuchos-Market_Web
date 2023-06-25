@@ -17,7 +17,7 @@
     let category = new Category();
 
 	const getCategories = async () => {
-		debugger;
+		
 		const categories = data.categories;
 
 		if (!categories || categories.error) {

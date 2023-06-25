@@ -8,8 +8,6 @@ import { get } from "svelte/store";
 const branchController = (() => {
 
     async function getBranches() {
-        debugger; 
-        
         let branchesSession = get(branchStore);
 
         // If branches session are empty is the first time that the user is using the app
@@ -31,7 +29,7 @@ const branchController = (() => {
     }
 
     async function selectBranch(branchId) {
-        debugger;
+        
         let branches = get(branchStore);
         if (branches == null) return;
 

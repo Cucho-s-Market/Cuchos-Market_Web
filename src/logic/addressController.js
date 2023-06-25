@@ -11,7 +11,7 @@ const addressController = (() => {
 
     // Create new address
     async function createAddress(address) {
-        debugger;
+        
         const userToken = await sessionController.getUserToken();
 
         const newAddress = new Address(null, address.address, address.doorNumber, address.location, address.state);
@@ -26,7 +26,7 @@ const addressController = (() => {
 
     // Update address
     async function updateAddress(address) {
-        debugger;
+        
         const userToken = await sessionController.getUserToken();
         let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address", "PUT", address, userToken);
         if (resultAddress == null || resultAddress.error) return null;
@@ -38,7 +38,7 @@ const addressController = (() => {
 
     // Delete address
     async function deleteAddress(addressId) {
-        debugger;
+        
         const userToken = await sessionController.getUserToken();
         let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address/" + addressId, "DELETE", null, userToken);
         if (resultAddress == null || resultAddress.error) return null;

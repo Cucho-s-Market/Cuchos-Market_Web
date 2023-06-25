@@ -37,7 +37,7 @@
 			return;
 		}
 
-		debugger;
+		
 		const response = await adminController.registerEmployee(user, branch);
 
 		if (!response) {

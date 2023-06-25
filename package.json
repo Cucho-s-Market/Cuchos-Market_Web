@@ -33,7 +33,9 @@
 		"buffer": "^6.0.3",
 		"chart.js": "^4.3.0",
 		"dotenv": "^16.0.3",
+		"firebase": "^9.23.0",
 		"svelte-routing": "^1.8.9",
-		"swiper": "^9.3.1"
+		"swiper": "^9.3.1",
+		"uuid": "^9.0.0"
 	}
 }
