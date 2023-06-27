@@ -11,6 +11,9 @@
 
     //Only when modal is open hide scrollbar in order to not scroll
     $:if(showModal || showSearch) document.body.style.overflow = 'hidden';
+	$:if(showSearch) document.body.style.background = 'linear-gradient(' + 'rgb(245,121,59, 0.4)' + ', ' + 'rgb(255,255,255)' + ')';
+	// $:showSearch == true? document.body.style.background = 'linear-gradient(' + 'rgb(245,121,59, 0.4)' + ', ' + 'rgb(255,255,255)' + ')' : 	document.body.style.background = '';
+
 
     function closeModal() {
         showModal = false;
