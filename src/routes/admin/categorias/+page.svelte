@@ -39,6 +39,10 @@
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
 			return;
 		}
+
+		if (category.categoryParent === '-1') {
+			category.categoryParent = null;
+		}
 		const token = await sessionAdminController.getUserToken();
 		const res = await categoryController.addCategory(category, token);
 
@@ -69,6 +73,17 @@
 	<div class="flex w-[200px]">
 		<Input bind:value={category.description} label="Descripcion" props="h-10" />
 	</div>
+	<div class="flex flex-col w-[200px]">
+		<p class="label">
+			<span class="label-text font-semibold">Categoria Padre</span>
+		</p>
+		<select bind:value={category.categoryParent} class="select select-primary w-full h-1 bg-light-grey focus:border-none">
+			<option value="-1" selected>Sin padre</option>
+			{#each categories as category}
+				<option value="{category.id}">{category.name}</option>
+			{/each}
+		</select>
+	</div>
 	<div class="flex flex-col justify-end">
 		<Button
 			text="Crear Categoria"
@@ -82,14 +97,16 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 {#each categories as item}
-	<div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-200 max-w-[700px] mt-5 shadow rounded-lg">
-		<div class="collapse-title text-xs font-medium">{item.name}</div>
-		{#if item?.subcategories.length > 0}
-			{#each item?.subcategories as subitem}
-				<div class="collapse-content text-xs">
-					<p>{subitem.name}</p>
-				</div>
-			{/each}
-		{/if}
+	<div tabindex="0" class="collapse {item?.subcategories.length > 0 ? 'collapse-arrow' : ''} border border-base-300 bg-base-200 max-w-[700px] mt-5 shadow rounded-lg">
+		<div class="flex flex-col justify-center collapse-title text-xs font-medium">{item.name}</div>
+		<div class="flex flex-col">
+			{#if item?.subcategories.length > 0}
+				{#each item?.subcategories as subitem}
+					<div class="collapse-content text-xs">
+						<p>{subitem.name}</p>
+					</div>
+				{/each}
+			{/if}
+		</div>
 	</div>
 {/each}
