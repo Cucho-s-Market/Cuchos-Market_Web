@@ -6,7 +6,6 @@
     export let data;
 
     onMount(() => {
-        debugger;
         if(data.error) window.location.href = '/';
     });
 </script>

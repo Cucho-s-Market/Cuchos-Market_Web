@@ -4,7 +4,6 @@ import sessionController from '../../../logic/sessionController.js';
 
 export async function load({ url }) {
     // Check if token is valid);
-    debugger;
     const token = new URLSearchParams(url.search).get('token');
     if (token == null) return {
         status: 400,

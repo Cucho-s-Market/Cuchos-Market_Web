@@ -16,7 +16,6 @@
     let waiting = false;
 
     async function changePassword(){
-        debugger;
         if(!token) window.location.href = '/';
 
         // Validate fields

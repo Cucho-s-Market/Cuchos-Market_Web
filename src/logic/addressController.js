@@ -109,7 +109,7 @@ const addressController = (() => {
         }
 
         user.address = selectedAddress;
-        sessionController.setUser(user);
+        userStore.set(user);
 
         return true;
     }
