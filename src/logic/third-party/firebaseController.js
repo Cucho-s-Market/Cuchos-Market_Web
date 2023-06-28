@@ -61,7 +61,7 @@ const firebaseController = (() => {
                 
                 if(productDB.images === null) productDB.images = [];
 
-                
+                productDB.images = productDB.images.map(elem => JSON.stringify(elem));
                 productDB.images.push(JSON.stringify({url: filePath, name: fileName, alt: `${productDB.name.replace(' ', '_')}__${imageId}`}));
 
                 
@@ -98,14 +98,10 @@ const firebaseController = (() => {
 
             if(productDB) {
                 productDB = productDB.data.content[0];
-                
-                productDB.images = productDB.images.filter(elem => {
-                    elem = JSON.parse(elem);
-                    return elem.name !== fileName;
-                });
 
+                productDB.images = productDB.images.filter(elem => {return elem.name !== fileName});
+                productDB.images = productDB.images.map(elem => {return JSON.stringify(elem)});
                 
-
                 const token = await sessionAdminController.getUserToken();
                 const res = await productController.editProduct(productDB, token);
 
