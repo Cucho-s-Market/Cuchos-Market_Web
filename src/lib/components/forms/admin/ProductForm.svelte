@@ -33,8 +33,8 @@
 		Utils.showLoading(2000);
 
 		arrayImages = product.images === null ? [] : product.images;
-		arrayImages = arrayImages.map(elem => JSON.parse(elem));
 		arrayImages = arrayImages.map(elem => {return {url: elem.url, name: elem.name, new: false}});
+		
 		showAdd = arrayImages.length < 4 ? true: false;
 	});
 
