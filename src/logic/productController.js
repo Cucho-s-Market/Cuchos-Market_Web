@@ -27,7 +27,7 @@ const productController = (() => {
         // }
 
         response.data.content.forEach(element => {
-            element.images = element.images.map((elem) => {return JSON.parse(elem)});
+            if(element.images) element.images = element.images.map((elem) => {return JSON.parse(elem)});
         });
 
         return response;
@@ -52,7 +52,7 @@ const productController = (() => {
         // }
 
         response.data.content.forEach(element => {
-            element.images = element.images.map((elem) => {return JSON.parse(elem)});
+            if(element.images) element.images = element.images.map((elem) => {return JSON.parse(elem)});
         });
 
         return response;
@@ -62,7 +62,7 @@ const productController = (() => {
         if (product === null) throw new Error('Error al intentar crear el producto.');
 
         //convert images
-        product.images = product.images.map(elem => {JSON.stringify(elem)});
+        //product.images = product.images.map(elem => {JSON.stringify(elem)});
 
         let token = await sessionAdminController.getUserToken();
         const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, token);

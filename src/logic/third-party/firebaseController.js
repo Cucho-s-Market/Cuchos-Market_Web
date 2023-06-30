@@ -42,7 +42,6 @@ const firebaseController = (() => {
 
 		const uploadFile = await uploadBytes(imageRef, file);
 
-        
         if(!uploadFile) {
             
             notify({
