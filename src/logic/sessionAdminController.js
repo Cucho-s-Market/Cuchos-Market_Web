@@ -14,8 +14,6 @@ const sessionAdminController = (() => {
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
 		if (res == null) return null;
 
-		debugger;
-
 		if (res.error) return res;
 
 		// Initialize values
