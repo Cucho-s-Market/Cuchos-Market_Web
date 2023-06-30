@@ -57,7 +57,7 @@ const firebaseController = (() => {
 
             if(productDB) {
                 productDB = productDB.data.content[0];
-                
+
                 if(productDB.images === null) productDB.images = [];
 
                 productDB.images = productDB.images.map(elem => JSON.stringify(elem));

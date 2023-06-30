@@ -1,6 +1,4 @@
 // @ts-nocheck
-import ProductImages from "$lib/components/product-detail-page/ProductImages.svelte";
-import { branchStore } from "./Stores/BranchStore";
 import branchController from "./branchController";
 import fetchController from "./fetchController";
 import sessionAdminController from "./sessionAdminController";
@@ -62,7 +60,9 @@ const productController = (() => {
         if (product === null) throw new Error('Error al intentar crear el producto.');
 
         //convert images
-        //product.images = product.images.map(elem => {JSON.stringify(elem)});
+        if(product.images) {
+            product.images = product.images.map((elem) => {return JSON.stringify(elem)});
+        }
 
         let token = await sessionAdminController.getUserToken();
         const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, token);
