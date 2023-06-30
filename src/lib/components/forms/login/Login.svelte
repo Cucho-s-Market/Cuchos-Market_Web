@@ -40,13 +40,12 @@
 
 <div class="w-full">
     <!-- Info login and google -->
-    <div class="flex flex-col items-center gap-10 border-b border-b-neutral-grey pb-12">
+    <div class="flex flex-col items-center gap-10 {errorMessage ? '' : 'pb-12 border-b border-b-neutral-grey'}">
         <h1 class="font-semibold text-[32px]">Iniciar sesion</h1>
+        {#if errorMessage != ''}
+            <Notification text="{"Usuario y/o contraseña incorrecta."}" type={"alert-error"} props={"h-[40px] rounded-md w-full"}/>
+        {/if}
     </div>
-
-    {#if errorMessage != ''}
-        <Notification text="{errorMessage}" type={"alert-error"} props={"h-auto w-full"}/>
-    {/if}
 
     <!-- Login info and register -->
     <div class="px-4 mt-8">
