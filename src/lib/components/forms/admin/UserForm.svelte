@@ -50,9 +50,10 @@
 			return;
 		}
 
-		if (response.ok) {
-			notify({ type: 'alert-success', text: response.message });
-		}
+		notify({ type: 'alert-success', text: response.message });
+		setTimeout(() => {
+			window.location.href = `/admin/usuarios`;
+		}, 3000);
 	};
 </script>
 

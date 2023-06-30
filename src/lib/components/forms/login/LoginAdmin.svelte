@@ -8,6 +8,7 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import Svg from '$lib/components/utils/SVG.svelte';
 	import branchController from '../../../../logic/branchController';
+	import Utils from '../../../../logic/helpers/Utils';
 	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let userDetails = {
@@ -16,27 +17,38 @@
 	};
 
 	async function login() {
+		Utils.showLoading();
 		let res = await sessionAdminController.login(userDetails);
+
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Verifique los campos.' });
+			Utils.removeLoading();
             return
 		}
 
-		notify({ type: 'alert-success', text: 'Iniciando sesion.' });
+		if(res.error) {
+			notify({ type: 'alert-error', text: res.message });
+			Utils.removeLoading();
+			return;
+		}
 
-		let user = await sessionAdminController.getUser();
+		
+		let data = await sessionAdminController.getUser();
+
+		let user = data;
 
 		if(user.role === 'EMPLOYEE') {
 			await branchController.getBranches();
 			await branchController.selectBranch(user.branch.id);
 		}
+		
+		Utils.removeLoading();
+		notify({ type: 'alert-success', text: 'Iniciando sesion.' });
 
 		setTimeout(() => {
 			if (browser) {
 				window.location.href = '/admin';
 			}
-
-
 		}, 2000);
 	}
 </script>

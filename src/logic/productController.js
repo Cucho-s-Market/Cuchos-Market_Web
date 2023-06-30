@@ -13,18 +13,19 @@ const productController = (() => {
         let branch = '';
         let response = null;
 
-        // let user = await sessionAdminController.getUser();
-        // if (user) {
-        //     if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
-                let branch_id = await branchController.getSelectedBranch() || null;
-                if (branch_id == null) return null;
+        let user = await sessionAdminController.getUser();
 
-                branch = `&branch_id=${branch_id?.id}`;
-            // }
+        if(!user) return null;
 
-            response = await fetchController.execute(`http://localhost:8080/products?name=${name}${branch}`);
-            if (!response || Object.entries(response).length === 0) return null;
-        // }
+        if (user.role === "EMPLOYEE") {
+            let branch_id = await branchController.getSelectedBranch() || null;
+            if (branch_id == null) return null;
+
+            branch = `&branch_id=${branch_id?.id}`;
+        }
+        
+        response = await fetchController.execute(`http://localhost:8080/products?name=${name}${branch}`);
+        if (!response || Object.entries(response).length === 0) return null;
 
         response.data.content.forEach(element => {
             element.images = element.images.map((elem) => {return JSON.parse(elem)});
@@ -37,19 +38,21 @@ const productController = (() => {
         let branch = '';
         let response = null;
 
-        // let user = await sessionAdminController.getUser();
+        debugger;
+        let user = await sessionAdminController.getUser();
 
-        // if(user) {
-        //     if (user.role === "CUSTOMER" || user.role === "EMPLOYEE") {
-                let branch_id = await branchController.getSelectedBranch() || null;
-                if (branch_id == null) return null;
-                branch = `?branch_id=${branch_id?.id}`;
-            // }
-    
-    
-            response = await fetchController.execute(`http://localhost:8080/products${branch}&category_id=${category_id}`);
-            if (!response || response?.error) return null;
-        // }
+        if(!user) return null;
+
+        if(user.role === "EMPLOYEE") {
+            let branch_id = await branchController.getSelectedBranch() || null;
+            if (branch_id == null) return null;
+            branch = `?branch_id=${branch_id?.id}`;
+        }
+
+        let category = category_id ? `&category_id=${category_id}` : '';
+
+        response = await fetchController.execute(`http://localhost:8080/products${branch}${category}`);
+        if (!response || response?.error) return null;
 
         response.data.content.forEach(element => {
             element.images = element.images.map((elem) => {return JSON.parse(elem)});
