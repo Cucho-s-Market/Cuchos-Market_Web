@@ -11,6 +11,7 @@
   export let containerProps = "";
   export let btnProps = "";
   export let inputProps = "";
+  export let inCart = false;
 
   export let value = 1;
 
@@ -19,18 +20,13 @@
 	const handleItemCart = (type) => {
 		
 		// This will only work inside cart module
-		if(card) return;
+		if(!inCart) return;
 
-		// Remove item from cart
-		cartController.removeItem(item);
-
-		// Add item to cart
-		item.quantity = parseInt(value);
-		cartController.addItem(item);
+    cartController.updateQuantity(item, value);
 	}
 
   //events
-  const addToCart = () => {
+  const addToCart = async () => {
     if(String(value) === '') {
       value = 1;
     }
@@ -41,7 +37,11 @@
 
     // Add item to cart
     item.quantity = parseInt(value);
-    cartController.addItem(item);
+    const isAdded = await cartController.addItem(item);
+    if(isAdded?.error) {
+      notify({type: "alert-error", text: isAdded?.message});
+      return;
+    }
 
     notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
     showQty = false;
@@ -49,6 +49,7 @@
 
  // @ts-ignore
    $: {
+    debugger;
     let valueStr = String(value);
     let numbers = new RegExp('^[0-9]+$');
     let valueStrArray = [...valueStr];
@@ -57,9 +58,7 @@
       value = 1;
       valueStr = String(value);
       valueStrArray = [...valueStr];
-
     } else if(valueStr.length > 0 && !valueStr.match(numbers)) {
-
       valueStrArray = valueStrArray.filter(elem => elem.match(numbers));
       valueStr = valueStrArray.join('');
       value = parseInt(valueStr);
@@ -82,7 +81,6 @@
 <!-- Cart quantity or checkout -->
 <div class="flex flex-row justify-between {containerProps}">
     <QuantityButton type='minus' bind:value bind:btnProps/>
-		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" bind:value="{value}"/>
-		<!-- <input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" on:blur={handleItemCart} bind:value="{value}"/> -->
+		<input type="text" placeholder="1" class="input input-bordered text-center rounded-none min-w-[80px] w-[50%] min-h-0 h-8 {inputProps !== "" ? inputProps : "h-8"}" bind:value="{value}" on:blur={handleItemCart}/>
 	<QuantityButton type='plus' bind:value bind:btnProps/>
 </div>

@@ -20,7 +20,7 @@
 		isLoggedIn = await sessionController.isUserLoggedIn();
 	});
 
-	const addToCart = () => {
+	const addToCart = async () => {
 		
 		if(String(value) === '') {
 			value = 1;
@@ -32,7 +32,11 @@
 
 		// Add item to cart
 		item.quantity = parseInt(value);
-		cartController.addItem(item);
+		const isAdded = await cartController.addItem(item);
+		if(isAdded?.error) {
+			notify({type: "alert-error", text: isAdded?.message});
+			return;
+		}
 
 		notify({type: "alert-success", text: `Se ${strHa} agregado ${strCantidad} ${strArticulo} al carrito.`});
   }

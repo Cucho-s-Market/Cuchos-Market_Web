@@ -38,19 +38,11 @@
             <p>{clientDetails.telephone ? clientDetails.telephone : 'N/A'}</p>
         </div>
     </div>
-
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="mt-6 mb-20" on:click={() => {showModalLogin = !showModalLogin}}>
-        <Link text={"Cambiar de cuenta"} type={"link-black"} target={false}/>
-    </div>
     
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="flex gap-4">
-        <!-- <Button click={goToPreviousStep} text={"Atras"} type={"w-[100px] h-[51px] text-primary-content"}/> -->
-        <Button click={checkCurrentStep} text={"Ir a envio"} type={"btn-primary w-[150px] h-[51px]"}/>
+        <Button click={checkCurrentStep} text={"Ir a envio"} type={"btn-primary mt-[6rem] w-[150px] h-[51px]"}/>
     </div>
-    
-
 </div>
     
 {/if}

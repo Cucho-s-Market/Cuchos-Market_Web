@@ -31,7 +31,7 @@
                 <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku ? item.sku : 'N/A'}</p>
             </div>
             <!-- Product Qty -->
-            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} item={item} value={item.quantity}/>
+            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} inCart={true} item={item} value={item.quantity}/>
             <!-- Product total -->
             <div class="min-w-[4.5rem] mx-4">   
                 <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>

@@ -53,7 +53,6 @@
 						// Finalize the transaction on the server after payer approval
 						async onApprove(data) {
 							
-
 							// Create the order on the server
 							var orderDetails = {
 								branchId: $branchStore?.selected?.id,
