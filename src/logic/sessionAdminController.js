@@ -14,15 +14,22 @@ const sessionAdminController = (() => {
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
 		if (res == null) return null;
 
+		debugger;
+
 		if (res.error) return res;
 
 		// Initialize values
 		let user = res.data;
+
+		if (user.role === "CUSTOMER") {
+			return {error: true, message: "Usuario invalido."};
+		}
+
 		user.token = res.token;
 
 		sessionStorage.setItem("adminOperator", JSON.stringify(user));
 
-		return user;
+		return {error: false, message: "Iniciando sesion.", data: user};
 	}
 
 	async function logout() {

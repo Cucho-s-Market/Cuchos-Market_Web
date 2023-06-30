@@ -14,32 +14,32 @@
 
 	let thead = ['Codigo', 'Nombre', 'Precio', 'Marca'];
 	let tbody = [];
-	let products = [];
-	let productsFiltered = [];
+	let content = [];
+	let contentFiltered = [];
 
-	const getProducts = async () => {
-		products = data;
-
+	const getContent = async () => {
+		content = data;
 		
-		
-		if (!products || products.error) {
-			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
+		if (!content || data.content) {
+			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los contentos` });
 			return;
 		}
 
-		products = [];
+		content = [];
 
-		if(data.products) {
-			products = data.products?.data?.content;
+		if(data.orders) {
+			content = data.orders?.content;
 		}
 
-		productsFiltered = products;
+		contentFiltered = content;
 
-		products.forEach((product) => {
+		debugger;
+
+		content.forEach((content) => {
 			tbody.push({
-				id: product.code,
-				row: [product.code, product.name, product.price, product.brand],
-				stock: product.quantity
+				id: content.code,
+				row: [content.code, content.name, content.price, content.brand],
+				stock: content.quantity
 			});
 		});
 	};
@@ -50,19 +50,19 @@
 	];
 
 	//hay que cambiar
-	getProducts();
+	getContent();
 
 	$: {
 		tbody = [];
-		productsFiltered.forEach((product) => {
+		contentFiltered.forEach((content) => {
 			tbody.push({
-				id: product.name.replace(' ', "_"),
-				row: [product.code, product.name, product.price, product.brand],
-				stock: product.quantity
+				id: content.name.replace(' ', "_"),
+				row: [content.code, content.name, content.price, content.brand],
+				stock: content.quantity
 			});
 		});
 
-		showClearFilters = productsFiltered !== products ? true : false;
+		showClearFilters = contentFiltered !== content ? true : false;
 	}
 </script>
 
@@ -70,7 +70,7 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar codigo" bind:search={search} bind:elements={productsFiltered} inputFilters={['name', 'code']}>
+<SectionFilters labelSearch="Buscar codigo" bind:search={search} bind:elements={contentFiltered} inputFilters={['name', 'code']}>
 	{#each selects as select}
 		<FilterSelect name={select.name} options={select.options} />
 	{/each}
@@ -80,7 +80,7 @@
 	<Button
 	text="Limpiar filtros"
 	type="btn-primary w-fit p-2 mt-5"
-	click={() => {productsFiltered = products;}}
+	click={() => {contentFiltered = content;}}
 	/>
 {/if}
 	

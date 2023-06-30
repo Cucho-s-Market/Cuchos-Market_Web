@@ -174,7 +174,7 @@
 	</div>
 </Modal>
 
-<SectionHeader title={'Agregar Producto'} back={true} />
+<SectionHeader title={'Agregar Producto'} href="/admin/productos" back={true} />
 
 <div class="flex justify-around">
 	{#await getProduct() then}
