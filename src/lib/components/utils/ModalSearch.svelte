@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
 	import productController from '../../../logic/productController';
 	import Loading from './Loading.svelte';
 	import Svg from './SVG.svelte';
@@ -17,7 +17,11 @@
     onMount(async () => {
         products = await productController.getProducts();
 		products = products?.data?.content;
+		document.body.style.background = 'linear-gradient(' + 'rgb(245,121,59)' + ', ' + 'rgb(255,255,255)' + ')' ; 
     });
+	onDestroy(() => {
+    	document.body.style.background = 'white'; 
+  	});
 
 	function handle_search() {
 		searching = true
