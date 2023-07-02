@@ -53,8 +53,7 @@ const Utils = (() => {
 
     function isEditMode () {
         if (browser) {
-            const res = window.location.pathname !== '/admin/productos/nuevo';
-            return res;
+            return  !window.location.pathname.includes('nuevo');
         }
 
         return false;
