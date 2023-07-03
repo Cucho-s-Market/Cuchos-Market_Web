@@ -22,7 +22,7 @@ const productController = (() => {
         } else {
             let branch_id = await branchController.getSelectedBranch() || null;
             if (branch_id == null) return null;
-            branch = `?branch_id=${branch_id?.id}`;
+            branch = `&branch_id=${branch_id?.id}`;
 
             petition = `http://localhost:8080/products?name=${name}${branch}`;
         }
