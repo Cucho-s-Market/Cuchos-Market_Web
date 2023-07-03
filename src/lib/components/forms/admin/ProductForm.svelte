@@ -1,7 +1,5 @@
 <script>
-	
 	// @ts-nocheck
-	
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
 	import Input from '$lib/components/utils/Input.svelte';

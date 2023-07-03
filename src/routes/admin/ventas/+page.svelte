@@ -33,7 +33,7 @@
 
 		contentFiltered = content;
 
-		debugger;
+		
 
 		content.forEach((content) => {
 			tbody.push({

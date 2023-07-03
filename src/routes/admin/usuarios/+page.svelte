@@ -58,7 +58,7 @@
 			});
 		});
 		
-		showClearFilters = usersFiltered !== users.data ? true : false;
+		showClearFilters = usersFiltered !== users?.data ? true : false;
 
 		console.log(usersFiltered);
 	}
