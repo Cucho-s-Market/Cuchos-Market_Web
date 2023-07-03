@@ -106,7 +106,7 @@ const productController = (() => {
     }
 
     async function updateStock(productId, stock) {
-        if (!productId) throw new Error('Error al intentar crear el producto.');
+        if (!productId) null;
 
         const branch = await branchController.getSelectedBranch();
 
@@ -115,7 +115,7 @@ const productController = (() => {
         let token = await sessionAdminController.getUserToken();
 
         const sendStock = {
-            product_id: productId,
+            product_id: productId.replace('_', ' '),
             branch_id: branch.id,
             quantity: parseInt(stock)
         };
