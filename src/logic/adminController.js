@@ -24,21 +24,25 @@ const adminController = (() => {
 
 		if (employee === null) null;
 
+        employee.role = "EMPLOYEE";
+
 		const res = await fetchController.execute(`http://127.0.0.1:8080/users/${branch}/employee`, 'POST', employee, token);
 		return res;
 	}
 
     async function updateEmployee(employee) {
-        debugger;
         let token = await sessionAdminController.getUserToken();
 
         if (employee === null) null;
 
         let user = new User();
         user.id = employee.id;
-        user.name = employee.name;
-        user.surname = employee.surname;
+        user.firstName = employee.firstName;
+        user.lastName = employee.lastName;
         user.email = employee.email;
+        user.password = employee.password;
+
+        debugger;
 
         const res = await fetchController.execute(`http://127.0.0.1:8080/users`, 'PUT', user, token);
 		return res;

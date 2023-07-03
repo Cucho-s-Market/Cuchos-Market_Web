@@ -11,7 +11,6 @@
 	import branchController from '../../../../logic/branchController';
 	import Utils from '../../../../logic/helpers/Utils';
 	import Modal from '$lib/components/utils/Modal.svelte';
-	import sessionAdminController from '../../../../logic/sessionAdminController';
 
 	let repeatPassword = '';
 
@@ -26,7 +25,9 @@
 
 		branches = branches?.branches;
 
-		
+		if(user.branch?.id) {
+			branch = user.branch.id;
+		} 
 	});
 
 	let register = async () => {
@@ -47,10 +48,9 @@
 			return;
 		}
 		
-		let response = await adminController.registerEmployee(user, branch);	
-
-		debugger;
-		if(!response) {
+		let response = await adminController.registerEmployee(user, branch);
+	
+		if(!response || response && response.error) {
 			response = await adminController.updateEmployee(user);
 		}
 
@@ -69,6 +69,7 @@
 			window.location.href = `/admin/usuarios`;
 		}, 3000);
 	};
+
 </script>
 
 <Modal bind:showModal={showModalDelete}>
@@ -136,23 +137,25 @@
 				</div>
 			{/if}
 
-			<div class="flex flex-col w-full">
-				<p class="label">
-					<span class="label-text font-semibold"
-						>Sucursal <span class="p-1 text-error">*</span></span
+			{#if !Utils.isEditMode() || branch}
+				<div class="flex flex-col w-full">
+					<p class="label">
+						<span class="label-text font-semibold"
+							>Sucursal <span class="p-1 text-error">*</span></span
+						>
+					</p>
+					<select
+						bind:value={branch}
+						name="branch"
+						class="select select-primary w-full focus:border-none"
 					>
-				</p>
-				<select
-					bind:value={user.branch.id}
-					name="branch"
-					class="select select-primary w-full focus:border-none"
-				>
-					<option disabled selected>SUCURSAL</option>
-					{#each branches as item (item.id)}
-						<option value="{item.id}">{item.name}</option>
-					{/each}
-				</select>
-			</div>
+						<option disabled selected>SUCURSAL</option>
+						{#each branches as item (item.id)}
+							<option value="{item.id}">{item.name}</option>
+						{/each}
+					</select>
+				</div>
+			{/if}
 			<div class="w-full mt-3 flex justify-between">
 				<Button
 					text="{Utils.isEditMode() ? 'Actualizar' : 'Crear'} usuario"
