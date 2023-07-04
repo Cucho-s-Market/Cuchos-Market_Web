@@ -17,7 +17,8 @@
     onMount(async () => {
         products = await productController.getProducts();
 		products = products?.data?.content;
-		document.body.style.background = 'linear-gradient(' + 'rgb(245,121,59)' + ', ' + 'rgb(255,255,255)' + ')' ; 
+		const gradient = document.getElementById('modal-5');
+		gradient.style.background = 'linear-gradient(' + 'rgb(245,121,59, 1)' + ', ' + 'rgb(255,255,255, 0)' + ')' ; 
     });
 	onDestroy(() => {
     	document.body.style.background = 'white'; 
@@ -63,17 +64,17 @@
 </script>
 
 
-<label bind:this={modalOutside} for="my-modal-5" class="modal opacity-100 border:none flex items-start visible pointer-events-auto" transition:fly="{{ duration: 700 }}">
+<label bind:this={modalOutside} id="modal-5" for="my-modal-5" class=" h-[100vh] modal opacity-100 border:none flex items-start visible pointer-events-auto" transition:fly="{{ duration: 700 }}">
 	<label class="absolute w-[600px] mt-[120px]" for="">
 		<!-- MAIN CONTENT -->
 		<div class="w-full">
 			<form>   
-				<div class="relative h-full mt-[20px] ">
+				<div class="relative h-full mt-[50px] ">
 					<label for="search"></label>
-					<input id="default-search" bind:value={search} on:input={handle_search} class="w-full border-b-4 border-primary block p-4 pl-5 text-sm text-primary-900 bg-transparent" placeholder="Buscar artículo" />
+					<input id="default-search" bind:value={search} on:input={handle_search} class="w-full border-b-4 border-primary block p-4 pl-5 text-sm text-white bg-transparent" placeholder="Buscar artículo" />
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div class="absolute top-5 opacity-100 right-5 cursor-pointer" on:click={closeModal}>
-						<Svg name={'x'} size={20} stroke={1.5} props={"opacity-70 hover:opacity-100 pb-[5px]"}/>
+						<Svg name={'x'} size={20} stroke={1.5} props={"opacity-100 hover:opacity-100 pb-[5px]"}/>
 					</div>
 					{#if searching}
 						<Loading />
