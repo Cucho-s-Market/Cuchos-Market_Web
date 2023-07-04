@@ -8,6 +8,7 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -26,6 +27,9 @@
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los usuarios` });
 			return;
 		}
+
+		users.data = users.data.filter(elem => elem.role !== 'ADMIN');
+
 		usersFiltered = users.data;
 		
 		usersFiltered.forEach((user) => {
@@ -41,10 +45,12 @@
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
 
-	//hay que cambiar
-	getUser();
+	onMount(async() => {
+		await getUser();
+	});
 
 	$: {
+		tbody = [];
 		usersFiltered.forEach((user) => {
 			tbody.push({
 				id: user.id,
@@ -82,7 +88,7 @@
 			<Button
 			text="Limpiar filtros"
 			type="btn-primary w-fit p-2 mt-5"
-			click={() => {usersFiltered = users.data;}}
+			click={() => {usersFiltered = users?.data;}}
 			/>
 		{/if}
 		

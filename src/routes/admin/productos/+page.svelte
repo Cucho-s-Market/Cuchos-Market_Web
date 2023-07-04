@@ -20,7 +20,6 @@
 
 	const getProducts = async () => {
 		products = data;
-
 		
 		if (!products || products.error) {
 			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los productos` });
@@ -49,8 +48,6 @@
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
 
-	//hay que cambiar
-	getProducts();
 
 	$: {
 		tbody = [];
@@ -91,7 +88,8 @@
 	click={() => {productsFiltered = products;}}
 	/>
 {/if}
-	
-{#key tbody}
+
+{#await getProducts() then}
 	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
-{/key}
+{/await}
+	
