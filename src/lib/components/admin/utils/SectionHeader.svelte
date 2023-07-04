@@ -9,6 +9,7 @@
 	export let title = 'Title';
 	export let btn = {};
 	export let back = false;
+	export let href = '#';
 
 	let user = null;
 
@@ -24,7 +25,7 @@
 				<h2 class="flex flex-col justify-end font-semibold text-3xl">{title}</h2>
 				{#if back}
 					<div class="flex">
-						<Link text="Volver" type="text-neutral text-sm mt-3" />
+						<Link text="Volver" href={href} type="text-neutral text-sm mt-3" />
 					</div>
 				{/if}
 			</div>

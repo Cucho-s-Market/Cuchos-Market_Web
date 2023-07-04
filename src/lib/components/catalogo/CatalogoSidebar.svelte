@@ -10,7 +10,7 @@
 	export let productsFiltered = [];
 
 	onMount(async () => {
-		debugger;
+		
 		categories = await categoryController.getCategories();
 
 		productsFiltered = await productController.getProducts();

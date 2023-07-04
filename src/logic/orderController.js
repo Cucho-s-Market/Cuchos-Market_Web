@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @ts-nocheck
 import fetchController from "./fetchController";
 import sessionController from "./sessionController";
@@ -35,4 +36,56 @@ const orderController = (() => {
     }
 })();
 
+=======
+// @ts-nocheck
+import branchController from "./branchController";
+import fetchController from "./fetchController";
+import sessionAdminController from "./sessionAdminController";
+import sessionController from "./sessionController";
+
+const orderController = (() => {
+
+    async function getOrder(orderId){
+        const order = await fetchController.execute(`http://localhost:8080/orders/${orderId}`);
+        if (order == null || order.error) return null;
+
+        return order.data;
+    }
+
+    async function getOrders() {
+        let branch = '';
+        let token = null;
+
+        let user = await sessionAdminController.getUser();
+
+        if(user && user.role === 'EMPLOYEE') {
+            let branch_id = await branchController.getSelectedBranch() || null;
+            if (branch_id == null) return null;
+            branch = `/branch/${branch_id?.id}`;
+
+            token = await sessionAdminController.getUserToken();
+        }
+
+        const orders = await fetchController.execute("http://localhost:8080/orders" + branch, "GET", null, token);
+        if (orders == null || orders.error) return null;
+
+        return orders.data;
+    }
+
+    async function createOrder(order) {
+        const userToken = await sessionController.getUserToken();
+        if (userToken == null) return null;
+
+        const response = await fetchController.execute("http://localhost:8080/orders", "POST", order, userToken);
+        return response;
+    }
+
+    return {
+        getOrder,
+        getOrders,
+        createOrder
+    }
+})();
+
+>>>>>>> c0aeb8a1e854b15a8d3c70a0bcf313c9045601a4
 export default orderController;

@@ -24,9 +24,7 @@
 			return;
 		}
 
-		if (res.ok) {
-			notify({ type: 'alert-success', text: res.message });
-		}
+		notify({ type: 'alert-success', text: res.message });
 
 		showUpdate = false;
 	};
