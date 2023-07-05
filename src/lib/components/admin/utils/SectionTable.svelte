@@ -5,6 +5,7 @@
 
 	import TableStock from '../products/TableStock.svelte';
 	import TableButtons from './table/tableButtons.svelte';
+	import Svg from '$lib/components/utils/SVG.svelte';
 
 	export let thead = [];
 	export let tbody = [];
@@ -38,8 +39,12 @@
 									<td>{item}</td>
 								{/each}
 
-								{#if user.role === 'EMPLOYEE'}
+								{#if tbody_item.stock && user.role === 'EMPLOYEE'}
 									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
+								{/if}
+
+								{#if buttons.editOrder && user.role === 'EMPLOYEE'}
+									<td><a href="/admin/ventas/{tbody_item.id}"><Svg name="edit-circle" color={'#F5793B'} /></a></td>
 								{/if}
 
 								{#if user.role === 'ADMIN'}
@@ -54,8 +59,12 @@
 									<td>{item}</td>
 								{/each}
 
-								{#if user.role === 'EMPLOYEE'}
+								{#if tbody_item.stock && user.role === 'EMPLOYEE'}
 									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
+								{/if}
+								
+								{#if buttons.editOrder && user.role === 'EMPLOYEE'}
+									<td><a href="/admin/ventas/{tbody_item.id}"><Svg name="edit-circle" color={'#F5793B'} /></a></td>
 								{/if}
 
 								{#if user.role === 'ADMIN'}

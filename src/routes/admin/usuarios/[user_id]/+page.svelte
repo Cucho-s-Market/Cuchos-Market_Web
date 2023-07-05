@@ -19,7 +19,7 @@
 
 <SectionHeader
 	title={formType + ' Usuario'}
-    back={true}
+    href="/admin/usuarios"
 />
 
 {#if user}
