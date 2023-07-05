@@ -7,6 +7,7 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -41,7 +42,13 @@
 				stock: product.quantity
 			});
 		});
+
+		
 	};
+
+	onMount(async () => {
+		await getProducts();
+	});
 
 	let selects = [
 		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
@@ -89,7 +96,6 @@
 	/>
 {/if}
 
-{#await getProducts() then}
+{#if products}
 	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
-{/await}
-	
+{/if}
