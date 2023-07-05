@@ -54,7 +54,7 @@
 	];
 
 	$: {
-		debugger;
+		
 		tbody = [];
 		contentFiltered.forEach((content) => {
 			tbody.push({
@@ -71,7 +71,7 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar codigo" bind:search={search} bind:elements={contentFiltered} inputFilters={['name', 'code']}>
+<SectionFilters labelSearch="Buscar ID" bind:search={search} bind:elements={contentFiltered} inputFilters={['id']}>
 	{#each selects as select}
 		<FilterSelect name={select.name} options={select.options} />
 	{/each}

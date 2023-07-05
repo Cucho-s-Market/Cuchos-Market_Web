@@ -3,20 +3,17 @@
 
 	import Button from '$lib/components/utils/Button.svelte';
 
-// @ts-nocheck
-
 	import Input from '$lib/components/utils/Input.svelte';
-	import FilterSelect from './filters/FilterSelect.svelte';
 	import FilterSelectContainer from './filters/FilterSelectContainer.svelte';
 
     export let labelSearch = "Buscar por codigo";
 	export let search;
 	export let elements;
-	export let inputFilters
+	export let inputFilters;
 
 	let setFilters = () => {
 		elements = elements.filter((element) => { 
-			return inputFilters.some(filter => element[filter].includes(search));
+			return inputFilters.some(filter => String(element[filter]).toLowerCase().includes(search.toLowerCase()));
 		});
 
 		search = "";
