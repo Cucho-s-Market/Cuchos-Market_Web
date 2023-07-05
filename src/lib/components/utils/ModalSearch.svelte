@@ -71,7 +71,7 @@
 			<form>   
 				<div class="relative h-full mt-[50px] ">
 					<label for="search"></label>
-					<input id="default-search" bind:value={search} on:input={handle_search} class="w-full border-b-4 border-primary block p-4 pl-5 text-sm text-white bg-transparent" placeholder="Buscar artículo" />
+					<input id="default-search" bind:value={search} on:input={handle_search} class="w-full border-b-4 border-primary block p-4 pl-5 text-sm text-black bg-white-300 focus:outline-none" placeholder="Buscar artículo" />
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div class="absolute top-5 opacity-100 right-5 cursor-pointer" on:click={closeModal}>
 						<Svg name={'x'} size={20} stroke={1.5} props={"opacity-100 hover:opacity-100 pb-[5px]"}/>
