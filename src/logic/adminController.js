@@ -42,7 +42,6 @@ const adminController = (() => {
         user.email = employee.email;
         user.password = employee.password;
 
-        debugger;
 
         const res = await fetchController.execute(`http://127.0.0.1:8080/users`, 'PUT', user, token);
 		return res;

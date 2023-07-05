@@ -6,13 +6,14 @@
 	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import Button from '$lib/components/utils/Button.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 
 	let search;
 	let showClearFilters = false;
 
-	let thead = ['Codigo', 'Nombre', 'Precio', 'Marca'];
+	let thead = ['ID', 'Estado', 'Tipo', 'Monto total', 'Creacion'];
 	let tbody = [];
 	let content = [];
 	let contentFiltered = [];
@@ -33,32 +34,32 @@
 
 		contentFiltered = content;
 
-		
-
 		content.forEach((content) => {
 			tbody.push({
-				id: content.code,
-				row: [content.code, content.name, content.price, content.brand],
-				stock: content.quantity
+				id: content.id,
+				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
 			});
 		});
+
+		;
 	};
+
+	onMount(async () => {
+		await getContent();
+	});
 
 	let selects = [
 		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
 		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
 	];
 
-	//hay que cambiar
-	getContent();
-
 	$: {
+		debugger;
 		tbody = [];
 		contentFiltered.forEach((content) => {
 			tbody.push({
-				id: content.name.replace(' ', "_"),
-				row: [content.code, content.name, content.price, content.brand],
-				stock: content.quantity
+				id: content.id,
+				row: [content.id, content.status, content.type, content.totalPrice, content.creationDate]
 			});
 		});
 
@@ -84,6 +85,8 @@
 	/>
 {/if}
 	
-{#key tbody}
-	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
-{/key}
+{#if content}
+	{#key tbody}
+	<SectionTable {thead} {tbody} showStock={true} buttons={{ editOrder: true }} />
+	{/key}
+{/if}
