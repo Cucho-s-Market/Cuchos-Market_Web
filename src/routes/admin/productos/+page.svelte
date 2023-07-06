@@ -75,8 +75,6 @@
 		Object.keys(selectedOptions).forEach((key) => {
 			let select = selects.find((select) => select.data === key);
 			selectedOptions[key] = select.value;
-
-			console.log('xd ',selectedOptions);
 		});
 	}
 </script>
