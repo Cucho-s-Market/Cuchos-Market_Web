@@ -1,40 +1,3 @@
-<<<<<<< HEAD
-<script>
-	import SectionFilters from '$lib/components/admin/utils/SectionFilters.svelte';
-	import SectionHeader from '$lib/components/admin/utils/SectionHeader.svelte';
-	import SectionTable from '$lib/components/admin/utils/SectionTable.svelte';
-	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
-
-	let tableItems = {
-		thead: ['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-		tbody: [
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado'],
-			['Numero', 'Comprador', 'Fecha', 'Medio de pago', 'Estado']
-		]
-	};
-
-    let select = {name: "Estado", options: ['Habilitado', 'Deshabilitado']};
-</script>
-
-<SectionHeader
-	title={'Ventas'}
-/>
-
-<SectionFilters>
-	<FilterSelect name="{select.name}" options={select.options}/>
-	<FilterSelect name="{select.name}" options={select.options}/>
-	<FilterSelect name="{select.name}" options={select.options}/>
-	<FilterSelect name="{select.name}" options={select.options}/>
-</SectionFilters>
-
-<SectionTable thead={tableItems.thead} tbody={tableItems.tbody} buttons={{info: true}} />
-=======
 <script>
 	// @ts-nocheck
 	import SectionFilters from '$lib/components/admin/utils/SectionFilters.svelte';
@@ -43,13 +6,14 @@
 	import FilterSelect from '$lib/components/admin/utils/filters/FilterSelect.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import Button from '$lib/components/utils/Button.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 
 	let search;
 	let showClearFilters = false;
 
-	let thead = ['Codigo', 'Nombre', 'Precio', 'Marca'];
+	let thead = ['ID', 'Estado', 'Tipo', 'Monto total', 'Creacion'];
 	let tbody = [];
 	let content = [];
 	let contentFiltered = [];
@@ -70,32 +34,37 @@
 
 		contentFiltered = content;
 
-		debugger;
-
 		content.forEach((content) => {
 			tbody.push({
-				id: content.code,
-				row: [content.code, content.name, content.price, content.brand],
-				stock: content.quantity
+				id: content.id,
+				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
 			});
 		});
+
+		;
 	};
 
+	onMount(async () => {
+		await getContent();
+	});
+
 	let selects = [
-		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
-		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
+		{ name: 'Estado', data: 'status', options: ['CANCELLED', 'PENDING', 'PREPARING', 'DELIVERED'] },
+		{ name: 'Tipo', data: 'type', options: ['PICK_UP', 'DELIVERY'] },
 	];
 
-	//hay que cambiar
-	getContent();
+	let selectedOptions = {
+		'status': '',
+		'type': ''
+	};
 
 	$: {
+		
 		tbody = [];
 		contentFiltered.forEach((content) => {
 			tbody.push({
-				id: content.name.replace(' ', "_"),
-				row: [content.code, content.name, content.price, content.brand],
-				stock: content.quantity
+				id: content.id,
+				row: [content.id, content.status, content.type, content.totalPrice, content.creationDate]
 			});
 		});
 
@@ -107,9 +76,9 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar codigo" bind:search={search} bind:elements={contentFiltered} inputFilters={['name', 'code']}>
+<SectionFilters labelSearch="Buscar ID" bind:search={search} bind:elements={contentFiltered} inputFilters={['id']} selectedFilters={selectedOptions}>
 	{#each selects as select}
-		<FilterSelect name={select.name} options={select.options} />
+		<FilterSelect bind:selectedOption={selectedOptions[select.data]} name={select.name} options={select.options} />
 	{/each}
 </SectionFilters>
 
@@ -124,4 +93,3 @@
 {#key tbody}
 	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
 {/key}
->>>>>>> c0aeb8a1e854b15a8d3c70a0bcf313c9045601a4

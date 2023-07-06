@@ -15,7 +15,7 @@ const fetchController = (() => {
             headers.Authorization = `Basic ${token}`;
         }
         
-
+        
         let properties = { method: method, headers: headers };
 
         if (method !== "GET") properties.body = JSON.stringify(data);

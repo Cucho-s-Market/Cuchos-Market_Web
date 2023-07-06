@@ -7,6 +7,8 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { browser } from '$app/environment';
 	import Button from '$lib/components/utils/Button.svelte';
+	import { onMount } from 'svelte';
+	import Input from '$lib/components/utils/Input.svelte';
 
 	export let data;
 
@@ -41,12 +43,21 @@
 				stock: product.quantity
 			});
 		});
+
+		
 	};
 
+	onMount(async () => {
+		await getProducts();
+	});
+
 	let selects = [
-		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
-		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
+		{ name: 'Marca', data: 'brand', value: '' }
 	];
+
+	let selectedOptions = {
+		'brand': ''
+	};
 
 
 	$: {
@@ -60,6 +71,11 @@
 		});
 
 		showClearFilters = productsFiltered !== products ? true : false;
+
+		Object.keys(selectedOptions).forEach((key) => {
+			let select = selects.find((select) => select.data === key);
+			selectedOptions[key] = select.value;
+		});
 	}
 </script>
 
@@ -75,9 +91,9 @@
 	}}
 />
 
-<SectionFilters labelSearch="Buscar por nombre o codigo" bind:search={search} bind:elements={productsFiltered} inputFilters={['name', 'code']}>
+<SectionFilters labelSearch="Buscar por nombre o codigo" bind:search={search} bind:elements={productsFiltered} inputFilters={['name', 'code']} selectedFilters={selectedOptions}>
 	{#each selects as select}
-		<FilterSelect name={select.name} options={select.options} />
+		<Input label={select.name} bind:value={select.value} props="bg-transparent" mandatory={false} />
 	{/each}
 </SectionFilters>
 
@@ -89,7 +105,6 @@
 	/>
 {/if}
 
-{#await getProducts() then}
+{#if products}
 	<SectionTable {thead} {tbody} showStock={true} buttons={{ toggle: true, edit: true }} />
-{/await}
-	
+{/if}

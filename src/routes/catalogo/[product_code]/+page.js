@@ -12,7 +12,6 @@ export async function load({ params }) {
     if(!response?.data?.content?.length || !response || response?.error) return {status: 404};
 
     return {
-        status: 200,
         product: response.data.content[0]
     }
 }

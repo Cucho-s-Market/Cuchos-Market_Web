@@ -4,7 +4,7 @@ import {cartStore} from "./Stores/CartStore";
 const cartController = (() => {
 
     async function addItem(item) {
-        debugger;
+        
         let cart = sessionStorage.getItem("cart") != null ? JSON.parse(sessionStorage.getItem("cart")) : null;
         if (cart == null) return;
 
@@ -67,6 +67,34 @@ const cartController = (() => {
         
         cartStore.set(cart);
     }
+
+    async function updateQuantity(item, quantity) {
+        
+        let cart = sessionStorage.getItem("cart") != null ? JSON.parse(sessionStorage.getItem("cart")) : null;
+        if (cart == null) return;
+
+        // Find item in cart
+        let itemInCart = cart.items.find(i => i.name === item.name);
+        if (itemInCart == null) return;
+
+        // Remove item quantity from total quantity
+        cart.totalQty -= Number(item.quantity);
+
+        // Remove total price of item from cart
+        cart.total -= (Number(item.price) * Number(item.quantity));
+
+        // Update item quantity
+        itemInCart.quantity = quantity;
+
+        // Update general totals
+        cart.totalQty += Number(quantity);
+
+        // Update total price of item from cart
+        cart.total += (Number(item.price) * Number(quantity));
+
+        cartStore.set(cart);
+    }
+
 
     return {
         addItem,

@@ -49,6 +49,7 @@
 
  // @ts-ignore
    $: {
+    
     let valueStr = String(value);
     let numbers = new RegExp('^[0-9]+$');
     let valueStrArray = [...valueStr];

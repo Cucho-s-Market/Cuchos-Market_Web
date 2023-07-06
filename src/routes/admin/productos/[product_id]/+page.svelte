@@ -182,6 +182,8 @@
 	let path = '';
 	export let data;
 
+	let formType = Utils.isEditMode() ? 'Editar' : 'Crear';
+
 	if(browser) {
 		path = window.location.href;
 	}
@@ -332,7 +334,7 @@
 	</div>
 </Modal>
 
-<SectionHeader title={'Agregar Producto'} href="/admin/productos" back={true} />
+<SectionHeader title={formType + " Producto"} href="/admin/productos" />
 
 <div class="flex justify-around">
 	{#await getProduct() then}
