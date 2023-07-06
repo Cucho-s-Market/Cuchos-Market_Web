@@ -10,11 +10,24 @@
 	export let search;
 	export let elements;
 	export let inputFilters;
+	export let selectedFilters;
 
 	let setFilters = () => {
-		elements = elements.filter((element) => { 
-			return inputFilters.some(filter => String(element[filter]).toLowerCase().includes(search.toLowerCase()));
+		elements = elements.filter((element) => {
+			let input = inputFilters.some(filter => String(element[filter]).toLowerCase().includes(search.toLowerCase()));
+			let filters = true;
+
+			if(selectedFilters) {
+				Object.keys(selectedFilters).forEach((key) => {
+					if(!element[key].toLowerCase().includes(selectedFilters[key].toLowerCase())) {
+						filters = false;
+					}
+				});
+			}
+
+			return input && filters;
 		});
+
 
 		search = "";
 	};
@@ -28,12 +41,14 @@
 			<slot />
 		</FilterSelectContainer>
 	
-		<Button
-			text="Buscar"
-			type="btn-primary w-fit pl-10 pr-10"
-			click={() => {
-				setFilters();
-			}}
-		/>
+		<div class="flex flex-col justify-end">
+			<Button
+				text="Buscar"
+				type="btn-primary w-fit pl-10 pr-10"
+				click={() => {
+					setFilters();
+				}}
+			/>
+		</div>
 	</div>
 </div>
