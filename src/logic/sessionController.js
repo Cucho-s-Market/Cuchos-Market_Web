@@ -100,6 +100,12 @@ const sessionController = (() => {
 		return res;
 	}
 
+	async function sendActualizarDatos(token, password){
+		const res = await fetchController.execute("http://localhost:8080/users/updatePassword", "PUT", {"password": password}, token);
+		return res;
+	}
+
+
 	return {
 		register,
 		login,
@@ -110,7 +116,8 @@ const sessionController = (() => {
 		getUserToken,
 		sentForgotPassword,
 		checkForgotPasswordToken,
-		changePasswordUser
+		changePasswordUser,
+		sendActualizarDatos
 	}
 })();
 
