@@ -62,7 +62,7 @@
         <div class="flex flex-col">
             <div class="flex flex-col mt-10">
                 <h2 class="font-semibold text-md mb-5">Informacion</h2>
-                <div class="gap-5 flex flex-col w-[700px] shadow rounded-lg p-5">
+                <div class="gap-5 flex flex-col w-[700px] shadow rounded-lg p-5 bg-base-100">
                     <div class="flex">
                         <div class="flex flex-col justify-end mr-2">
                             <p class="font-semibold text-md mb-2">Estado: </p>
@@ -110,7 +110,7 @@
             {#if order.customer}
                 <div class="flex flex-col mt-10 ">
                     <h2 class="font-semibold text-md mb-5">Informacion del Cliente</h2>
-                    <div class="gap-5 flex flex-col max-w-[700px] shadow rounded-lg p-5">
+                    <div class="gap-5 flex flex-col max-w-[700px] shadow rounded-lg p-5 bg-base-100">
                         <div class="flex">
                             <p class="font-semibold text-md mb-2">Nombre: </p>
                             <p class="text-md mb-2 ml-2">{order.customer.firstName}</p>
@@ -142,7 +142,7 @@
 
         <div class="flex flex-col">
             <h2 class="font-semibold text-md mb-5">Productos</h2>
-            <div class="gap-5 flex flex-col max-w-[700px] shadow rounded-lg p-5">
+            <div class="gap-5 flex flex-col max-w-[700px] shadow rounded-lg p-5 bg-base-100">
                 {#each order.products as item}
                     <div class="w-[650px] flex items-center w-full border border-br-grey bg-bg-product-list rounded-md max-h-20">
                         <!-- Product Image -->
