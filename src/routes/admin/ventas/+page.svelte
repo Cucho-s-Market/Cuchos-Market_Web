@@ -49,9 +49,14 @@
 	});
 
 	let selects = [
-		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
-		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
+		{ name: 'Estado', data: 'status', options: ['CANCELLED', 'PENDING', 'PREPARING', 'DELIVERED'] },
+		{ name: 'Tipo', data: 'type', options: ['PICK_UP', 'DELIVERY'] },
 	];
+
+	let selectedOptions = {
+		'status': '',
+		'type': ''
+	};
 
 	$: {
 		
@@ -71,9 +76,9 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar ID" bind:search={search} bind:elements={contentFiltered} inputFilters={['id']}>
+<SectionFilters labelSearch="Buscar ID" bind:search={search} bind:elements={contentFiltered} inputFilters={['id']} selectedFilters={selectedOptions}>
 	{#each selects as select}
-		<FilterSelect name={select.name} options={select.options} />
+		<FilterSelect bind:selectedOption={selectedOptions[select.data]} name={select.name} options={select.options} />
 	{/each}
 </SectionFilters>
 
