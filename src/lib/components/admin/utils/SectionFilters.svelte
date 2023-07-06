@@ -17,10 +17,13 @@
 			let input = inputFilters.some(filter => String(element[filter]).toLowerCase().includes(search.toLowerCase()));
 			let filters = true;
 
-			Object.keys(selectedFilters).forEach((key) => {
-				if(element[key] !== selectedFilters[key])
-					filters = false;
-			});
+			if(selectedFilters) {
+				Object.keys(selectedFilters).forEach((key) => {
+					if(!element[key].toLowerCase().includes(selectedFilters[key].toLowerCase())) {
+						filters = false;
+					}
+				});
+			}
 
 			return input && filters;
 		});
@@ -38,12 +41,14 @@
 			<slot />
 		</FilterSelectContainer>
 	
-		<Button
-			text="Buscar"
-			type="btn-primary w-fit pl-10 pr-10"
-			click={() => {
-				setFilters();
-			}}
-		/>
+		<div class="flex flex-col justify-end">
+			<Button
+				text="Buscar"
+				type="btn-primary w-fit pl-10 pr-10"
+				click={() => {
+					setFilters();
+				}}
+			/>
+		</div>
 	</div>
 </div>
