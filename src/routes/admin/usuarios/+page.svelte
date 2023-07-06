@@ -41,9 +41,12 @@
 	};
 
 	let selects = [
-		{ name: 'Estado', options: ['Habilitado', 'Deshabilitado'] },
-		{ name: 'Rol', options: ['ADMIN', 'EMPLEADO', 'COMPRADOR'] }
+		{ name: 'Rol', data: 'role', options: ['EMPLOYEE', 'CUSTOMER'] }
 	];
+
+	let selectedOptions = {
+		'role': ''
+	};
 
 	onMount(async() => {
 		await getUser();
@@ -60,7 +63,7 @@
 		
 		showClearFilters = usersFiltered !== users?.data ? true : false;
 
-		console.log(usersFiltered);
+		(selectedOptions);
 	}
 </script>
 
@@ -78,9 +81,9 @@
 
 {#await users then}
 	{#if users}
-		<SectionFilters labelSearch="Buscar por email o nombre" bind:search={search} bind:elements={usersFiltered} inputFilters={['email', 'firstName']}>
+		<SectionFilters labelSearch="Buscar por email o nombre" bind:search={search} bind:elements={usersFiltered} inputFilters={['email', 'firstName']} selectedFilters={selectedOptions}>
 			{#each selects as select}
-				<FilterSelect name={select.name} options={select.options} />
+				<FilterSelect bind:selectedOption={selectedOptions[select.data]} name={select.name} options={select.options} />
 			{/each}
 		</SectionFilters>
 		
