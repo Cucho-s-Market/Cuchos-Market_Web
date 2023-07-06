@@ -39,7 +39,7 @@
 									<td>{item}</td>
 								{/each}
 
-								{#if tbody_item.stock && user.role === 'EMPLOYEE'}
+								{#if tbody_item.stock >= 0 &&	 user.role === 'EMPLOYEE'}
 									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
 								{/if}
 
@@ -59,7 +59,7 @@
 									<td>{item}</td>
 								{/each}
 
-								{#if tbody_item.stock && user.role === 'EMPLOYEE'}
+								{#if tbody_item.stock >= 0 && user.role === 'EMPLOYEE'}
 									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
 								{/if}
 								
