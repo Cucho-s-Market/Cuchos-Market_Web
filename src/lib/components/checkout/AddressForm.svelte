@@ -27,7 +27,7 @@
 		showModal = false;
 
 		// Show notification
-		notify({ text: 'Direccion agregada con exito', type: 'success' });
+		notify({ text: 'Direccion agregada con exito', type: 'alert-success' });
 
 		// Reset values
 		address = {
