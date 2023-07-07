@@ -15,7 +15,7 @@
 {#if user}
 	<div class="flex w-80 border-t-2 border-base-300 mt-20 min-h-screen bg-base-100">
 		<ul class="menu p-4 w-full text-base-content">
-			<SideMenuOption text="Estadisticas" svg="chart-bar" />
+			<SideMenuOption href="/admin/estadisticas" text="Estadisticas" svg="chart-bar" />
 			{#if user.role === 'EMPLOYEE'}
 				<SideMenuOption href="/admin/ventas" text="Ventas" svg="coin" />
 			{/if}
