@@ -13,6 +13,7 @@
 	import { branchStore } from '../../../logic/Stores/BranchStore';
 	import { notify } from '../utils/Notifications.svelte';
 	import sessionController from '../../../logic/sessionController';
+	import Utils from '../../../logic/helpers/Utils';
 
 	export let paymentMethods = null;
 
@@ -21,6 +22,9 @@
 	};
 
 	onMount(async () => {
+
+		Utils.showLoading();
+
 		loadScript({
 			'client-id':
 				'AStj36A7uIpA8TJSs7ksWyfZbWS1i_hJHyXuTCWPe660YhEQdCU4rMjwOOY4BS2TbRAOyLned3vrx_ev'
@@ -97,7 +101,15 @@
 							window.location.href = '/checkout/purchase-confirmation';
 						}
 					})
-					.render('#paypal-button-container');
+					.render('#paypal-button-container').then(() => {
+						Utils.removeLoading();
+					}).catch(() => {
+						Utils.removeLoading();
+						notify({ text: 'Error al cargar PayPal', type: 'alert-error' });
+						setTimeout(() => {
+							window.location.href = '/catalogo';
+						}, 2000);
+					});
 			})
 			.catch((err) => {
 				console.error('failed to load the PayPal JS SDK script', err);
@@ -107,6 +119,7 @@
 
 {#if paymentMethods?.length > 0}
 	<div class="w-full">
+
 		<div>
 			<div class="w-[400px]" id="paypal-button-container" />
 		</div>
