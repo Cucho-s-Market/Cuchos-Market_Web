@@ -34,46 +34,19 @@
 				<swiper-slide>
 					<a href="" class=""></a>
 					<div class="w-full h-full">
-						<img class="w-full h-full object-cover rounded-[6px]" src="https://images.unsplash.com/photo-1518314144686-36a36d62a13c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
-						<div class="absolute top-[35%] left-[10%]">
-							<p class="font-semibold text-[40px] text-[#FAFAFA]">Dia de la madre</p>
-							<div class="flex items-center">
-								<div class="border-b border-b-[#FAFAFA] pb-1">
-									<Link text={"Ver mas"} type={"text-[#FAFAFA] font-semibold no-underline"}/>
-								</div>
-								<Svg name={"arrow-narrow-right"} color={"#FAFAFA"}/>
-							</div>
-						</div>
+						<img class="w-full h-full object-fill rounded-[6px]" src="src/assets/test_images/dannete.png" alt="">
 					</div>
 				</swiper-slide>
 				<swiper-slide>
 					<a href="" class=""></a>
 					<div class="w-full h-full">
-						<img class="w-full h-full object-cover rounded-[6px]" src="https://images.unsplash.com/photo-1614178367813-892d87898567?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-						<div class="absolute top-[35%] left-[10%]">
-							<p class="font-semibold text-[40px] text-[#FAFAFA]">Dia de la madre</p>
-							<div class="flex items-center">
-								<div class="border-b border-b-[#FAFAFA] pb-1">
-									<Link text={"Ver mas"} type={"text-[#FAFAFA] font-semibold no-underline"}/>
-								</div>
-								<Svg name={"arrow-narrow-right"} color={"#FAFAFA"}/>
-							</div>
-						</div>
+						<img class="w-full h-full object-fill rounded-[6px]" src="src/assets/test_images/colgate.png" alt="">
 					</div>
 				</swiper-slide>
 				<swiper-slide>
 					<a href="" class=""></a>
 					<div class="w-full h-full">
-						<img class="w-full h-full object-cover rounded-[6px]" src="https://images.unsplash.com/photo-1489760176169-fd3d32805239?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
-						<div class="absolute top-[35%] left-[10%]">
-							<p class="font-semibold text-[40px] text-[#FAFAFA]">Dia de la madre</p>
-							<div class="flex items-center">
-								<div class="border-b border-b-[#FAFAFA] pb-1">
-									<Link text={"Ver mas"} type={"text-[#FAFAFA] font-semibold no-underline"}/>
-								</div>
-								<Svg name={"arrow-narrow-right"} color={"#FAFAFA"}/>
-							</div>
-						</div>
+						<img class="w-full h-full object-fill rounded-[6px]" src="src/assets/test_images/purina.png" alt="">
 					</div>
 				</swiper-slide>
 			</Swiper>
@@ -87,27 +60,27 @@
 				<Swiper width={"w-full h-full"} slidesPerView={5}>
 					<swiper-slide class="flex justify-center items-center">
 						<div class="px-4">
-							<img class="rounded-[8px]" src="https://play-lh.googleusercontent.com/fEKjjIPa_ECnw9a_pg9Z5e-9bZLEClr-X_eQoeVQRPUMINdEjw1b1kY8aoIxd8WHJRnN" alt="">
+							<img class="rounded-[8px]" src="src/assets/test_images/brands/avanti.png" alt="">
 						</div>
 					</swiper-slide>
 					<swiper-slide class="flex justify-center items-center">
 						<div class="px-4">
-							<img class="rounded-[8px]" src="https://customers.seomanager.com/knowledgegraph/logo/avanti-uy_myshopify_com_logo.png?cache=4674" alt="">
+							<img class="rounded-[8px]" src="src/assets/test_images/brands/conaprole.png" alt="">
 						</div>
 					</swiper-slide>
 					<swiper-slide class="flex justify-center items-center">
 						<div class="px-4">
-							<img class="rounded-[8px]" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Splenda_Logo.svg/1200px-Splenda_Logo.svg.png" alt="">
+							<img class="rounded-[8px]" src="src/assets/test_images/brands/splenda.png" alt="">
 						</div>
 					</swiper-slide>
 					<swiper-slide class="flex justify-center items-center">
 						<div class="px-4">
-							<img class="rounded-[8px]" src="https://www.cscp.org/wp-content/uploads/2009/05/Work_nestle.png" alt="">
+							<img class="rounded-[8px]" src="src/assets/test_images/brands/nestle.png" alt="">
 						</div>
 					</swiper-slide>
 					<swiper-slide class="flex justify-center items-center">
 						<div class="px-4">
-							<img class="rounded-[8px]" src="https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo.png" alt="">
+							<img class="rounded-[8px]" src="src/assets/test_images/brands/coca-cola.png" alt="">
 						</div>
 					</swiper-slide>
 				</Swiper>
@@ -137,10 +110,6 @@
 				<Swiper width={"w-full"} slidesPerView={4} buttons={true}>
 					{#each products as product}
 						<swiper-slide><ProductCard item={product}/></swiper-slide>
-						<swiper-slide><ProductCard item={product}/></swiper-slide>
-						<swiper-slide><ProductCard item={product}/></swiper-slide>
-						<swiper-slide><ProductCard item={product}/></swiper-slide>
-						<swiper-slide><ProductCard item={product}/></swiper-slide>
 					{/each}
 				</Swiper>
 			</div>
@@ -168,10 +137,6 @@
 				<div>
 					<Swiper slidesPerView={5} buttons={true}>
 						{#each products as product}
-							<swiper-slide><ProductCard item={product}/></swiper-slide>
-							<swiper-slide><ProductCard item={product}/></swiper-slide>
-							<swiper-slide><ProductCard item={product}/></swiper-slide>
-							<swiper-slide><ProductCard item={product}/></swiper-slide>
 							<swiper-slide><ProductCard item={product}/></swiper-slide>
 						{/each}
 					</Swiper>
