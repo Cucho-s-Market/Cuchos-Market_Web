@@ -119,7 +119,7 @@
 			<!-- Title and see all -->
 			<div class="flex justify-between items-center">
 				<h1 class="text-[38px] text-[#000] font-bold">Tenemos lo que necesitas</h1>
-				<Link text={"Ver todo"} type={"text-primary no-underline"} href={"/catalogo"}/>
+				<Link text={"Ver todo"} target={false} type={"text-primary no-underline cursor-pointer"} href={"/catalogo"}/>
 			</div>
 			<HomeCategories/>
 		</div>
