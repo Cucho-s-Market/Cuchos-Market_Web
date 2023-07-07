@@ -5,11 +5,10 @@ import LoadingOverlay from "$lib/components/utils/LoadingOverlay.svelte";
 // @ts-nocheck
 const Utils = (() => {
     
-    function getDateNow() {
-        let date = new Date();
-
-        let day = date.getDay();
-        let month = date.getMonth();
+    function getDateNow(date) {
+        date = date ? date : new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
         let year = date.getFullYear();
 
         let hour = date.getHours();
@@ -24,7 +23,7 @@ const Utils = (() => {
         sec = sec < 10 ? '0' + sec : sec;
 
         //${hour}:${min}:${sec}
-        return `${year}-${month}-${15}`;
+        return `${year}-${month}-${day}`;
     }
 
     function showLoading(time) {
