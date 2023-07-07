@@ -1,5 +1,7 @@
 <script>
+
     // @ts-nocheck
+    import Search from './../../forms/search/Search.svelte';
 	import Cart from "$lib/components/cart/Cart.svelte";
 	import Login from "$lib/components/forms/login/Login.svelte";
     import Modal from "$lib/components/utils/Modal.svelte";
@@ -13,13 +15,14 @@
 
     let showModalBranch = false;
     let showModalLogin = false;
+    let showSearch = false;
     let showCart = false;
 
     let userIsloggedIn = false;
     let branches = [];
 
     onMount(async () => {
-        
+     
         // Check if user is logged in
         userIsloggedIn = await sessionController.isUserLoggedIn();
 
@@ -40,6 +43,11 @@
 <Modal bind:showModal={showModalLogin}>
     <Login/>
 </Modal>
+
+<Modal bind:showSearch={showSearch}>
+    <Search/>
+</Modal>
+
 
 <!-- --------------------------------------->
 <header class="fixed w-full z-50">
@@ -71,7 +79,8 @@
                 <div class="dropdown dropdown-end">
                     <!-- svelte-ignore a11y-label-has-associated-control -->
                     <label class="cursor-pointer flex">
-                        <div class="indicator">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <div class="indicator" on:click={() => showSearch=!showSearch}>
                             <Svg name={"search"} size={30}/>
                         </div>
                     </label>
@@ -113,7 +122,7 @@
                         {:else}
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
-                                <a href="/info-perfil" class="justify-between">Perfil</a>
+                                <a href="#" class="justify-between">Perfil</a>
                             </li>
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
