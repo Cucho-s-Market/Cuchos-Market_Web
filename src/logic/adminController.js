@@ -8,7 +8,7 @@ const adminController = (() => {
     //USERS
     async function getUsers() {
         let token = await sessionAdminController.getUserToken();
-        return await fetchController.execute('http://localhost:8080/users', 'GET', null, token);
+        return await fetchController.execute('https://cuchos-market-2023-34241c211eef.herokuapp.com/users', 'GET', null, token);
     }
 
     async function getUser(id) {
@@ -16,7 +16,7 @@ const adminController = (() => {
         if (!id) return null;
 
         let token = await sessionAdminController.getUserToken();
-        return await fetchController.execute(`http://localhost:8080/users/${id}`, 'GET', null, token);
+        return await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/users/${id}`, 'GET', null, token);
     }
 
     async function registerEmployee(employee, branch) {
@@ -26,7 +26,7 @@ const adminController = (() => {
 
         employee.role = "EMPLOYEE";
 
-		const res = await fetchController.execute(`http://127.0.0.1:8080/users/${branch}/employee`, 'POST', employee, token);
+		const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/users/${branch}/employee`, 'POST', employee, token);
 		return res;
 	}
 
@@ -43,7 +43,7 @@ const adminController = (() => {
         user.password = employee.password;
 
 
-        const res = await fetchController.execute(`http://127.0.0.1:8080/users`, 'PUT', user, token);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/users`, 'PUT', user, token);
 		return res;
     }
 
@@ -52,7 +52,7 @@ const adminController = (() => {
 
         let token = await sessionAdminController.getUserToken();
 
-        const res = await fetchController.execute(`http://127.0.0.1:8080/users/${user_id}`, 'DELETE', null, token);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/users/${user_id}`, 'DELETE', null, token);
 
         return res;
     }

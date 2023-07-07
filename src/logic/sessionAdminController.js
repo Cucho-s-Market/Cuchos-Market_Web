@@ -11,7 +11,7 @@ const sessionAdminController = (() => {
 
 		if (!sessionStorage) return null;
 
-		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", userDetails);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/auth/login", "POST", userDetails);
 		if (res == null) return null;
 
 		if (res.error) return res;

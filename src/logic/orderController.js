@@ -8,7 +8,7 @@ const orderController = (() => {
 
     async function getOrder(orderId){
         const token = await sessionAdminController.getUserToken();
-        const order = await fetchController.execute(`http://localhost:8080/orders/${orderId}`, "GET", null, token);
+        const order = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/${orderId}`, "GET", null, token);
         if (order == null || order.error) return null;
 
         return order.data;
@@ -28,7 +28,7 @@ const orderController = (() => {
             token = await sessionAdminController.getUserToken();
         }
 
-        const orders = await fetchController.execute("http://localhost:8080/orders" + branch, "GET", null, token);
+        const orders = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/orders" + branch, "GET", null, token);
         if (orders == null || orders.error) return null;
 
         return orders.data;
@@ -38,7 +38,7 @@ const orderController = (() => {
         const userToken = await sessionController.getUserToken();
         if (userToken == null) return null;
 
-        const response = await fetchController.execute("http://localhost:8080/orders", "POST", order, userToken);
+        const response = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/orders", "POST", order, userToken);
         return response;
     }
 
@@ -52,7 +52,7 @@ const orderController = (() => {
 
         order.branchId = branch_id.id;
 
-        const response = await fetchController.execute(`http://localhost:8080/orders/employee`, "PUT", order, userToken);
+        const response = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/employee`, "PUT", order, userToken);
         return response;
     }
 

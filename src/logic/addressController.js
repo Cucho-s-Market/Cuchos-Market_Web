@@ -16,7 +16,7 @@ const addressController = (() => {
 
         const newAddress = new Address(null, address.address, address.doorNumber, address.location, address.state);
 
-        let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address", "POST", newAddress, userToken);
+        let resultAddress = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/customer/address", "POST", newAddress, userToken);
         if (resultAddress == null || resultAddress.error) return null;
 
         setAddressStorageFromDB();
@@ -28,7 +28,7 @@ const addressController = (() => {
     async function updateAddress(address) {
         
         const userToken = await sessionController.getUserToken();
-        let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address", "PUT", address, userToken);
+        let resultAddress = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/customer/address", "PUT", address, userToken);
         if (resultAddress == null || resultAddress.error) return null;
 
         setAddressStorageFromDB();
@@ -40,7 +40,7 @@ const addressController = (() => {
     async function deleteAddress(addressId) {
         
         const userToken = await sessionController.getUserToken();
-        let resultAddress = await fetchController.execute("http://localhost:8080/users/customer/address/" + addressId, "DELETE", null, userToken);
+        let resultAddress = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/customer/address/" + addressId, "DELETE", null, userToken);
         if (resultAddress == null || resultAddress.error) return null;
 
         setAddressStorageFromDB();
@@ -50,7 +50,7 @@ const addressController = (() => {
 
     async function getAddresses() {
         const userToken = await sessionController.getUserToken();
-        let addresses = await fetchController.execute("http://localhost:8080/users/customer/address", "GET", null, userToken);
+        let addresses = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/customer/address", "GET", null, userToken);
         if (addresses == null || addresses.error) return null;
 
         return addresses.data;

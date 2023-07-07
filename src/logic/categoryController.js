@@ -7,7 +7,7 @@ const categoryController = (() => {
     async function getCategories() {
         let resultCategories = [];
 
-        let categories = await fetchController.execute("http://localhost:8080/categories");
+        let categories = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/categories");
         if (categories == null || categories.error) return null;
 
         categories = categories.data;
@@ -36,7 +36,7 @@ const categoryController = (() => {
         return resultCategories;
     }
     async function getCategoriesSelect() {
-        const branches = await fetchController.execute("http://localhost:8080/categories");
+        const branches = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/categories");
         if (branches == null || branches.error) return null;
 
         return branches.data;
@@ -69,7 +69,7 @@ const categoryController = (() => {
         if (category === null) throw new Error('Error al intentar crear la categoria.');
 
         const token = await sessionAdminController.getUserToken();
-		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
+		const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/categories`, 'POST', category, token);
 		return res;
     }
 
