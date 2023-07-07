@@ -3,19 +3,19 @@
     //con alguna función o criterio debo elegir qué categorias selecionar y mostrar.
     //Images es el objeto que entra, el cual se itera y del cual se almacena en un segundo objeto las propiedades de interés
     let images = [
-        {   imgCategoria: "src/assets/test_images/nasa1.jpg",
+        {   imgCategoria: "src/assets/test_images/clothes-categories.jpg",
             nomCategoria: "byb en el sillon",
             url: "google.com"
         },
-        {   imgCategoria: "src/assets/test_images/nasa2.jpg",
+        {   imgCategoria: "src/assets/test_images/tech-categories.jpg",
             nomCategoria: "pegandose conitos",
             url: "google.com"
         },
-        {   imgCategoria: "src/assets/test_images/nasa3.jpg",
+        {   imgCategoria: "src/assets/test_images/food-categories.jpg",
             nomCategoria: "calzoncillo",
             url: "google.com"
         },
-        {   imgCategoria: "src/assets/test_images/nasa4.jpg",
+        {   imgCategoria: "src/assets/test_images/furniture-categories.jpg",
             nomCategoria: "cleaning",
             url: "google.com"
         }

@@ -6,15 +6,20 @@
 	import Notifications from '$lib/components/utils/Notifications.svelte';
 	import { onMount } from 'svelte';
 	import productController from '../../logic/productController';
+	import Utils from '../../logic/helpers/Utils';
 
 	let products = [];
 
 	onMount(async () => {
 
+		Utils.showLoading();
+
 		products = await productController.getProducts();
 		if (products == null || products?.error) return null;
 
 		products = products?.data?.content;
+
+		Utils.removeLoading();
 	});
 </script>
 

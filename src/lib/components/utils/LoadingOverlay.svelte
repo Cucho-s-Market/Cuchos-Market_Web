@@ -1,4 +1,4 @@
-<div class="loading-overlay flex justify-center items-center z-50 bg-primary bg-opacity-30 fixed right-0 left-0 top-0 bottom-0 w-screen h-screen">
+<div class="loading-overlay flex justify-center items-center z-[999] bg-primary bg-opacity-30 fixed right-0 left-0 top-0 bottom-0 w-screen h-screen">
     <div class="lds-ring">
         <div />
         <div />
