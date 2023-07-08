@@ -178,12 +178,12 @@
 
 <SectionHeader title={formType + " Producto"} href="/admin/productos" />
 
-<div class="flex justify-around">
+<div class="flex flex-col justify-center items-center">
 	{#await getProduct() then}
 		<ProductForm bind:product bind:arrayImages {categories} />
 
 		<div class="flex flex-col w-fit">
-			<ProductStock {branches} />
+			<!-- <ProductStock {branches} /> -->
 
 			<div class="flex gap-10">
 				<div class="w-full mt-3">
