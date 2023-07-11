@@ -69,7 +69,7 @@
                     <ul class="navbar gap-8">
                         <li><a class="hover:underline" href="/">Home</a></li>
                         <li><a class="hover:underline" href="/catalogo">Catalogo</a></li>
-                        <li><a class="hover:underline" href="/about-us">Sobre Nosotros</a></li>
+                        <li><a class="hover:underline" href="../sobre-nosotros">About</a></li>
                     </ul>
                 </div>
             </div>
