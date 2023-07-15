@@ -14,7 +14,7 @@
 	let waiting = false;
 
 	onMount(async () => {
-		debugger;
+		
 		user = await sessionController.getUser();
 		if (!user) return;
 
@@ -26,7 +26,7 @@
 	});
 
 	async function updateCustomer(customerDetails){
-		debugger;
+		
 		waiting = true;
 		message = '';
 

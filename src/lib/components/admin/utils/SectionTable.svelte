@@ -32,7 +32,7 @@
 				</thead>
 
 				<tbody>
-					{#each tbody as tbody_item, index}
+					{#each tbody as tbody_item, index (tbody_item.id)}
 						{#if index % 2 === 0}
 							<tr>
 								{#each tbody_item.row as item}

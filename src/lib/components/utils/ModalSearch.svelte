@@ -30,7 +30,7 @@
 		timeout = setTimeout(get_products, 300)
 	}
 	async function get_products() {
-		debugger;
+		
 		if (!search) {
 			reset();
 			return;
@@ -57,7 +57,7 @@
 	}
 
     function closeModal() {
-        debugger;
+        
 		showSearch = false;
         document.body.style.overflow = 'auto'; // Reset body overflow
     }

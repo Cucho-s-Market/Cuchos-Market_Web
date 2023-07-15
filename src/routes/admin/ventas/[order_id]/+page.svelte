@@ -22,7 +22,7 @@
     let order = null;
     
     onMount(async () => {
-        order = data.order;
+        order = data.order.order;
         showSelectStatus = order.status === 'CANCELLED' || order.status === 'DELIVERED' ? true : false;
     });
 
@@ -49,6 +49,7 @@
 			window.location.href = '/admin/ventas';
 		}, 2000);
     }
+
 
 </script>
 
