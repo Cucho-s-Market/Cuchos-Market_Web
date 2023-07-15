@@ -122,7 +122,7 @@
                         {:else}
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
-                                <a href="#" class="justify-between">Perfil</a>
+                                <a href="/info-perfil" class="justify-between">Perfil</a>
                             </li>
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
