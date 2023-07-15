@@ -47,7 +47,7 @@
 
 		setTimeout(() => {
 			if (browser) {
-				window.location.href = '/admin';
+				window.location.href = '/admin/estadisticas';
 			}
 		}, 2000);
 	}

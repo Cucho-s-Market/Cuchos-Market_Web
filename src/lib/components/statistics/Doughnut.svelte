@@ -5,6 +5,7 @@
 	import chartController from '../../../logic/chartController';
 	import branchController from '../../../logic/branchController';
 	import Utils from '../../../logic/helpers/Utils';
+	import sessionAdminController from '../../../logic/sessionAdminController';
 
 	export let chartData = {
 		labels: ['Red', 'Green', 'Blue'],
@@ -14,7 +15,7 @@
 	let chartTitle = 'Productos más vendidos';
 
 	let chartCanvas;
-	let selectedDate = 1;
+	let selectedDate = "1";
 	let showNodata = false;
 	let start = Utils.getDateNow();
 	let end = start;
@@ -47,23 +48,31 @@
 				break;
 		}
 
-		chartData = await chartController.getBestProducts(branch.id, end, start);
+		let user = await sessionAdminController.getUser();
+
+		if(user && user.role === 'ADMIN') {
+			chartData = await chartController.getBestProductsAdmin(end, start);
+		} else {
+			branch = await branchController.getSelectedBranch();
+			chartData = await chartController.getBestProducts(branch.id, end, start);
+		}
+
+		
+
 		if (chartData.labels.length === 0) {
 			showNodata = true;
 		} else {
 			showNodata = false;
 			chartController.doughnut(chartCanvas, chartData);	
 		}
-
-		
 	}
 
 	onMount(async () => {
 		branch = await branchController.getSelectedBranch();
-		chartData = await chartController.getBestProducts(branch.id, end, start);
+		chartData = await chartController.getBestProducts(1, end, start);
 
 		
-		let chartSales = await chartController.getSalesLastWeek(branch.id, end, start);
+		let chartSales = await chartController.getSalesLastWeek(1, end, start);
 		
 		if (chartData.labels.length === 0) {
 			showNodata = true;
@@ -83,7 +92,7 @@
 				on:change={() => setChartData()}
 				class="select select-primary w-full bg-light-grey focus:border-none h-[20px]"
 			>
-				<option selected value="1">Hoy</option>
+				<option value="1" selected>Hoy</option>
 				<option value="2">Semana</option>
 				<option value="3">Mes</option>
 			</select>
