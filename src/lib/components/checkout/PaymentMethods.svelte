@@ -21,6 +21,66 @@
 		currentStep.set(2);
 	};
 
+	async function makePaymentDB() {
+		var orderDetails = {
+			branchId: $branchStore?.selected?.id,
+			totalPrice: $cartStore?.total / 39.15,
+			status: 'PENDING',
+			addressId: $userStore?.address?.isBranch ? null : $userStore?.address?.id,
+			type: $userStore?.address?.isBranch ? 'PICK_UP' : 'DELIVERY',
+			products: $cartStore?.items.map((item) => {
+				return {
+					name: item.name,
+					quantity: item.quantity
+				};
+			})
+		};
+
+		const orderCreated = await orderController.createOrder(orderDetails);
+
+		if (!orderCreated || orderCreated.error) {
+			notify({
+				text: orderCreated?.message || 'Error del servidor.',
+				type: 'alert-error'
+			});
+			setTimeout(() => {
+				window.location.href = '/';
+			}, 2000);
+			return null;
+		}
+
+		return true;
+	}
+
+	async function payCash() {
+
+		Utils.showLoading();
+
+		const paymentCompleted = await makePaymentDB();
+		if(!paymentCompleted || paymentCompleted == null){
+			notify({
+				text: 'Error al crear la orden',
+				type: 'alert-error'
+			});
+			setTimeout(() => {
+				window.location.href = '/catalogo';
+			}, 2000);
+			Utils.removeLoading();
+			return;
+		}
+
+		cartController.clearCart();
+
+		// Create boolean that indicates that the order was created
+		const user = await sessionController.getUser();
+		user.orderCreated = true;
+		sessionController.setUser(user);
+
+		Utils.removeLoading();
+
+		window.location.href = '/checkout/purchase-confirmation';
+	}
+
 	onMount(async () => {
 		try {
 			Utils.showLoading();
@@ -57,33 +117,17 @@
 							// Finalize the transaction on the server after payer approval
 							async onApprove(data) {
 								// Create the order on the server
-								var orderDetails = {
-									branchId: $branchStore?.selected?.id,
-									totalPrice: $cartStore?.total / 39.15,
-									status: 'PENDING',
-									addressId: $userStore?.address?.isBranch ? null : $userStore?.address?.id,
-									type: $userStore?.address?.isBranch ? 'PICK_UP' : 'DELIVERY',
-									products: $cartStore?.items.map((item) => {
-										return {
-											name: item.name,
-											quantity: item.quantity
-										};
-									})
-								};
-
-								const orderCreated = await orderController.createOrder(orderDetails);
-
-								if (!orderCreated || orderCreated.error) {
+								let paymentDone = await makePaymentDB();
+								if (!paymentDone) {
 									notify({
-										text: orderCreated?.message || 'Error del servidor.',
+										text: 'Error al crear la orden en la base de datos',
 										type: 'alert-error'
 									});
 									setTimeout(() => {
-										window.location.href = '/';
+										window.location.href = '/catalogo';
 									}, 2000);
 									return;
 								}
-
 								const responseCapture = await PayPalController.capturePayment(data.orderID);
 								if (responseCapture.status != 'COMPLETED') {
 									notify({ text: 'Error al crear la orden en PayPal', type: 'alert-error' });
@@ -134,8 +178,41 @@
 			<div class="w-[400px]" id="paypal-button-container" />
 		</div>
 
+		<!-- Cash method -->
+		<div>
+			<div class="w-[400px] flex relative items-center">
+				<Button
+					text={'Contra entrega'}
+					type={'w-full text-primary-content btn-primary'}
+					click={payCash}
+				/>
+				<div class="absolute left-[104px]">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="icon icon-tabler icon-tabler-cash-banknote"
+						width="40"
+						height="40"
+						viewBox="0 0 24 24"
+						stroke-width="1"
+						stroke="#fff"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+						<path
+							d="M3 6m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"
+						/>
+						<path d="M18 12l.01 0" />
+						<path d="M6 12l.01 0" />
+					</svg>
+				</div>
+			</div>
+		</div>
+
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="flex gap-4">
+		<div class="flex gap-4 mt-10">
 			<Button
 				click={goToPreviousStep}
 				text={'Atras'}

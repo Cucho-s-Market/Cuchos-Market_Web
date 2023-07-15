@@ -38,7 +38,6 @@ const productController = (() => {
     }
 
     async function getProducts(category_id = "") {
-        
         let branch = '';
         let response = null;
         let category = category_id !== "" ? `&category_id=${category_id}` : '';
