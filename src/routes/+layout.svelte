@@ -13,7 +13,7 @@
 		});
 	</script>
 	
-	{#if !(currentPage?.route?.id).includes('/checkout') && currentPage?.route?.id != "/registrarse" && !(currentPage?.route?.id).includes('/admin') && !(currentPage?.route?.id).includes('/forgot-password')}
+	{#if !(currentPage?.route?.id)?.includes('/checkout') && currentPage?.route?.id != "/registrarse" && !(currentPage?.route?.id)?.includes('/admin') && !(currentPage?.route?.id)?.includes('/forgot-password')}
 		<Header/>
 	{/if}
 	<slot />
