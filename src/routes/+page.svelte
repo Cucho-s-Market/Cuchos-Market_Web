@@ -15,7 +15,7 @@
 	let products;
 
 	onMount(async () => {
-		debugger;
+		
 		products = await productController.getProducts();
 		products = products?.data?.content;
 	});

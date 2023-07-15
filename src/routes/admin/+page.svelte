@@ -8,6 +8,9 @@
 		if (!user && browser) {
 			window.location.href = '/admin/auth/login';
 		}
+		if(user && browser) {
+			window.location.href = '/admin/estadisticas';
+		}
 	};
 
 	userLogged();
