@@ -35,7 +35,8 @@
 		usersFiltered.forEach((user) => {
 			tbody.push({
 				id: user.id,
-				row: [user.email, user.firstName, user.lastName, user.role]
+				row: [user.email, user.firstName, user.lastName, user.role],
+				disabled: user?.disabled
 			});
 		});
 	};
@@ -57,7 +58,8 @@
 		usersFiltered.forEach((user) => {
 			tbody.push({
 				id: user.id,
-				row: [user.email, user.firstName, user.lastName, user.role]
+				row: [user.email, user.firstName, user.lastName, user.role],
+				disabled: user?.disabled
 			});
 		});
 		
