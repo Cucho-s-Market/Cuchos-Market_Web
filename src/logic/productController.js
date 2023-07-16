@@ -30,9 +30,6 @@ const productController = (() => {
         response = await fetchController.execute(petition);
         if (!response || Object.entries(response).length === 0) return null;
 
-        response.data.content.forEach(element => {
-            element.images = element.images?.map((elem) => {return JSON.parse(elem)}) ?? null;
-        });
 
         return response;
     }
@@ -61,9 +58,6 @@ const productController = (() => {
         response = await fetchController.execute(petition);
         if (!response || response?.error) return null;
 
-        response.data.content.forEach(element => {
-            element.images = element.images?.map((elem) => {return JSON.parse(elem)}) ?? null;
-        });
 
         return response;
     }
