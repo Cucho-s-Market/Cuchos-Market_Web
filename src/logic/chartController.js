@@ -9,11 +9,16 @@ import Chart from 'chart.js/auto';
 const chartController = (() => {
 	function _setColors(length) {
 		const colors = [
-			'#F5793B', // Base color
+			'#F5793B',
 			'#995D81',
 			'#81ADC8',
 			'#B4DC7F',
-			'#FFD2FC'
+			'#FFD2FC',
+			'#B084CC',
+			'#5DD9C1',
+			'#89023E',
+			'#F72585',
+			'#AAADC4'
 		];
 
 		let response = [];
@@ -47,9 +52,12 @@ const chartController = (() => {
 			return [];
 		}
 
+		let i = 0;
 		response.data.forEach((element) => {
+			if (i > 9) return;
 			data.labels.push(element.productName);
 			data.data.push(element.salesCount);
+			i++;
 		});
 
 		return data;
