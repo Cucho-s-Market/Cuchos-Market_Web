@@ -7,6 +7,7 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import { onMount } from 'svelte';
 	import sessionController from '../../../logic/sessionController';
+	import Utils from '../../../logic/helpers/Utils';
 
 	let user = null;
 	let customerDetails = null;
@@ -14,6 +15,8 @@
 	let waiting = false;
 
 	onMount(async () => {
+		const userIsLogged = await sessionController.isUserLoggedIn();
+		if (!userIsLogged) window.location.href = '/';
 		
 		user = await sessionController.getUser();
 		if (!user) return;
@@ -67,6 +70,22 @@
 		sessionController.setUser(user);
 		waiting = false;
 		notify({ text: 'Información actualizada', type: 'alert-success' });
+	}
+
+	async function disableCustomer(){
+		
+		Utils.showLoading();
+
+		const customerDeleted = await sessionController.disableCustomer();
+		if(!customerDeleted || customerDeleted.error){
+			notify({ text: 'Hubo un error al eliminar la cuenta', type: 'alert-error' });
+			Utils.removeLoading();
+			return;
+		}
+
+		Utils.removeLoading();
+
+		sessionController.logout();
 	}
 
 </script>
@@ -135,13 +154,20 @@
 							{/if}
 						</div>
 
-						<div class="w-[200px]">
-							{#if waiting}
-								<Button text={"Guardar cambios"} type={"btn-primary loading loading-spinner"} props={"w-[300px] max-w-0 min-w-0 h-10 mt-4"}/>
-							{:else}
-								<Button text={"Guardar cambios"} type={"btn-primary"} props={"w-full h-10 mt-4"} click={() => {updateCustomer(customerDetails)}}/>
-							{/if}
+						<div class="w-full flex justify-between">
+							<div>
+								{#if waiting}
+									<Button text={"Guardar cambios"} type={"btn-primary loading loading-spinner"} props={"w-[300px] max-w-0 min-w-0 h-10 mt-4"}/>
+								{:else}
+									<Button text={"Guardar cambios"} type={"btn-primary"} props={"w-full h-10 mt-4"} click={() => {updateCustomer(customerDetails)}}/>
+								{/if}
+							</div>
+	
+							<div>
+								<Button text={"Eliminar cuenta"} type={"btn-error"} props={"w-full h-10 mt-4"} click={disableCustomer}/>
+							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
