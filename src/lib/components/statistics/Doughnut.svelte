@@ -84,7 +84,7 @@
 </script>
 
 <div class="flex w-full text-center">
-	<div class="flex flex-col w-[300px] h-[300px]">
+	<div class="flex flex-col w-[300px] h-[400px]">
 		<p class="font-semibold text-md mb-5">{chartTitle}</p>
 		<div class="flex">
 			<select

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import fetchController from "./fetchController";
 import sessionAdminController from "./sessionAdminController";
+import firebaseController from "./third-party/firebaseController";
 
 const categoryController = (() => {
 
@@ -69,6 +70,13 @@ const categoryController = (() => {
         if (category === null) throw new Error('Error al intentar crear la categoria.');
 
         const token = await sessionAdminController.getUserToken();
+
+        const image = await firebaseController.uploadCategoryImage(category.image.file, category.name.replace(" ", "_"));
+
+        if(image == null) throw new Error('Error al intentar subir la imagen de la categoria.');
+
+        category.image = image;
+
 		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
 		return res;
     }

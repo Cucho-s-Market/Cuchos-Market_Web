@@ -9,11 +9,13 @@
 	import { Category } from '../../../logic/dtos/Category.js';
 	import formValidator from '../../../logic/helpers/formValidator.js';
 	import sessionAdminController from '../../../logic/sessionAdminController.js';	
+	import { nanoid } from 'nanoid';
 
 	export let data;
 
 	let category = new Category();
 	let categories = [];
+	let fileInput = null;
 
 	onMount(async () => {
 		categories = data.categories;
@@ -33,7 +35,14 @@
 			category.categoryParent = null;
 		}
 		const token = await sessionAdminController.getUserToken();
-		const res = await categoryController.addCategory(category, token);
+		let res = null;
+
+		try {
+			res = await categoryController.addCategory(category, token);
+		} catch (error) {
+			notify({ type: 'alert-error', text: error.message });
+			return;
+		}
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });
@@ -51,6 +60,13 @@
 			window.location.href = '/admin/categorias';
 		}, 2000);
 	};
+
+	async function addImage(file) {
+		debugger;
+		const tempUrl = URL.createObjectURL(file);
+		category.image = {file: file, url: tempUrl, name: nanoid(), new: true};
+		fileInput.value = '';
+	}
 </script>
 
 <SectionHeader title={'Categorias'} />
@@ -72,6 +88,12 @@
 				<option value="{category.id}">{category.name}</option>
 			{/each}
 		</select>
+	</div>
+	<div class="flex flex-col w-[200px]">
+		<p class="label">
+			<span class="label-text font-semibold">Imagen</span>
+		</p>
+		<input bind:this={fileInput} class="file-input file-input-bordered file-input-primary" on:change={(event) => {addImage(event.target.files[0])}} type="file">
 	</div>
 	<div class="flex flex-col justify-end">
 		<Button
