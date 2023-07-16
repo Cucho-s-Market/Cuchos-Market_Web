@@ -148,7 +148,7 @@
                     <div class="w-[650px] flex items-center w-full border border-br-grey bg-bg-product-list rounded-md max-h-20">
                         <!-- Product Image -->
                         <div class="w-[80px] h-[80px] aspect-square border border-br-grey">
-                            <img class="h-full w-full object-scale-down" src="{JSON.parse(item?.product?.images[0]).url}" alt="">
+                            <img class="h-full w-full object-scale-down" src="{item?.product?.images[0]}" alt="">
                         </div>
                         <!-- Product description -->
                         <div class="m-4 min-w-[10rem] max-w-[12rem]">

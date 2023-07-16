@@ -9,9 +9,8 @@
     
 	let imgContent;
     let imagesArray;
-    let mainImage = images[0];
+    let mainImage = {url: images[0], alt: images[0].split('/o/')[1].split('?')[0]};
 
-	
 
     onMount(() => {
         imagesArray = [...imgContent.childNodes];
@@ -23,7 +22,7 @@
 		let img = event.target;
 		const imgParent = img.parentNode;
 		
-		img = {url: img.src, alt: img.alt};
+		img = {url: img.src, alt: img.src.split('/o/')[1].split('?')[0]};
 		mainImage = img != null ? img : dummyImage;
 		imgParent.classList.add('border-primary', 'border-2');
 
@@ -45,8 +44,8 @@
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<img
 							on:click={selectImg}
-							src={image.url}
-							alt={image.alt}
+							src={image}
+							alt={image}
 							class="w-full h-full object-scale-down rounded-md"
 						/>
 					</div>
