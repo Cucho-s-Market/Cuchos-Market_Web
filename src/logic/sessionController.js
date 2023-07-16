@@ -33,8 +33,16 @@ const sessionController = (() => {
 		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", customerDetails);
 		if (res == null || res.error) return res;
 
+
 		// Initialize values
 		user = res.data;
+
+		if(user?.role != "CUSTOMER"){
+			res.message = "No es un usuario valido";
+			res.error = true;
+			return res;
+		}
+
 		user.token = res.token;
 		user.address = {};
 		user.isLoggedIn = true;
