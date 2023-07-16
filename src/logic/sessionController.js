@@ -100,6 +100,14 @@ const sessionController = (() => {
 		return res;
 	}
 
+	async function updateCustomerInformation(customerDetails){
+
+		const token = await getUserToken();
+
+		const res = await fetchController.execute("http://localhost:8080/users", "PUT", customerDetails, token);
+		return res;
+	}
+
 	async function sendActualizarDatos(token, password){
 		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/updatePassword", "PUT", {"password": password}, token);
 		return res;
@@ -117,7 +125,8 @@ const sessionController = (() => {
 		sentForgotPassword,
 		checkForgotPasswordToken,
 		changePasswordUser,
-		sendActualizarDatos
+		sendActualizarDatos,
+		updateCustomerInformation
 	}
 })();
 
