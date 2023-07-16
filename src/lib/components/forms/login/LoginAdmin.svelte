@@ -77,7 +77,6 @@
 	</div>
 	<!-- Links -->
 	<div class="flex flex-col items-center mt-4 gap-2 text-xs">
-		<Link text={'¿Olvidaste la contraseña?'} type={'link-black font-semibold'} />
 		<p class="text-neutral-grey text-xs">@ 2023 Cucho's Market</p>
 	</div>
 </main>
