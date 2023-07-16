@@ -76,7 +76,9 @@
 		
 		Utils.showLoading();
 
-		const customerDeleted = await sessionController.disableCustomer();
+		const token = await sessionController.getUserToken();
+
+		const customerDeleted = await sessionController.disableCustomer(customerDetails.email, token, true);
 		if(!customerDeleted || customerDeleted.error){
 			notify({ text: 'Hubo un error al eliminar la cuenta', type: 'alert-error' });
 			Utils.removeLoading();

@@ -114,17 +114,8 @@ const sessionController = (() => {
 		return res;
 	}
 
-	async function disableCustomer(){
-		const user = await getUser();
-		if(!user) return null;
-
-		const token = user.token;
-		if(!token) return null;
-
-		const userEmail = user.email;
-		if(!userEmail) return null;
-
-		const res = await fetchController.execute("http://localhost:8080/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": true}, token);
+	async function disableCustomer(userEmail, token, disabled = true){
+		const res = await fetchController.execute("http://localhost:8080/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": disabled}, token);
 		return res;
 	}
 
