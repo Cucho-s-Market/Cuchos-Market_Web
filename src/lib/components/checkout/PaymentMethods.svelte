@@ -83,8 +83,6 @@
 
 	onMount(async () => {
 		try {
-			Utils.showLoading();
-
 			loadScript({
 				'client-id':
 					'AStj36A7uIpA8TJSs7ksWyfZbWS1i_hJHyXuTCWPe660YhEQdCU4rMjwOOY4BS2TbRAOyLned3vrx_ev'
@@ -149,10 +147,10 @@
 						})
 						.render('#paypal-button-container')
 						.then(() => {
-							Utils.removeLoading();
+	
 						})
 						.catch(() => {
-							Utils.removeLoading();
+		
 							notify({ text: 'Error al cargar PayPal', type: 'alert-error' });
 							setTimeout(() => {
 								window.location.href = '/catalogo';
@@ -163,7 +161,6 @@
 					console.error('failed to load the PayPal JS SDK script', err);
 				});
 		} catch (error) {
-			Utils.removeLoading();
 			notify({ text: 'Error al cargar PayPal', type: 'alert-error' });
 			setTimeout(() => {
 				window.location.href = '/catalogo';

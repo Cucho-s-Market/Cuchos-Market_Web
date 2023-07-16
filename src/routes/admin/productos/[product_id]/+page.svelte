@@ -58,7 +58,7 @@
 		if (res && res.error) {
 			const olderImages  = arrayImages.filter(elem => {return !elem.new});
 
-			product.images = olderImages.map(elem => {return JSON.stringify({url: elem.url, name: elem.name})});
+			product.images = olderImages.map(elem => {return elem.url});
 
 			res = await productController.editProduct(product, token);
 		}
