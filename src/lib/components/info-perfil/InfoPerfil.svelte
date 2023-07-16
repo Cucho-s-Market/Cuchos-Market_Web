@@ -20,8 +20,10 @@
 
 		customerDetails = {
 			email: user?.email,
-			nombre: user?.firstName,
-			apellido: user?.lastName
+			firstName: user?.firstName,
+			lastName: user?.lastName,
+			dni: user?.dni,
+			password: '',
 		};
 	});
 
@@ -30,31 +32,39 @@
 		waiting = true;
 		message = '';
 
-		// Validate all fields are filled
-		if (customerDetails.nombre === '' || customerDetails.apellido === '' || customerDetails.email === '') {
+		// Validate all fields are filled less password
+		if (!customerDetails.firstName || !customerDetails.lastName || !customerDetails.dni) {
 			notify({ text: 'Por favor, llene todos los campos', type: 'alert-error' });
 			waiting = false;
 			return;
 		}
-
-		// Validate email
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(customerDetails.email)) {
-			notify({ text: 'Por favor, ingrese un mail valido', type: 'alert-error' });
+		
+		// Update customer information in session storage
+		let user = await sessionController.getUser();
+		if (!user){
+			notify({ text: 'Hubo un error al actualizar la información', type: 'alert-error' });
 			waiting = false;
 			return;
 		}
 
-		// Update customer information in session storage
-		let user = await sessionController.getUser();
-		if (!user) return;
+		customerDetails.email = user.email;
+		customerDetails.telephone = user.telephone;
+		customerDetails.birthDate = user.birthDate;
 
-		user.firstName = customerDetails.nombre;
-		user.lastName = customerDetails.apellido;
-		user.email = customerDetails.email;
+		const customerUpdated = await sessionController.updateCustomerInformation(customerDetails);
+		if(!customerUpdated || customerUpdated.error){
+			notify({ text: 'Hubo un error al actualizar la información', type: 'alert-error' });
+			waiting = false;
+			return;
+		}
+		
+
+		user.firstName = customerDetails.firstName;
+		user.lastName = customerDetails.lastName;
+		user.dni = customerDetails.dni;
 
 		// Update en el backend
-		const updatedCustomer = sessionController.setUser(user);
+		sessionController.setUser(user);
 		waiting = false;
 		notify({ text: 'Información actualizada', type: 'alert-success' });
 	}
@@ -71,33 +81,51 @@
 					<p class="text-xl text-gray-900">Actualice la información de su cuenta</p>
 				</div>
 			</div>
-			<div class="w-[45%] px-16 h-[450px]">
-				<div class=" m-[15px] h-[450px] border rounded-xl">
+			<div class="w-[45%] px-16">
+				<div class=" m-[15px] h-full border rounded-xl">
 					<div class="px-4 mt-8 flex flex-col gap-6">
 						<div class="flex flex-col gap-6">
-							<Input
-								bind:value={customerDetails.nombre}
-								label={'Nombre'}
+							<Input disabled={true}
+								bind:value={customerDetails.dni}
+								label={'C.I'}
 								props={'h-10'}
-								type={'text'}
-								mandatory={false}
+								type={'number'}
+								mandatory={true}
 							/>
 						</div>
 						<div class="flex flex-col gap-6">
-							<Input
-								bind:value={customerDetails.apellido}
-								label={'Apellido'}
-								props={'h-10'}
-								type={'text'}
-								mandatory={false}
-							/>
-						</div>
-						<div class="flex flex-col gap-6">
-							<Input
+							<Input disabled={true}
 								bind:value={customerDetails.email}
 								label={'Email'}
 								props={'h-10'}
 								type={'email'}
+								mandatory={true}
+							/>
+						</div>
+						<div class="flex flex-col gap-6">
+							<Input
+								bind:value={customerDetails.firstName}
+								label={'Nombre'}
+								props={'h-10'}
+								type={'text'}
+								mandatory={true}
+							/>
+						</div>
+						<div class="flex flex-col gap-6">
+							<Input
+								bind:value={customerDetails.lastName}
+								label={'Apellido'}
+								props={'h-10'}
+								type={'text'}
+								mandatory={true}
+							/>
+						</div>
+						<div class="flex flex-col gap-6">
+							<Input
+								bind:value={customerDetails.password}
+								label={'Contraseña'}
+								props={'h-10'}
+								type={'password'}
 								mandatory={false}
 							/>
 						</div>
