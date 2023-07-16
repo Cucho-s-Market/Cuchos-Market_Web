@@ -49,7 +49,7 @@
 
 								{#if user.role === 'ADMIN'}
 									<td>
-										<TableButtons bind:buttons itemId={tbody_item.id} />
+										<TableButtons bind:buttons itemId={tbody_item.id} userIsEnabled={tbody_item?.disabled} role={tbody_item?.row[3]} email={tbody_item?.row[0]}/>
 									</td>
 								{/if}
 							</tr>
@@ -69,7 +69,7 @@
 
 								{#if user.role === 'ADMIN'}
 									<td>
-										<TableButtons bind:buttons itemId={tbody_item.id} />
+										<TableButtons bind:buttons itemId={tbody_item.id} userIsEnabled={tbody_item?.disabled} role={tbody_item?.row[3]} email={tbody_item?.row[0]}/>
 									</td>
 								{/if}
 							</tr>
