@@ -30,7 +30,7 @@
 
         // Send data to backend
         const result = await sessionController.login(customerDetails);
-        if(result == null || result.error) {errorMessage = result?.message; throw new Error(result?.message);}
+        if(result == null || result.error) {errorMessage = result?.message; return;}
         
         // Ask if user is logged in
         if(sessionController.isUserLoggedIn()) window.location.href = '/';
