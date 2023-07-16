@@ -31,7 +31,12 @@
 		Utils.showLoading(2000);
 
 		arrayImages = product.images === null ? [] : product.images;
-		arrayImages = arrayImages.map(elem => {return {url: elem.url, name: elem.name, new: false}});
+		
+		
+		arrayImages = arrayImages.map(elem => {
+			let nameElem = elem.split('/o/')[1].split('?')[0];
+			return {url: elem, name: nameElem, new: false}
+		});
 		
 		showAdd = arrayImages.length < 4 ? true: false;
 	});
@@ -56,7 +61,10 @@
 		let tempArray = arrayImages;
 		let res = null;
 
+		
+
 		if(!item.new) {
+			
 			res = await firebaseController.remove(item.name, product.name);
 
 			if(res.ok) {
