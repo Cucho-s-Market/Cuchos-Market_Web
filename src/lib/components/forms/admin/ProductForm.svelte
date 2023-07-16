@@ -114,7 +114,7 @@
 		</div>
 
 		<div class="w-full">
-			<Input type={"number"} bind:value={product.price} props="h-10" label="Precio" />
+			<Input bind:value={product.price} props="h-10" label="Precio" />
 		</div>
 
 		<div class="flex flex-col w-full">

@@ -77,32 +77,6 @@ const firebaseController = (() => {
 		}
 	}
 
-    async function uploadCategoryImage(file, productName) {
-		if (!file) return null;
-
-		const imageId = nanoid();
-
-		const fileName = `${productName}__${imageId}.png`;
-
-		const imageRef = ref(storage, fileName);
-
-		const uploadFile = await uploadBytes(imageRef, file);
-
-		if (!uploadFile) {
-			notify({
-				text: `Al ocurrido un error al intentar subir la imagen.`,
-				type: 'alert-error'
-			});
-		}
-
-		if (uploadFile.metadata) {
-			const filePath = await getPath(uploadFile.metadata);
-			return filePath;
-		}
-
-        return null;
-	}
-
 	async function remove(fileName, productName = null) {
 		if (!fileName) return null;
 
@@ -121,7 +95,7 @@ const firebaseController = (() => {
 
 				productDB.images = productDB.images.filter((elem) => {
 					let nameElem = elem.split('/o/')[1].split('?')[0];
-					return nameElem !== fileName;
+					return nameElemo !== fileName;
 				});
 
 				const token = await sessionAdminController.getUserToken();
@@ -151,7 +125,6 @@ const firebaseController = (() => {
 
 	return {
 		upload,
-        uploadCategoryImage,
 		remove
 	};
 })();
