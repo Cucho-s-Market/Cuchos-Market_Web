@@ -13,21 +13,40 @@
     let showUpdate = false;
     let showSelectStatus = false;
 
+	const STATUS = {"PENDING":"Pendiente","PREPARING":"Preparando","READY":"Listo","DELIVERED":"Entregado","CANCELLED":"Cancelado"};
+
     const orderStatus = [
-        'CANCELLED',
-        'PENDING',
-        'PREPARING',
-        'DELIVERED'
+        'Cancelado',
+        'Pendiente',
+        'Preparando',
+        'Entregado'
     ];
     let order = null;
     
     onMount(async () => {
         order = data.order.order;
-        showSelectStatus = order.status === 'CANCELLED' || order.status === 'DELIVERED' ? true : false;
+        order.status = STATUS[order.status];
+        showSelectStatus = order.status === 'Cancelado' || order.status === 'Entregado' ? true : false;
     });
 
+    function findKeyByValue(obj, value) {
+        const keys = Object.keys(obj);
+        let i = 0;
+
+        while (i < keys.length) {
+            const key = keys[i];
+            if (obj.hasOwnProperty(key) && obj[key] === value) {
+            return key;
+            }
+            i++;
+        }
+
+        return null;
+    }
     const updateOrder = async () => {
         Utils.showLoading();
+        order.status = findKeyByValue(STATUS, order.status);
+        order.type = order.type === 'Retiro en sucursal' ? 'PICK_UP' : 'DELIVERY';
         const res = await orderController.updateOrder(order);
 
         if (!res) {
