@@ -50,7 +50,7 @@
 		
 		let response = await adminController.registerEmployee(user, branch);
 	
-		if(!response || response && response.error) {
+		if(!response || response && !response.data) {
 			response = await adminController.updateEmployee(user);
 		}
 
@@ -67,7 +67,7 @@
 		notify({ type: 'alert-success', text: response.message });
 		setTimeout(() => {
 			window.location.href = `/admin/usuarios`;
-		}, 3000);
+		}, 1000);
 	};
 
 </script>
@@ -95,7 +95,7 @@
 					notify({ type: 'alert-success', text: res.message });
 					setTimeout(() => {
 						window.location.href = '/admin/usuarios';
-					}, 3000);
+					}, 1000);
 				}}
 			/>
 			<Button

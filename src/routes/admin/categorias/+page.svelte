@@ -58,7 +58,7 @@
 		formValidator.clear(validationArray);
 		setTimeout(() => {
 			window.location.href = '/admin/categorias';
-		}, 2000);
+		}, 1000);
 	};
 
 	async function addImage(file) {

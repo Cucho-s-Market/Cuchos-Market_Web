@@ -33,28 +33,7 @@
 
 				<tbody>
 					{#each tbody as tbody_item, index (tbody_item.id)}
-						{#if index % 2 === 0}
-							<tr>
-								{#each tbody_item.row as item}
-									<td>{item}</td>
-								{/each}
-
-								{#if tbody_item.stock >= 0 &&	 user.role === 'EMPLOYEE'}
-									<td><TableStock stock={tbody_item.stock} productId={tbody_item.id} /></td>
-								{/if}
-
-								{#if buttons.editOrder && user.role === 'EMPLOYEE'}
-									<td><a href="/admin/ventas/{tbody_item.id}"><Svg name="edit-circle" color={'#F5793B'} /></a></td>
-								{/if}
-
-								{#if user.role === 'ADMIN'}
-									<td>
-										<TableButtons bind:buttons itemId={tbody_item.id} userIsEnabled={tbody_item?.disabled} role={tbody_item?.row[3]} email={tbody_item?.row[0]}/>
-									</td>
-								{/if}
-							</tr>
-						{:else}
-							<tr class="active">
+							<tr class="{index % 2 === 0 ? 'active': ''}">
 								{#each tbody_item.row as item}
 									<td>{item}</td>
 								{/each}
@@ -73,7 +52,6 @@
 									</td>
 								{/if}
 							</tr>
-						{/if}
 					{/each}
 				</tbody>
 			</table>
