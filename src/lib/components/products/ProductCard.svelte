@@ -44,7 +44,6 @@
             <h3 class="flex justify-center font-medium text-sm text-center h-[2em]">{item.name}</h3>
             <div class="flex flex-col justify-center">
                 <div class="flex flex-col text-center">
-                    <p class="font-regular text-xs text-normal-grey font-medium line-through flex-grow-0">UYU {item.price}</p>
                     <p class="font-regular text-lg font-medium flex-grow-0">UYU {item.price}</p>
                 </div>
     
