@@ -7,6 +7,8 @@
 	export let props = ''
 	export let errorMessage = '';
 	export let disabled = false;
+	export let isSearch = false;
+	export let placeholder = '';
 
 	const handleInput = event => {
 		value = event.target.value;
@@ -16,13 +18,15 @@
 
 <div class="form-control w-full">
 	<!-- svelte-ignore a11y-label-has-associated-control -->
-	<label class="label">
-		<span class="label-text font-semibold">{label}
-            {#if mandatory}
-                <span class="p-1 text-error">*</span>
-            {/if}
-        </span>
-	</label>
-	<input {type} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value} disabled={disabled}/>
+	{#if !isSearch}
+		<label class="label">
+			<span class="label-text font-semibold">{label}
+				{#if mandatory}
+					<span class="p-1 text-error">*</span>
+				{/if}
+			</span>
+		</label>
+	{/if}
+	<input {type} placeholder={placeholder} class="input input-primary w-full focus:outline-none focus:border-2 bg-light-grey {props}" on:input={handleInput} value={value} disabled={disabled}/>
 	<p class="error">{errorMessage}</p>
 </div>

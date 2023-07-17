@@ -3,6 +3,7 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import { onMount } from 'svelte';
 	import sessionAdminController from '../../../../logic/sessionAdminController';
+	import sessionController from '../../../../logic/sessionController';
 
 	export let title = 'Title';
 	export let btn = {};
@@ -11,7 +12,7 @@
 	let user = null;
 
 	onMount(async () => {
-		user = await sessionAdminController.getUser();
+		user = await sessionAdminController.getUser() || await sessionController.getUser();
 	});
 </script>
 

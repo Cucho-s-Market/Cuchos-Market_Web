@@ -15,8 +15,11 @@
 	let waiting = false;
 
 	onMount(async () => {
-		const userIsLogged = await sessionController.isUserLoggedIn();
-		if (!userIsLogged) window.location.href = '/';
+		const isUserLogged = await sessionController.isUserLoggedIn();
+		if (!isUserLogged) {
+			window.location.href = '/';
+			return;
+		}
 		
 		user = await sessionController.getUser();
 		if (!user) return;
