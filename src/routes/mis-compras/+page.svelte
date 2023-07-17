@@ -33,30 +33,11 @@
 		<h1 class="normal-case text-base-[#FFFFFF] font-semibold text-xl leading-6 mb-12">Mis Compras</h1>
 
 		<!-- Header -->
-		<div class="w-full flex justify-between items-center">
-			<div class="w-[200px]">
-				<Input
-					bind:value={search}
-					isSearch={true}
-					props={'w-[300px] h-[40px]'}
-					placeholder="Buscar ordenes"
-				/>
-			</div>
-			<div class="items-center flex gap-4">
-				<!-- Show qty orders -->
-				<div class="flex space-x-0 pr-2 mr-2">
-					<p class=" border-r-2 border-neutral mr-2 pr-2">{orders?.length || 0} {orders?.length > 1 ? "Compras" : "Compra"}</p>
-					<p class="justify-normal grow-0">Ordenado por:</p>
-				</div>
+		<div class="w-full flex justify-end items-center">
 
-				<select
-					class="select text-center text-base font-medium not-italic leading-6 text-primary-content h-[40px] min-h-[0px] rounded-[10px] bg-primary"
-				>
-					<option value="1">Todos</option>
-					<option value="2">Precio</option>
-					<option value="3">Nombre</option>
-				</select>
-			</div>
+			<!-- Show qty orders -->
+			<p class="font-semibold">{orders?.length || 0} {orders?.length > 1 ? "Compras" : "Compra"}</p>
+
 		</div>
 
 		<!-- Orders -->
