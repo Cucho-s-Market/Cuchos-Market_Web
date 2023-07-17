@@ -38,13 +38,12 @@
         {/if}
         
         <div class="flex w-[190px] mb-5 h-[190px]">
-            <img class="rounded-[5px] object-scale-down" src="{item.images?.length > 0 ? item.images[0].url : dummyImage}" alt="{item.name}" />
+            <img class="rounded-[5px] object-scale-down" src="{item.images?.length > 0 ? item.images[0] : dummyImage}" alt="{item.images[0].split('/o/')[1].split('?')[0]}" />
         </div>
         <div class="card-body p-0 gap-5 justify-center">
             <h3 class="flex justify-center font-medium text-sm text-center h-[2em]">{item.name}</h3>
             <div class="flex flex-col justify-center">
                 <div class="flex flex-col text-center">
-                    <p class="font-regular text-xs text-normal-grey font-medium line-through flex-grow-0">UYU {item.price}</p>
                     <p class="font-regular text-lg font-medium flex-grow-0">UYU {item.price}</p>
                 </div>
     

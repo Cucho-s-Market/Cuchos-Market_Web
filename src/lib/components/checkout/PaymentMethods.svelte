@@ -22,6 +22,7 @@
 	};
 
 	async function makePaymentDB() {
+		
 		var orderDetails = {
 			branchId: $branchStore?.selected?.id,
 			totalPrice: $cartStore?.total / 39.15,

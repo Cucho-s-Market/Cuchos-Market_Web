@@ -20,21 +20,21 @@
         <div class="max-w-[550px] flex items-center w-full border border-br-grey bg-bg-product-list rounded-md max-h-20">
             <!-- Product Image -->
             <div class="w-[80px] h-[80px] aspect-square border border-br-grey">
-                <img class="h-full w-full object-scale-down" src="{item?.images[0]?.url}" alt="">
+                <img class="h-full w-full object-scale-down" src="{item?.images[0]}" alt="">
             </div>
             <!-- Product description -->
             <div class="m-4 min-w-[10rem] max-w-[12rem]">
                 <a href="/catalogo/{createSlug(item?.name || "")}">
                     <p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">{item.name}</p>
                 </a>
-                
-                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku ? item.sku : 'N/A'}</p>
+
+                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item?.code ? item.code : 'N/A'}</p>
             </div>
             <!-- Product Qty -->
             <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} inCart={true} item={item} value={item.quantity}/>
             <!-- Product total -->
             <div class="min-w-[4.5rem] mx-4">   
-                <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>
+                <p class="text-[0.75rem] font-semibold">UYU {item.price}</p>
             </div>
 
             {#if !inCheckout}

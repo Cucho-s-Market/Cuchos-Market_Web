@@ -67,9 +67,9 @@
                 <a class="link" href="/"><Svg name={"cuchos-logo"} size={100}/></a>
                 <div class="flex font-normal ml-20">
                     <ul class="navbar gap-8">
-                        <li><a class="hover:underline" href="/">Home</a></li>
+                        <li><a class="hover:underline" href="/">Inicio</a></li>
                         <li><a class="hover:underline" href="/catalogo">Catalogo</a></li>
-                        <li><a class="hover:underline" href="../sobre-nosotros">About</a></li>
+                        <li><a class="hover:underline" href="../sobre-nosotros">Sobre Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -123,6 +123,10 @@
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
                                 <a href="/info-perfil" class="justify-between">Perfil</a>
+                            </li>
+                            <li>
+                                <!-- svelte-ignore a11y-invalid-attribute -->
+                                <a href="/mis-compras" class="justify-between">Mis Compras</a>
                             </li>
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->

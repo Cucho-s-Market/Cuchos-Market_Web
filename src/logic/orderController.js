@@ -6,8 +6,10 @@ import sessionController from "./sessionController";
 
 const orderController = (() => {
 
-    async function getOrder(orderId){
-        const token = await sessionAdminController.getUserToken();
+    async function getOrder(orderId, isCustomer = false){
+        
+        let token = (isCustomer) ? await sessionController.getUserToken() : await sessionAdminController.getUserToken();
+        
         const order = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/${orderId}`, "GET", null, token);
         if (order == null || order.error) return null;
 
@@ -56,11 +58,30 @@ const orderController = (() => {
         return response;
     }
 
+    async function getUserOrders(){
+        
+        const token = await sessionController.getUserToken();
+
+        const orders = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/customer`, "GET", null, token);
+        if (orders == null || orders.error) return null;
+
+        return orders?.data?.content;
+    }
+
+    async function cancelCustomerOrder(order_id){
+        const token = await sessionController.getUserToken();
+
+        const response = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/${order_id}`, "PUT", null, token);
+        return response;
+    }
+
     return {
         getOrder,
         getOrders,
         createOrder,
-        updateOrder
+        updateOrder,
+        getUserOrders,
+        cancelCustomerOrder
     }
 })();
 
