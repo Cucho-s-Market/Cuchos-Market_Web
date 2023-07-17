@@ -115,16 +115,6 @@
 			</div>
 		</div>
 
-		<!-- Check promos -->
-		<div class="w-full h-[126px] rounded-[8px] my-28 flex justify-between items-center border border-br-orange-focus px-8">
-			<div>
-				<p class="font-semibold text-[24px]">Mira nuestras PROMOS</p>
-				<p class="text-neutral-grey">Echa un vistazo a todas las promos de Cucho’s</p>
-			</div>
-
-			<Button text={"Ver ahora"} type={"w-[123px] h-[42px] text-[#fff]"}/>
-		</div>
-
 		<!-- New arrivals -->
 		<div class="mb-40">
 			<div class="flex items-center gap-2">
