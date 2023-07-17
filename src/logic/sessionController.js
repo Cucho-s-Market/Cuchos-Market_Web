@@ -4,6 +4,7 @@ import fetchController from "./fetchController";
 import { Customer } from "./dtos/Customer";
 import { cartStore } from "./Stores/CartStore";
 import { userStore } from "./Stores/UserStore";
+import { browser } from "$app/environment";
 
 const sessionController = (() => {
 
@@ -80,6 +81,10 @@ const sessionController = (() => {
 	}
 
 	async function getUserToken() {
+
+		if(!browser) return null;
+		if(!sessionStorage) return null;
+
 		// Get user token from session storage
 		let user = sessionStorage.getItem("user") != "null" ? JSON.parse(sessionStorage.getItem("user")) : null;
 		if (user == null) return null;

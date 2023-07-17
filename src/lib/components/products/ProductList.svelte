@@ -27,8 +27,8 @@
                 <a href="/catalogo/{createSlug(item?.name || "")}">
                     <p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">{item.name}</p>
                 </a>
-                
-                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku ? item.sku : 'N/A'}</p>
+
+                <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item?.code ? item.code : 'N/A'}</p>
             </div>
             <!-- Product Qty -->
             <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} inCart={true} item={item} value={item.quantity}/>
