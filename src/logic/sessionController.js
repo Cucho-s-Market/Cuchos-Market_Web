@@ -25,13 +25,13 @@ const sessionController = (() => {
 
 		if (customer === null) throw new Error('Error creating customer');
 
-		const res = await fetchController.execute('http://127.0.0.1:8080/users/customer', 'POST', customer);
+		const res = await fetchController.execute('https://cuchos-market-2023-34241c211eef.herokuapp.com/users/customer', 'POST', customer);
 		return res;
 	}
 
 	async function login(customerDetails) {
 		// login logic
-		const res = await fetchController.execute("http://localhost:8080/users/auth/login", "POST", customerDetails);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/auth/login", "POST", customerDetails);
 		if (res == null || res.error) return res;
 
 
@@ -94,7 +94,7 @@ const sessionController = (() => {
 
 	async function sentForgotPassword(email){
 		
-		const res = await fetchController.execute("http://localhost:8080/users/auth/resetPassword", "POST", {"email": email});
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/auth/resetPassword", "POST", {"email": email});
 		if (res == null || res.error) return null;
 
 		return res;
@@ -102,7 +102,7 @@ const sessionController = (() => {
 
 	async function checkForgotPasswordToken(token){
 		
-		const res = await fetchController.execute("http://localhost:8080/users/token", "GET", null, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/token", "GET", null, token);
 		if (res == null || res.error) return null;
 
 		return res;
@@ -110,7 +110,7 @@ const sessionController = (() => {
 
 	async function changePasswordUser(token, password){
 		
-		const res = await fetchController.execute("http://localhost:8080/users/updatePassword", "PUT", {"password": password}, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/updatePassword", "PUT", {"password": password}, token);
 		return res;
 	}
 
@@ -118,17 +118,17 @@ const sessionController = (() => {
 
 		const token = await getUserToken();
 
-		const res = await fetchController.execute("http://localhost:8080/users", "PUT", customerDetails, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users", "PUT", customerDetails, token);
 		return res;
 	}
 
 	async function sendActualizarDatos(token, password){
-		const res = await fetchController.execute("http://localhost:8080/users/updatePassword", "PUT", {"password": password}, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/updatePassword", "PUT", {"password": password}, token);
 		return res;
 	}
 
 	async function disableCustomer(userEmail, token, disabled = true){
-		const res = await fetchController.execute("http://localhost:8080/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": disabled}, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": disabled}, token);
 		return res;
 	}
 

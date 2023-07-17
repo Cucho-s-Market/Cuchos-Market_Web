@@ -39,7 +39,7 @@ const chartController = (() => {
 		const token = await sessionAdminController.getUserToken();
 
 		const response = await fetchController.execute(
-			`http://localhost:8080/statistics/products?branch_id=${branchId}&startDate=${startDate}&endDate=${endDate}`,
+			`https://cuchos-market-2023-34241c211eef.herokuapp.com/statistics/products?branch_id=${branchId}&startDate=${startDate}&endDate=${endDate}`,
 			'GET',
 			null,
 			token,
@@ -123,7 +123,7 @@ const chartController = (() => {
 			start = end;
 
 			let response = await fetchController.execute(
-				`http://localhost:8080/statistics/sales?branch_id=${branchId}&startDate=${start}&endDate=${end}`,
+				`https://cuchos-market-2023-34241c211eef.herokuapp.com/statistics/sales?branch_id=${branchId}&startDate=${start}&endDate=${end}`,
 				'GET',
 				null,
 				token,

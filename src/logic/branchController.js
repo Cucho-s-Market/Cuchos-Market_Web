@@ -13,7 +13,7 @@ const branchController = (() => {
         // If branches session are empty is the first time that the user is using the app
         if (branchesSession == null || Object.entries(branchesSession).length === 0) {
 
-            let branchesServer = await fetchController.execute("http://localhost:8080/branches");
+            let branchesServer = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/branches");
             if (branchesServer?.data == null || branchesServer?.error) return null;
 
             // Set selected branch to the first branch
