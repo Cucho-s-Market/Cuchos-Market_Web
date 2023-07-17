@@ -16,14 +16,14 @@
 
 	const STATUS = {
 		PENDING: 'Pendiente',
-		IN_PROGRESS: 'En progreso',
+		PREPARING: 'Preparando',
 		READY: 'Listo',
 		DELIVERED: 'Entregado',
 		CANCELLED: 'Cancelado'
 	};
 	const STATUS_COLOR = {
 		PENDING: 'text-[#131515]',
-		IN_PROGRESS: 'text-[#F5793B]',
+		PREPARING: 'text-[#F5793B]',
 		READY: 'text-[#60D394]',
 		DELIVERED: 'text-[#60D394]',
 		CANCELLED: 'text-[#F03A47]'

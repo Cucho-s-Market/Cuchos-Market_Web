@@ -12,8 +12,8 @@
 
 	let orders = [];
 	let isUserLogged;
-	const STATUS = {"PENDING":"Pendiente","IN_PROGRESS":"En progreso","READY":"Listo","DELIVERED":"Entregado","CANCELLED":"Cancelado"};
-	const STATUS_COLOR = {"PENDING":"text-[#131515]","IN_PROGRESS":"text-[#F5793B]","READY":"text-[#60D394]","DELIVERED":"text-[#60D394]","CANCELLED":"text-[#F03A47]"};
+	const STATUS = {"PENDING":"Pendiente","PREPARING":"Preparando","READY":"Listo","DELIVERED":"Entregado","CANCELLED":"Cancelado"};
+	const STATUS_COLOR = {"PENDING":"text-[#131515]","PREPARING":"text-[#F5793B]","READY":"text-[#60D394]","DELIVERED":"text-[#60D394]","CANCELLED":"text-[#F03A47]"};
 
 	onMount(async () => {
 
