@@ -13,7 +13,7 @@
 
 			setTimeout(() => {
 				notification.$destroy();
-			}, 3000);
+			}, 1000);
 		}
 	};
 </script>
