@@ -13,65 +13,53 @@
 	let search;
 	let showClearFilters = false;
 
-	let thead = ['ID', 'Estado', 'Tipo', 'Monto total', 'Creacion'];
+	let thead = ['Orden ID', 'Email de Usuario', 'Titulo de reclamo', 'Fecha'];
 	let tbody = [];
 	let content = [];
 	let contentFiltered = [];
 
-	const STATUS = {"PENDING":"Pendiente","PREPARING":"Preparando","READY":"Listo","DELIVERED":"Entregado","CANCELLED":"Cancelado"};
-
 	const getContent = async () => {
 		content = data;
+        
 		
 		if (!content || data.content) {
-			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los contentos` });
+			notify({ type: 'alert-error', text: `Ocurrio un error al cargar los reclamos` });
 			return;
 		}
 
 		content = [];
 
-		if(data.orders) {
-			content = data.orders?.content;
+		if(data.issues) {
+			content = data.issues?.data?.content;
 		}
 
 		contentFiltered = content;
 
 		
 		content.forEach((content) => {
-			content.status = STATUS[String(content.status)]
-			content.type = content.type == "PICK_UP" ? "Retiro en sucursal" : "Domicilio"
 			tbody.push({
-				id: content.id,
-				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
+				id: content.orderId,
+				row: [content.orderId, content.user, content.title, content.creationDate]
 			});
-		});	
+		});
+
 	};
 
 	onMount(async () => {
 		await getContent();
 	});
 
-	let selects = [
-		{ name: 'Estado', data: 'status', options: ['Cancelado', 'Pendiente', 'Preparando', 'Entregado'] },
-		{ name: 'Tipo', data: 'type', options: ['Retiro en sucursal', 'Domicilio'] },
-	];
-
-	let selectedOptions = {
-		'status': '',
-		'type': ''
-	};
-
 	$: {
 		
 		tbody = [];
 		contentFiltered.forEach((content) => {
 			tbody.push({
-				id: content.id,
-				row: [content.id, content.status, content.type, content.totalPrice, content.creationDate]
+				id: content.orderId,
+				row: [content.orderId, content.user, content.title, content.creationDate]
 			});
 		});
 
-		
+		debugger;
 
 		showClearFilters = contentFiltered !== content ? true : false;
 	}
@@ -81,10 +69,7 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar ID" bind:search={search} bind:elements={contentFiltered} inputFilters={['id']} selectedFilters={selectedOptions}>
-	{#each selects as select}
-		<FilterSelect bind:selectedOption={selectedOptions[select.data]} name={select.name} options={select.options} />
-	{/each}
+<SectionFilters labelSearch="Buscar Orden ID o Email de " bind:search={search} bind:elements={contentFiltered} inputFilters={['orderId', 'user']}>
 </SectionFilters>
 
 {#if showClearFilters}

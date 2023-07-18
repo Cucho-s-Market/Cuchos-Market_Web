@@ -533,8 +533,8 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class="icon icon-tabler icon-tabler-reload"
-		width={size} 
-		height={size} 
+		width={size}
+		height={size}
 		viewBox="0 0 {size}  {size}"
 		stroke-width={stroke}
 		stroke="#000000"
@@ -545,5 +545,23 @@
 		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 		<path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
 		<path d="M20 4v5h-5" />
+	</svg>
+{:else if name == 'phone'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="stroke-current icon icon-tabler icon-tabler-phone"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width="1.5"
+		stroke="#64748b"
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path
+			d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
+		/>
 	</svg>
 {/if}
