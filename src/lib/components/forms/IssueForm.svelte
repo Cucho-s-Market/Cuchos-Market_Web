@@ -38,7 +38,7 @@
 		<h3 class="font-semibold text-[24px]">Reclamo por compra #{orderId}</h3>
 	</div>
 
-	<Input bind:value={issue.title} props="h-10" label="Titulo" />
+	<Input bind:value={issue.title} placeholder={"Titulo"} props="h-10" label="Titulo" />
 
 	<textarea
 		bind:value={issue.description}
