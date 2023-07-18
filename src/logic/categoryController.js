@@ -23,6 +23,7 @@ const categoryController = (() => {
                 name: categoryParent.name,
                 description: categoryParent.description,
                 categoryParent: categoryParent.categoryParent,
+                image: categoryParent.image,
                 subcategories: []
             };
 
