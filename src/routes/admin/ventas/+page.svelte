@@ -46,7 +46,7 @@
 			});
 		});
 
-		debugger;
+		
 	};
 
 	onMount(async () => {
@@ -73,7 +73,7 @@
 			});
 		});
 
-		debugger;
+		
 
 		showClearFilters = contentFiltered !== content ? true : false;
 	}
