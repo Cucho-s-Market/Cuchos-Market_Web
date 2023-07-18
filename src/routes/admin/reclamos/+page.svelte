@@ -8,6 +8,7 @@
 	import { onMount } from 'svelte';
 	import Modal from '$lib/components/utils/Modal.svelte';
 	import { nanoid } from 'nanoid';
+	import Utils from '../../../logic/helpers/Utils.js';
 
 	export let data;
 
@@ -55,13 +56,20 @@
 		
 		let id = anchor.getAttribute('issue-id');
 
+		debugger;
+
 		selectedIssue = contentFiltered.find((content) => content.id == id);
+
+		if(!selectedIssue) {
+			return;
+		}
 		
 		showForm = true;
 	};
-
 	onMount(async () => {
+		Utils.showLoading();
 		await getContent();
+		Utils.removeLoading();
 	});
 
 	$: {
