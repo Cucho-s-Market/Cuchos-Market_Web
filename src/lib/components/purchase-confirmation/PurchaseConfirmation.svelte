@@ -7,11 +7,11 @@
 
 <div class="w-full p-8 bg-br-white flex justify-center h-fit ">   
     <div class="w-[0px] xl:w-full xl:max-w-[768px] invisible xl:visible mt-[120px]">
-        <img src="..\src\assets\supermarketRegistration.jpg" alt="supermercado">
+        <img src="https://firebasestorage.googleapis.com/v0/b/cuchos-55e24.appspot.com/o/supermarketRegistration.jpg?alt=media&token=a0a340a5-eb09-46f1-bea1-b33b64538447" alt="supermercado">
     </div>
     <div class="h-auto md:max-w-[768px] bg-white text-center mt-[100px] mb-[40px] border-x md:border-none border-primary">
         <div class="mt-[20px] w-[576px] sm:w-[614px] md:w-[768] my-[40px] rounded-xl ErrorContainer bg-white flex flex-col justify-center items-center">
-            <img src="..\src\assets\imagenLogoSVG.svg" alt="logoCuchos">
+            <img src="https://firebasestorage.googleapis.com/v0/b/cuchos-55e24.appspot.com/o/imagenLogoSVG.svg?alt=media&token=ae6fb50b-77e7-42ce-8179-03c209306453" alt="logoCuchos">
             <div class="flex flex-col py-8 justify-center h-auto">
                 <h1 class ="text-primary  font-bold text-center">¡GRACIAS!</h1>
             </div>
