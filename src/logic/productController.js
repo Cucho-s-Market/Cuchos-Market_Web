@@ -18,13 +18,13 @@ const productController = (() => {
         let adminSession = await sessionAdminController.getUser();
 
         if (adminSession && adminSession.role === "ADMIN") {
-            petition = `http://localhost:8080/products?name=${name}`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products?name=${name}`;
         } else {
             let branch_id = await branchController.getSelectedBranch() || null;
             if (branch_id == null) return null;
             branch = `&branch_id=${branch_id?.id}`;
 
-            petition = `http://localhost:8080/products?name=${name}${branch}`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products?name=${name}${branch}`;
         }
 
         response = await fetchController.execute(petition);
@@ -43,14 +43,14 @@ const productController = (() => {
         let adminSession = await sessionAdminController.getUser();
 
         if (adminSession && adminSession.role === "ADMIN") {
-            petition = `http://localhost:8080/products`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products?page_size=10000`;
         } else {
             let branch_id = get(branchStore);
             branch_id = branch_id?.selected?.id;
             if (!branch_id || branch_id == null) return null;
             branch = `?branch_id=${branch_id}`;
 
-            petition = `http://localhost:8080/products${branch}${category}`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products${branch}${category}&page_size=10000`;
         }
 
         const response = await fetchController.execute(petition);
@@ -66,7 +66,7 @@ const productController = (() => {
         product.images = product.images?.map(elem => {JSON.stringify(elem)}) ?? null;
 
         let token = await sessionAdminController.getUserToken();
-        const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'POST', product, token);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/products`, 'POST', product, token);
         return res;
     }
 
@@ -74,7 +74,7 @@ const productController = (() => {
         if (product === null) throw new Error('Error al intentar actualizar el producto.');
 
 
-        const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'PUT', product, adminToken);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/products`, 'PUT', product, adminToken);
         return res;
     }
 
@@ -85,7 +85,7 @@ const productController = (() => {
 
         product.images = product.images?.map(elem => {JSON.stringify(elem)}) ?? null;
 
-        const res = await fetchController.execute(`http://127.0.0.1:8080/products`, 'DELETE', product, adminToken);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/products`, 'DELETE', product, adminToken);
         if(res) {
             productsImages.forEach(element => {
                 firebaseController.remove(element.name);
@@ -110,7 +110,7 @@ const productController = (() => {
             quantity: parseInt(stock)
         };
         
-        const res = await fetchController.execute(`http://127.0.0.1:8080/products/employee/stock`, 'PUT', sendStock, token);
+        const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/products/employee/stock`, 'PUT', sendStock, token);
         return res;
     }
 
