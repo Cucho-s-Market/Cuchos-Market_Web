@@ -43,14 +43,14 @@ const productController = (() => {
         let adminSession = await sessionAdminController.getUser();
 
         if (adminSession && adminSession.role === "ADMIN") {
-            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products?page_size=10000`;
         } else {
             let branch_id = get(branchStore);
             branch_id = branch_id?.selected?.id;
             if (!branch_id || branch_id == null) return null;
             branch = `?branch_id=${branch_id}`;
 
-            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products${branch}${category}`;
+            petition = `https://cuchos-market-2023-34241c211eef.herokuapp.com/products${branch}${category}&page_size=10000`;
         }
 
         const response = await fetchController.execute(petition);

@@ -13,7 +13,6 @@
 	onMount(async () => {
 		products = await productController.getProducts();
 		if (products == null || products?.error) return null;
-
 		products = products?.data?.content;
 	});
 </script>
