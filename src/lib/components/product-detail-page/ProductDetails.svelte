@@ -61,7 +61,6 @@
 			</div>
 
 			<div class="flex flex-col">
-				<h4 class="text-base text-neutral-grey font-medium line-through">UYU {item.price}</h4>
 				<h4 class="text-2xl text-neutral font-bold">UYU {item.price}</h4>
 			</div>
 
