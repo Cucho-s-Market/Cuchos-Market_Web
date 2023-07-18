@@ -77,7 +77,7 @@ const orderController = (() => {
 
     async function addIssue(issue){
         const userToken = await sessionController.getUserToken();
-        const response = await fetchController.execute(`http://localhost:8080/orders/issues`, "POST", issue, userToken);
+        const response = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/orders/issues`, "POST", issue, userToken);
         return response;
     }
 
@@ -89,7 +89,7 @@ const orderController = (() => {
 
         
 
-        const response = await fetchController.execute(`http://localhost:8080/branches/${branchId}/issues`, "GET", null, userToken);
+        const response = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/branches/${branchId}/issues`, "GET", null, userToken);
         return response;
     }
 
