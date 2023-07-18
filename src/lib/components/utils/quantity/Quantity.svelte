@@ -25,10 +25,6 @@
     cartController.updateQuantity(item, value);
 	}
 
-  const updateQty = ()=>{
-    
-  }
-
   //events
   const addToCart = async () => {
     if(String(value) === '') {
