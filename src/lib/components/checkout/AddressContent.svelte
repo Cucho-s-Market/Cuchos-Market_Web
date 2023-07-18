@@ -19,7 +19,7 @@
 		<div data-id={address.id}>
 			<p class="font-medium text-[14px]">Direccion:</p>
 			<p class="font-medium text-[14px]">Nro de Puerta:</p>
-			<p class="font-medium text-[14px]">Estado:</p>
+			<p class="font-medium text-[14px]">Localidad:</p>
 			<p class="font-medium text-[14px]">Departamento:</p>
 		</div>
 		<!-- Content -->

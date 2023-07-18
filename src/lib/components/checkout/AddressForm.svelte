@@ -77,9 +77,9 @@
 			label={'Nro. Puerta'}
 			props={'text-center'}
 		/>
-		<Input bind:value={address.location} label={'Ciudad'} props={'text-center'} />
+		<Input bind:value={address.location} label={'Localidad'} props={'text-center'} />
 	</div>
-	<Input bind:value={address.state} label={'Estado'} props={'text-center'} />
+	<Input bind:value={address.state} label={'Departamento'} props={'text-center'} />
 
 	{#if isEdit}
 		<Button text={'Editar direccion'} type={'btn-primary w-full mt-7'} click={editAddress} />
