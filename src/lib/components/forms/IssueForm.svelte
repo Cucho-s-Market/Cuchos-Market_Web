@@ -2,6 +2,8 @@
 	// @ts-nocheck
 	import addressController from '../../../logic/addressController';
 	import { Issue } from '../../../logic/dtos/Issue';
+	import Utils from '../../../logic/helpers/Utils';
+	import formValidator from '../../../logic/helpers/formValidator';
 	import orderController from '../../../logic/orderController';
 	import sessionController from '../../../logic/sessionController';
 	import Button from '../utils/Button.svelte';
@@ -14,6 +16,18 @@
     export let orderId;
 
 	async function addIssue() {
+		Utils.showLoading();
+
+		let validationArray = [issue.title, issue.description];
+
+		let emptyValues = formValidator.emptyValues(validationArray);
+
+		if (emptyValues) {
+			notify({ type: 'alert-error', text: 'Verifique los campos.' });
+			Utils.removeLoading();
+			return;
+		}
+
 		const user = await sessionController.getUser();
         
         issue.userEmail = user.email;
@@ -24,10 +38,11 @@
 		if (result?.error) {
             notify({ text: result.message, type: 'alert-error' });
 		    showModal = false;
+			Utils.removeLoading();
             return;
         }
-
 		showModal = false;
+		Utils.removeLoading();
 		// Show notification
 		notify({ text: result.message, type: 'alert-success' });
 	}
