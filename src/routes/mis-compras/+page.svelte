@@ -24,6 +24,8 @@
 		}
 
 		orders = await orderController.getUserOrders();
+		// Sort orders by id
+		orders?.sort((a, b) => b.id - a.id);
 	});
 
 </script>

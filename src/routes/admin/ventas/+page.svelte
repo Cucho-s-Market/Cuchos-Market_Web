@@ -36,6 +36,7 @@
 		}
 
 		contentFiltered = content;
+		contentFiltered?.sort((a, b) => b.id - a.id);
 
 		
 		content.forEach((content) => {
