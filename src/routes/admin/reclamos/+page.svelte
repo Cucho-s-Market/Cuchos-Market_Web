@@ -106,7 +106,7 @@
 	title={'Ventas'}
 />
 
-<SectionFilters labelSearch="Buscar Orden ID o Email de " bind:search={search} bind:elements={contentFiltered} inputFilters={['orderId', 'user']}>
+<SectionFilters labelSearch="Buscar Orden ID o email de usuario" bind:search={search} bind:elements={contentFiltered} inputFilters={['orderId', 'user']}>
 </SectionFilters>
 
 {#if showClearFilters}
