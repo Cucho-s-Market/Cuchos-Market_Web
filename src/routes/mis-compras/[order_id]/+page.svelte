@@ -8,10 +8,12 @@
 	import sessionController from '../../../logic/sessionController.js';
 	import branchController from '../../../logic/branchController.js';
 	import SectionHeader from '$lib/components/admin/utils/SectionHeader.svelte';
+	import IssueForm from '$lib/components/forms/IssueForm.svelte';
+	import Modal from '$lib/components/utils/Modal.svelte';
 
 	export let data;
 
-	let showUpdate = false;
+	let showForm = false;
 	let showSelectStatus = false;
 
 	const STATUS = {
@@ -72,6 +74,9 @@
 </script>
 
 {#if order}
+	<Modal bind:showModal={showForm}>
+		<IssueForm orderId={order?.id} bind:showModal={showForm} />
+	</Modal>
 	<div class="pt-[180px] w-[1200px] m-auto">
 		<div class="flex justify-between">
 			<SectionHeader title={`Nro de orden #${order?.id}`} href="/mis-compras" />
@@ -79,7 +84,7 @@
 				{#if order?.status == 'PENDING'}
 					<Button type={"btn-error"} text={'Cancelar orden'} click={() => cancelOrder(order?.id)}/>
 				{/if}
-				<Button text={'Realizar reclamo'} />
+				<Button text={'Realizar reclamo'} click={() => {showForm = true;}}/>
 			</div>
 		</div>
 

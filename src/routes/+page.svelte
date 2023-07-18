@@ -1,6 +1,5 @@
 <script>
 	// @ts-nocheck
-	import Footer from "$lib/components/common/Footer.svelte";
 	import Header from "$lib/components/common/Header/Header.svelte";
 	import HomeCategories from "$lib/components/home/HomeCategories.svelte";
 	import ProductCard from "$lib/components/products/ProductCard.svelte";
@@ -8,7 +7,6 @@
 	import Button from "$lib/components/utils/Button.svelte";
 	import Link from "$lib/components/utils/Link.svelte";
 	import Notifications from "$lib/components/utils/Notifications.svelte";
-	import Svg from "$lib/components/utils/SVG.svelte";
 	import { onMount } from "svelte";
 	import productController from "../logic/productController";
 
