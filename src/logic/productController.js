@@ -6,7 +6,7 @@ import fetchController from "./fetchController";
 import sessionAdminController from "./sessionAdminController";
 import sessionController from "./sessionController";
 import firebaseController from "./third-party/firebaseController";
-
+import {get} from 'svelte/store';
 const productController = (() => {
 
     // Find item by slug
@@ -35,29 +35,26 @@ const productController = (() => {
     }
 
     async function getProducts(category_id = "") {
+
         let branch = '';
-        let response = null;
         let category = category_id !== "" ? `&category_id=${category_id}` : '';
         let petition = '';
-
-        
 
         let adminSession = await sessionAdminController.getUser();
 
         if (adminSession && adminSession.role === "ADMIN") {
             petition = `http://localhost:8080/products`;
         } else {
-            let branch_id = await branchController.getSelectedBranch() || null;
-            if (branch_id == null) return null;
-            branch = `?branch_id=${branch_id?.id}`;
+            let branch_id = get(branchStore);
+            branch_id = branch_id?.selected?.id;
+            if (!branch_id || branch_id == null) return null;
+            branch = `?branch_id=${branch_id}`;
 
             petition = `http://localhost:8080/products${branch}${category}`;
         }
 
-
-        response = await fetchController.execute(petition);
+        const response = await fetchController.execute(petition);
         if (!response || response?.error) return null;
-
 
         return response;
     }
