@@ -118,7 +118,7 @@ const sessionController = (() => {
 
 		const token = await getUserToken();
 
-		const res = await fetchController.execute("http://localhost:8080/users", "PUT", customerDetails, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users", "PUT", customerDetails, token);
 		return res;
 	}
 
@@ -128,7 +128,7 @@ const sessionController = (() => {
 	}
 
 	async function disableCustomer(userEmail, token, disabled = true){
-		const res = await fetchController.execute("http://localhost:8080/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": disabled}, token);
+		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/admin/disable-customer", "PUT", {"email": userEmail, "disabled": disabled}, token);
 		return res;
 	}
 
