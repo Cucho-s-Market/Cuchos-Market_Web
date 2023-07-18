@@ -67,6 +67,10 @@
 			window.location.reload();
 		}, 1000);
 	}
+
+	function createSlug(str) {
+        return str.toLowerCase().replace(/\s/g, '_');
+    }
 </script>
 
 {#if order}
@@ -161,7 +165,7 @@
 							</div>
 							<!-- Product description -->
 							<div class="m-4 min-w-[10rem] max-w-[12rem]">
-								<a href="/catalogo/">
+								<a href="/catalogo/{createSlug(item?.name || "")}">
 									<p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">
 										{item.name}
 									</p>
