@@ -53,6 +53,9 @@
 
 		const token = await sessionAdminController.getUserToken();
 
+		// Replace / by - in the name of the product
+		product.name = product.name.replace(/\//g, '-');
+
 		let res = await productController.addProduct(product, token);
 
 		if (res && res.error) {
