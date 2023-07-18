@@ -9,6 +9,7 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import { onMount } from 'svelte';
 	import Input from '$lib/components/utils/Input.svelte';
+	import Utils from '../../../logic/helpers/Utils.js';
 
 	export let data;
 
@@ -39,7 +40,7 @@
 		products.forEach((product) => {
 			tbody.push({
 				id: product.code,
-				row: [product.code, product.name, product.price, product.brand],
+				row: [product.code, product.name, 'UYU ' + product.price, product.brand],
 				stock: product.quantity
 			});
 		});
@@ -48,7 +49,9 @@
 	};
 
 	onMount(async () => {
+		Utils.showLoading();
 		await getProducts();
+		Utils.removeLoading();
 	});
 
 	let selects = [
@@ -65,7 +68,7 @@
 		productsFiltered.forEach((product) => {
 			tbody.push({
 				id: product.name.replace(' ', "_"),
-				row: [product.code, product.name, product.price, product.brand],
+				row: [product.code, product.name, 'UYU ' + product.price, product.brand],
 				stock: product.quantity
 			});
 		});

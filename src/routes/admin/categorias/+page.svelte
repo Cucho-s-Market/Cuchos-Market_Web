@@ -10,6 +10,7 @@
 	import formValidator from '../../../logic/helpers/formValidator.js';
 	import sessionAdminController from '../../../logic/sessionAdminController.js';	
 	import { nanoid } from 'nanoid';
+	import Utils from '../../../logic/helpers/Utils.js';
 
 	export let data;
 
@@ -22,6 +23,7 @@
 	});
 
 	let create = async () => {
+		Utils.showLoading();
 		let validationArray = [category.name, category.description];
 
 		let emptyValues = formValidator.emptyValues(validationArray);
@@ -41,11 +43,13 @@
 			res = await categoryController.addCategory(category, token);
 		} catch (error) {
 			notify({ type: 'alert-error', text: error.message });
+			Utils.removeLoading();
 			return;
 		}
 
 		if (!res) {
 			notify({ type: 'alert-error', text: 'Error en el servidor' });
+			Utils.removeLoading();
 			return;
 		}
 

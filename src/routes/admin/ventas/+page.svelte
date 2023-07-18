@@ -7,6 +7,7 @@
 	import { notify } from '$lib/components/utils/Notifications.svelte';
 	import Button from '$lib/components/utils/Button.svelte';
 	import { onMount } from 'svelte';
+	import Utils from '../../../logic/helpers/Utils.js';
 
 	export let data;
 
@@ -42,13 +43,15 @@
 			content.type = content.type == "PICK_UP" ? "Retiro en sucursal" : "Domicilio"
 			tbody.push({
 				id: content.id,
-				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
+				row: [content.id, content.status, content.type, 'UYU ' + String(content.totalPrice), content.creationDate]
 			});
 		});	
 	};
 
 	onMount(async () => {
+		Utils.showLoading();
 		await getContent();
+		Utils.removeLoading();
 	});
 
 	let selects = [
@@ -67,7 +70,7 @@
 		contentFiltered.forEach((content) => {
 			tbody.push({
 				id: content.id,
-				row: [content.id, content.status, content.type, content.totalPrice, content.creationDate]
+				row: [content.id, content.status, content.type, 'UYU ' + content.totalPrice, content.creationDate]
 			});
 		});
 
