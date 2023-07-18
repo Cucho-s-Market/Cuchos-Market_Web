@@ -1,6 +1,5 @@
 <script>
 	// @ts-nocheck
-	import Footer from "$lib/components/common/Footer.svelte";
 	import Header from "$lib/components/common/Header/Header.svelte";
 	import HomeCategories from "$lib/components/home/HomeCategories.svelte";
 	import ProductCard from "$lib/components/products/ProductCard.svelte";
@@ -8,7 +7,6 @@
 	import Button from "$lib/components/utils/Button.svelte";
 	import Link from "$lib/components/utils/Link.svelte";
 	import Notifications from "$lib/components/utils/Notifications.svelte";
-	import Svg from "$lib/components/utils/SVG.svelte";
 	import { onMount } from "svelte";
 	import productController from "../logic/productController";
 
@@ -21,8 +19,6 @@
 	});
 
 </script>
-
-
 
 <Header/>
 
@@ -113,6 +109,16 @@
 					{/each}
 				</Swiper>
 			</div>
+		</div>
+
+		<!-- Check promos -->
+		<div class="w-full h-[126px] rounded-[8px] my-28 flex justify-between items-center border border-br-orange-focus px-8">
+			<div>
+				<p class="font-semibold text-[24px]">Mira nuestras PROMOS</p>
+				<p class="text-neutral-grey">Echa un vistazo a todas las promos de Cucho’s</p>
+			</div>
+
+			<Button text={"Ver ahora"} type={"w-[123px] h-[42px] text-[#fff]"}/>
 		</div>
 
 		<!-- New arrivals -->

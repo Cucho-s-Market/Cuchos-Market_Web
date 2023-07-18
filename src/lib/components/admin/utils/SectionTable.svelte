@@ -10,6 +10,7 @@
 	export let thead = [];
 	export let tbody = [];
 	export let buttons = {};
+	export let click = () => {};
 
 	let user = null;
 
@@ -50,6 +51,10 @@
 									<td>
 										<TableButtons bind:buttons itemId={tbody_item.id} userIsEnabled={tbody_item?.disabled} role={tbody_item?.row[3]} email={tbody_item?.row[0]}/>
 									</td>
+								{/if}
+
+								{#if buttons.showInfo && user.role === 'EMPLOYEE'}
+									<td><a href="{tbody_item.id}" on:click={click} ><Svg name="eye" color={'#F5793B'} /></a></td>
 								{/if}
 							</tr>
 					{/each}

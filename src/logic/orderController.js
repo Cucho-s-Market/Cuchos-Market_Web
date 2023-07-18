@@ -75,13 +75,33 @@ const orderController = (() => {
         return response;
     }
 
+    async function addIssue(issue){
+        const userToken = await sessionController.getUserToken();
+        const response = await fetchController.execute(`http://localhost:8080/orders/issues`, "POST", issue, userToken);
+        return response;
+    }
+
+    async function getIssues(){
+        const userToken = await sessionAdminController.getUserToken();
+
+        const branch = await branchController.getSelectedBranch();
+        const branchId = branch?.id;
+
+        
+
+        const response = await fetchController.execute(`http://localhost:8080/branches/${branchId}/issues`, "GET", null, userToken);
+        return response;
+    }
+
     return {
         getOrder,
         getOrders,
         createOrder,
         updateOrder,
         getUserOrders,
-        cancelCustomerOrder
+        cancelCustomerOrder,
+        addIssue,
+        getIssues
     }
 })();
 
