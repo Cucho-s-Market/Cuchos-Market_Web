@@ -533,8 +533,8 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class="icon icon-tabler icon-tabler-reload"
-		width={size} 
-		height={size} 
+		width={size}
+		height={size}
 		viewBox="0 0 {size}  {size}"
 		stroke-width={stroke}
 		stroke="#000000"
@@ -545,5 +545,40 @@
 		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 		<path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
 		<path d="M20 4v5h-5" />
+	</svg>
+{:else if name == 'phone'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="stroke-current icon icon-tabler icon-tabler-phone"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width="1.5"
+		stroke={color}
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path
+			d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
+		/>
+	</svg>
+{:else if name == 'eye'}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="stroke-current icon icon-tabler icon-tabler-eye"
+		width={size}
+		height={size}
+		viewBox="0 0 {size} {size}"
+		stroke-width="1.5"
+		stroke={color}
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+		<path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 	</svg>
 {/if}

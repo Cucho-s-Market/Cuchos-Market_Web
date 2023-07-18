@@ -6,6 +6,7 @@
     export let item = null;
     export let inCheckout = false;
     let screenSize;
+    export let inCart = false;
 
     function createSlug(str) {
         return str.toLowerCase().replace(/\s/g, '_');
@@ -30,9 +31,17 @@
 
                 <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item?.code ? item.code : 'N/A'}</p>
             </div>
+
+            {#if !inCheckout}
             <!-- Product Qty -->
-            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} inCart={true} item={item} value={item.quantity}/>
+            <Quantity btnProps={"min-w-0 w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} inCart={inCart} item={item} value={item.quantity}/>
             <!-- Product total -->
+            {:else}
+                <div class="w-[110px] flex justify-center">
+                    <p>{item.quantity}</p>
+                </div>
+            {/if}
+
             <div class="min-w-[4.5rem] mx-4">   
                 <p class="text-[0.75rem] font-semibold">UYU {item.price}</p>
             </div>
@@ -64,7 +73,13 @@
                             <p class="text-[0.75rem] font-semibold">UYU ${item.price}</p>
                         </div>
 
-                        <Quantity btnProps={"min-w-[0px] w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} value={item.quantity}/>
+                        {#if !inCheckout}
+                            <Quantity btnProps={"min-w-[0px] w-[20px] h-[30px]"} inputProps={"pl-0 pr-0 w-[50px] h-[30px] min-w-[0px]"} value={item.quantity}/>
+                        {:else}
+                            <div class="w-[110px] flex justify-center">
+                                <p>{item.quantity}</p>
+                            </div>
+                        {/if}
                     </div>
 
                     {#if !inCheckout}

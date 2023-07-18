@@ -86,7 +86,7 @@
 									<a href='/catalogo/{createSlug(product?.name || "")}' on:click={closeModal}>
 										<div class="mb-1 h-[64px]  flex flex-row hover:border-primary hover:border-2 rounded-lg">
 											<div class="w-[60px] h-[60px] aspect-square border border-br-grey ">
-												<img class="h-[56px] w-[56px] object-scale-down rounded-lg" src="{product?.images[0]?.url}" alt="">
+												<img class="h-[56px] w-[56px] object-scale-down rounded-lg" src="{product?.images[0]}" alt="">
 											</div>
 											<div class="px-2 flex flex-col text-sm">
 												<div id="product-name">

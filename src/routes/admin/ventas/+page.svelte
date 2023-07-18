@@ -44,9 +44,7 @@
 				id: content.id,
 				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
 			});
-		});
-
-		debugger;
+		});	
 	};
 
 	onMount(async () => {
@@ -73,7 +71,7 @@
 			});
 		});
 
-		debugger;
+		
 
 		showClearFilters = contentFiltered !== content ? true : false;
 	}

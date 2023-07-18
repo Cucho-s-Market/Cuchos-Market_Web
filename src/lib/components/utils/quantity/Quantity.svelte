@@ -64,12 +64,16 @@
       value = parseInt(valueStr);
 
     } else if(value > 100) {
-
       value = 100;
-
     }
 
   };
+
+  // Update items qty inside item cart and checkout
+  $: if(value > 0 && value <= 100) {
+    
+    handleItemCart();
+  }
 
 </script>
 
