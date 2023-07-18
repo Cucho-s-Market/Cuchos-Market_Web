@@ -144,7 +144,7 @@
 			<div class="h-full w-[30%] bg-grey absolute top-0 right-0">
 				<img
 					class="h-full w-full object-cover"
-					src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+					src="https://firebasestorage.googleapis.com/v0/b/cuchos-55e24.appspot.com/o/supermarketRegistration.jpg?alt=media&token=a0a340a5-eb09-46f1-bea1-b33b64538447"
 					alt="super"
 				/>
 			</div>
