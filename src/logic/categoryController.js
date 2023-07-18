@@ -77,7 +77,7 @@ const categoryController = (() => {
 
         category.image = image;
 
-		const res = await fetchController.execute(`http://127.0.0.1:8080/categories`, 'POST', category, token);
+		const res = await fetchController.execute(`https://cuchos-market-2023-34241c211eef.herokuapp.com/categories`, 'POST', category, token);
 		return res;
     }
 
