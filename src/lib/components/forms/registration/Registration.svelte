@@ -7,7 +7,7 @@
 	import sessionController from '../../../../logic/sessionController';
 	import Notification from '$lib/components/utils/Notification.svelte';
 	import { notify } from '$lib/components/utils/Notifications.svelte';
-
+	import {browser} from '$app/environment';
 	let screenSize;
 	let accountCreated = false;
 	let customer = {
@@ -20,6 +20,8 @@
 			phone: '',
 			ci: '',
 		};
+
+	if(browser) document.body.style.overflow = 'auto';
 
 	const registerCustomer = async () => {
 
