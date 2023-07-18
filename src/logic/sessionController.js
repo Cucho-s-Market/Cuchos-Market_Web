@@ -95,8 +95,6 @@ const sessionController = (() => {
 	async function sentForgotPassword(email){
 		
 		const res = await fetchController.execute("http://localhost:8080/users/auth/resetPassword", "POST", {"email": email});
-		if (res == null || res.error) return null;
-
 		return res;
 	}
 
