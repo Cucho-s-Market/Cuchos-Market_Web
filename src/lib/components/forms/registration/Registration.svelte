@@ -6,9 +6,9 @@
 	import Svg from '$lib/components/utils/SVG.svelte';
 	import sessionController from '../../../../logic/sessionController';
 	import Notification from '$lib/components/utils/Notification.svelte';
+	import { notify } from '$lib/components/utils/Notifications.svelte';
 
 	let screenSize;
-	let errorMessage = '';
 	let accountCreated = false;
 	let customer = {
 			firstName: '',
@@ -25,43 +25,44 @@
 
 		// Validate all fields are filled
 		if (customer.firstName === '' || customer.lastName === '' || customer.email === '' || customer.password === '' || customer.confirmPassword === '' || customer.ci === '') {
-			alert('Por favor, llene todos los campos');
+			notify({type: 'alert-error', text: 'Por favor, llene todos los campos'});
 			return;
 		}
 
 		// Validate email
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if (!emailRegex.test(customer.email)) {
-			alert('Por favor, ingrese un email válido');
+			notify({type: 'alert-error', text: 'Por favor, ingrese un correo electrónico válido'});
 			return;
 		}
 
 		// Validate CI
 		const ciRegex = /^[0-9]{8}$/;
 		if (!ciRegex.test(customer.ci)) {
-			alert('Por favor, ingrese un número de cédula válido');
+			notify({type: 'alert-error', text: 'Por favor, ingrese un número de cédula válido'});
 			return;
 		}
 
 		// Validate phone
 		const phoneRegex = /^[0-9]{7,9}$/;
 		if (customer.phone != "" && !phoneRegex.test(customer.phone)) {
-			alert('Por favor, ingrese un número de teléfono válido');
+			notify({type: 'alert-error', text: 'Por favor, ingrese un número de teléfono válido'});
 			return;
 		}
 
 		// Validate password and confirm password
 		if (customer.password !== customer.confirmPassword) {
-			alert('Las contraseñas no coinciden');
+			notify({type: 'alert-error', text: 'Las contraseñas no coinciden'});
 			return;
 		}
 
 		const response = await sessionController.register(customer);
 		if(response == null || response.error) {
-			errorMessage = response?.message; throw new Error('Error al registrar usuario');
+			notify({type: 'alert-error', text: response?.message || 'Hubo un error al crear la cuenta'});
+			return;
 		}
 
-		errorMessage = '';
+
 		accountCreated = true;
 
 		setTimeout(() => {
@@ -93,12 +94,8 @@
 					Bienvenidos a Cucho's Market!
 				</p>
 				<p class="text-[#000000] not-italic font-normal text-[14px]">
-					Crea una cuenta o <Link text="inicia sesión" href="./" />
+					Crea una cuenta o <Link text="inicia sesión" href="./" target={false}/>
 				</p>
-
-				{#if errorMessage !== ''}
-					<Notification type={"alert-error"} text={errorMessage} props={"absolute top-0 mt-[18px]"}/>
-				{/if}
 
 				{#if accountCreated}
 					<Notification type={"alert-success"} text={"Cuenta creada con exito!"} props={"absolute top-0 mt-[18px]"}/>
@@ -128,7 +125,7 @@
 					<Input bind:value={customer.confirmPassword} props="h-10" type="password" label="Repetir contraseña" />
 				</div>
 				<div class="w-full">
-					<Input bind:value={customer.phone} props="h-10" type="number" label="Celular" mandatory={false}/>
+					<Input bind:value={customer.phone} props="h-10" type="number" label="Celular" mandatory={true}/>
 				</div>
 				<div class="w-full">
 					<p class="text-[12px]">

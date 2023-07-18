@@ -15,7 +15,7 @@
             <CartHeader bind:showCart/>
             {#if $cartStore?.items?.length > 0}
                 {#each $cartStore?.items as item}
-                    <ProductList item={item}/>
+                    <ProductList item={item} inCart={true}/>
                 {/each}
             {/if}
         </div>

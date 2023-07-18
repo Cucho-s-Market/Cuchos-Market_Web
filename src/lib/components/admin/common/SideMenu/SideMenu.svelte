@@ -26,7 +26,9 @@
 			{#if user.role === 'ADMIN'}
 				<SideMenuOption href="/admin/usuarios" text="Usuarios" svg="users" />
 			{/if}
-			<SideMenuOption text="Marketing" svg="affiliate" />
+			{#if user.role === 'EMPLOYEE'}
+				<SideMenuOption href="/admin/reclamos" text="Reclamos" svg="phone" />
+			{/if}
 		</ul>
 	</div>
 {/if}

@@ -14,6 +14,7 @@
     let message = "";
 
     async function sendForgotPassword(){
+        debugger;
         waiting = true;
         message = "";
 
@@ -37,7 +38,7 @@
         waiting = false;
 
         if(!emailSent || emailSent?.error){
-            notify({ text: 'Hubo un error al enviar el mail', type: 'alert-error'});
+            notify({ text: emailSent?.message || "Hubo un error al enviar el mail", type: 'alert-error'});
             return;
         }
 

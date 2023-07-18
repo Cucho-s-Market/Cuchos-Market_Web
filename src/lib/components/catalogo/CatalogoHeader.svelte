@@ -9,16 +9,6 @@
 		</p>
 	</div>
 	<div class="flex space-x-0 pr-2 mr-2">
-		<p class=" border-r-2 border-neutral mr-2 pr-2">{qtyItems} Productos</p>
-		<p class="justify-normal grow-0">Ordenado por:</p>
-	</div>
-	<div>
-		<select class="select text-center text-base font-medium not-italic leading-6 text-primary-content h-[40px] w-[140px] min-h-[0px] rounded-[10px] bg-primary">
-			<option selected>Todos</option>
-			<option>Precio</option>
-			<option>Marca</option>
-			<option>A-Z</option>
-			<option>Z-A</option>
-		</select>
+		<p class="pr-2">{qtyItems} Productos</p>
 	</div>
 </div>

@@ -58,11 +58,11 @@
 		formValidator.clear(validationArray);
 		setTimeout(() => {
 			window.location.href = '/admin/categorias';
-		}, 2000);
+		}, 1000);
 	};
 
 	async function addImage(file) {
-		debugger;
+		
 		const tempUrl = URL.createObjectURL(file);
 		category.image = {file: file, url: tempUrl, name: nanoid(), new: true};
 		fileInput.value = '';

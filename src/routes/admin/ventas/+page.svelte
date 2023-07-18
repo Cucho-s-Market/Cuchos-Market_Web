@@ -18,6 +18,8 @@
 	let content = [];
 	let contentFiltered = [];
 
+	const STATUS = {"PENDING":"Pendiente","PREPARING":"Preparando","READY":"Listo","DELIVERED":"Entregado","CANCELLED":"Cancelado"};
+
 	const getContent = async () => {
 		content = data;
 		
@@ -34,14 +36,15 @@
 
 		contentFiltered = content;
 
+		
 		content.forEach((content) => {
+			content.status = STATUS[String(content.status)]
+			content.type = content.type == "PICK_UP" ? "Retiro en sucursal" : "Domicilio"
 			tbody.push({
 				id: content.id,
 				row: [content.id, content.status, content.type, String(content.totalPrice), content.creationDate]
 			});
-		});
-
-		;
+		});	
 	};
 
 	onMount(async () => {
@@ -49,8 +52,8 @@
 	});
 
 	let selects = [
-		{ name: 'Estado', data: 'status', options: ['CANCELLED', 'PENDING', 'PREPARING', 'DELIVERED'] },
-		{ name: 'Tipo', data: 'type', options: ['PICK_UP', 'DELIVERY'] },
+		{ name: 'Estado', data: 'status', options: ['Cancelado', 'Pendiente', 'Preparando', 'Entregado'] },
+		{ name: 'Tipo', data: 'type', options: ['Retiro en sucursal', 'Domicilio'] },
 	];
 
 	let selectedOptions = {
@@ -67,6 +70,8 @@
 				row: [content.id, content.status, content.type, content.totalPrice, content.creationDate]
 			});
 		});
+
+		
 
 		showClearFilters = contentFiltered !== content ? true : false;
 	}

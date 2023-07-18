@@ -13,9 +13,9 @@
 
 			setTimeout(() => {
 				notification.$destroy();
-			}, 3000);
+			}, 1000);
 		}
 	};
 </script>
 
-<div id="notifications" class="flex flex-col z-60 gap-5 fixed bottom-10 right-5" />
+<div id="notifications" class="flex flex-col z-[1000] gap-5 fixed bottom-10 right-5" />

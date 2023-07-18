@@ -4,6 +4,7 @@ import fetchController from "./fetchController";
 import { Customer } from "./dtos/Customer";
 import { cartStore } from "./Stores/CartStore";
 import { userStore } from "./Stores/UserStore";
+import { browser } from "$app/environment";
 
 const sessionController = (() => {
 
@@ -33,8 +34,16 @@ const sessionController = (() => {
 		const res = await fetchController.execute("https://cuchos-market-2023-34241c211eef.herokuapp.com/users/auth/login", "POST", customerDetails);
 		if (res == null || res.error) return res;
 
+
 		// Initialize values
 		user = res.data;
+
+		if(user?.role != "CUSTOMER"){
+			res.message = "No es un usuario valido";
+			res.error = true;
+			return res;
+		}
+
 		user.token = res.token;
 		user.address = {};
 		user.isLoggedIn = true;
@@ -72,6 +81,10 @@ const sessionController = (() => {
 	}
 
 	async function getUserToken() {
+
+		if(!browser) return null;
+		if(!sessionStorage) return null;
+
 		// Get user token from session storage
 		let user = sessionStorage.getItem("user") != "null" ? JSON.parse(sessionStorage.getItem("user")) : null;
 		if (user == null) return null;

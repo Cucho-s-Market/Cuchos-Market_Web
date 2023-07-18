@@ -126,6 +126,10 @@
                             </li>
                             <li>
                                 <!-- svelte-ignore a11y-invalid-attribute -->
+                                <a href="/mis-compras" class="justify-between">Mis Compras</a>
+                            </li>
+                            <li>
+                                <!-- svelte-ignore a11y-invalid-attribute -->
                                 <a href="#" class="justify-between" on:click={() => sessionController.logout()}>Salir</a>
                             </li>
                         {/if}
