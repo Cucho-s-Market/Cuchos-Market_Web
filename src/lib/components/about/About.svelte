@@ -1,6 +1,6 @@
 
 <div class="flex justify-center">
-    <img class="object-fill h-72 w-112" src="src\assets\about.png" alt="about">
+    <img class="object-fill h-72 w-112" src="https://firebasestorage.googleapis.com/v0/b/cuchos-55e24.appspot.com/o/Home%2Fabout.png?alt=media&token=26e55ff0-f8c1-454c-885f-e9213c921f60" alt="about">
 </div>    
 
 <div class=" px-48">
