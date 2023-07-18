@@ -20,8 +20,6 @@
 
 </script>
 
-
-
 <Header/>
 
 {#if products?.length > 0}

@@ -25,7 +25,7 @@
 
 {#if showModal}
 	<label bind:this={modalOutside} for="my-modal-4" class="modal opacity-100 flex visible pointer-events-auto">
-		<label class="modal-box relative w-[530px] h-[584px] border border-primary" for="">
+		<label class="modal-box relative w-[530px] h-auto border border-primary" for="">
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="absolute top-5 right-5 cursor-pointer" on:click={closeModal}>
 				<Svg name={'x'} size={24} stroke={1.5} props={"opacity-70 hover:opacity-100"}/>
