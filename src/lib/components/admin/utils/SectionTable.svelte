@@ -54,7 +54,7 @@
 								{/if}
 
 								{#if buttons.showInfo && user.role === 'EMPLOYEE'}
-									<td><a href="#" issue-id={tbody_item.id} on:click={click} ><Svg name="eye" color={'#F5793B'} /></a></td>
+									<td><a href="#" class="cursor-pointer" issue-id={tbody_item.id} on:click={click} ><Svg name="eye" color={'#F5793B'} /></a></td>
 								{/if}
 							</tr>
 					{/each}
