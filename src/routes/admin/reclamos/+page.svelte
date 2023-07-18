@@ -7,6 +7,7 @@
 	import Button from '$lib/components/utils/Button.svelte';
 	import { onMount } from 'svelte';
 	import Modal from '$lib/components/utils/Modal.svelte';
+	import { nanoid } from 'nanoid';
 
 	export let data;
 
@@ -39,8 +40,9 @@
 
 		
 		content.forEach((content) => {
+			content.id = nanoid();
 			tbody.push({
-				id: content.orderId + '-' + content.user,
+				id: content.id,
 				row: [content.orderId, content.user, content.title, content.creationDate]
 			});
 		});
@@ -51,12 +53,9 @@
 		
 		const anchor = target.parentNode;
 		
-		let href = anchor.href?.split('/admin/')[1];
-		href = href?.split('-');
-		const orderId = href[0];
-		const user = href[1];
+		let id = anchor.getAttribute('issue-id');
 
-		selectedIssue = contentFiltered.find((content) => content.orderId == orderId && content.user == user);
+		selectedIssue = contentFiltered.find((content) => content.id == id);
 		
 		showForm = true;
 	};
@@ -70,7 +69,7 @@
 		tbody = [];
 		contentFiltered.forEach((content) => {
 			tbody.push({
-				id: content.orderId + '-' + content.user,
+				id: content.id,
 				row: [content.orderId, content.user, content.title, content.creationDate]
 			});
 		});
@@ -103,7 +102,7 @@
 </Modal>
 
 <SectionHeader
-	title={'Ventas'}
+	title={'Reclamos'}
 />
 
 <SectionFilters labelSearch="Buscar Orden ID o email de usuario" bind:search={search} bind:elements={contentFiltered} inputFilters={['orderId', 'user']}>
