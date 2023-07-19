@@ -132,7 +132,7 @@
 				<div class="w-full">
 					<p class="text-[12px]">
 						Al hacer clic en "Crear cuenta", estarás creando una cuenta en <br />Cucho´s Market y
-						aceptando sus <Link text="politicas de privacidad" /> y <Link text="términos de uso" />
+						aceptando sus <Link text="politicas de privacidad" href={"/terminos-condiciones"}/> y <Link text="términos de uso" href={"/terminos-condiciones"}/>
 					</p>
 				</div>
 				<div class="w-full mt-3">
