@@ -156,7 +156,7 @@
                         </div>
                         <div class="flex">
                             <p class="font-semibold text-md mb-2">Direccion: </p>
-                            <p class="text-md mb-2 ml-2">{order.clientAddress}</p>
+                            <p class="text-md mb-2 ml-2">{order.clientAddress ?? 'Retiro en sucursal'}</p>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                                 <p class="text-[0.75rem] overflow-hidden whitespace-nowrap text-ellipsis">{item.name}</p>
                             </a>
                             
-                            <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item.sku ? item.sku : 'N/A'}</p>
+                            <p class=" text-sku-grey text-[0.5rem] pt-2">SKU: {item?.product?.code ? item.product.code : 'N/A'}</p>
                         </div>
                         <!-- Product qty -->
                         <div class="min-w-[4.5rem] mx-4">   
